@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ateliê Nobile — Sofás Artesanais de Design Exclusivo</title>
-  <meta name="description" content="Sofás feitos à mão com design exclusivo. Cada peça é única, produzida com madeira de reflorestamento, espuma D33 e tecidos premium. Recife/PE." />
+  <title>Ateliê Nobile — Sofás Artesanais · Recife</title>
+  <meta name="description" content="Sofás feitos à mão com design exclusivo em Recife, PE. Cada peça é única, produzida com materiais premium e acabamento artesanal." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
   <style>
     /* ===========================
        RESET & BASE
@@ -19,1635 +20,1285 @@
     }
 
     :root {
-      --verde-oliva: #7B8B6F;
-      --verde-claro: #9AAD8A;
-      --verde-escuro: #5A6B50;
-      --bege: #D4C5A9;
-      --bege-claro: #EDE4D4;
-      --marrom: #3D2B1F;
-      --marrom-medio: #6B4C3B;
-      --creme: #FAF8F5;
-      --dourado: #C4A265;
-      --dourado-claro: #D4B882;
-      --texto: #2C2018;
-      --texto-suave: #6B5A4E;
-      --branco: #FFFFFF;
+      --bg: #FDFBF7;
+      --white: #FFFFFF;
+      --text: #1A1A1A;
+      --text-muted: #777777;
+      --accent: #8B7D6B;
+      --accent-dark: #5C4F3D;
+      --border: #E8E2D9;
+      --dark: #1A1A1A;
+      --dark-alt: #2C2418;
 
-      --font-titulo: 'Playfair Display', Georgia, serif;
-      --font-corpo: 'Inter', system-ui, sans-serif;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
 
-      --radius: 12px;
-      --radius-lg: 24px;
-      --radius-xl: 40px;
-      --sombra: 0 8px 32px rgba(61, 43, 31, 0.12);
-      --sombra-hover: 0 20px 60px rgba(61, 43, 31, 0.2);
-      --transicao: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: 0.4s var(--ease);
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
 
     body {
-      font-family: var(--font-corpo);
-      background: var(--creme);
-      color: var(--texto);
-      line-height: 1.6;
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
       overflow-x: hidden;
     }
 
-    h1, h2, h3, h4 {
-      font-family: var(--font-titulo);
-      line-height: 1.2;
-      letter-spacing: -0.02em;
+    img {
+      display: block;
+      max-width: 100%;
     }
 
-    .label {
-      font-family: var(--font-corpo);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--dourado);
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     /* ===========================
-       ANIMAÇÕES
+       TYPOGRAPHY
     =========================== */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes shimmer {
-      0%   { background-position: -200% center; }
-      100% { background-position: 200% center; }
-    }
-    @keyframes pulse-ring {
-      0%   { transform: scale(1); opacity: 1; }
-      100% { transform: scale(1.6); opacity: 0; }
+    .label {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
     }
 
-    .animate-in {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+    h1, h2, h3 {
+      font-family: var(--font-serif);
+      line-height: 1.1;
+      font-weight: 300;
     }
-    .animate-in.visible {
+
+    h1 { font-size: clamp(3rem, 7vw, 7rem); letter-spacing: -0.01em; }
+    h2 { font-size: clamp(2.2rem, 4vw, 3.8rem); letter-spacing: -0.01em; }
+    h3 { font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 400; }
+
+    p {
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* ===========================
+       ANIMATIONS
+    =========================== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse-ring {
+      0%   { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    @keyframes scroll-bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(6px); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+
+    .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
     /* ===========================
-       NAVEGAÇÃO
+       DIVIDER
     =========================== */
-    nav {
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      display: block;
+    }
+
+    /* ===========================
+       NAVBAR
+    =========================== */
+    .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 1000;
-      padding: 20px 40px;
+      z-index: 100;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 70px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: var(--transicao);
-    }
-    nav.scrolled {
-      background: rgba(250, 248, 245, 0.96);
-      backdrop-filter: blur(20px);
-      padding: 14px 40px;
-      box-shadow: 0 2px 20px rgba(61, 43, 31, 0.08);
+      transition: background var(--transition), box-shadow var(--transition);
     }
 
-    .nav-logo {
-      font-family: var(--font-titulo);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--branco);
-      text-decoration: none;
-      transition: var(--transicao);
-      letter-spacing: 0.02em;
+    .navbar.scrolled {
+      background: var(--white);
+      box-shadow: 0 1px 0 var(--border);
     }
-    nav.scrolled .nav-logo { color: var(--marrom); }
 
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 0.85rem;
+    .navbar-logo {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
       font-weight: 500;
-      color: rgba(255,255,255,0.85);
-      text-decoration: none;
-      transition: var(--transicao);
-      letter-spacing: 0.04em;
+      color: var(--white);
+      letter-spacing: 0.02em;
+      transition: color var(--transition);
     }
-    nav.scrolled .nav-links a { color: var(--texto-suave); }
-    .nav-links a:hover { color: var(--dourado); }
 
-    .nav-cta {
+    .navbar.scrolled .navbar-logo {
+      color: var(--text);
+    }
+
+    .navbar-links {
       display: flex;
       align-items: center;
-      gap: 8px;
-      background: var(--dourado);
-      color: var(--branco) !important;
-      padding: 10px 20px;
-      border-radius: 100px;
-      font-size: 0.82rem !important;
-      font-weight: 600 !important;
-      transition: var(--transicao) !important;
+      gap: 2.5rem;
+      list-style: none;
     }
-    .nav-cta:hover {
-      background: var(--dourado-claro) !important;
-      transform: translateY(-1px);
-    }
-    nav.scrolled .nav-cta { color: var(--branco) !important; }
 
-    @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
-      nav.scrolled { padding: 12px 20px; }
-      .nav-links { display: none; }
+    .navbar-links a {
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.85);
+      transition: color var(--transition);
+    }
+
+    .navbar.scrolled .navbar-links a {
+      color: var(--text-muted);
+    }
+
+    .navbar-links a:hover {
+      color: var(--white);
+    }
+
+    .navbar.scrolled .navbar-links a:hover {
+      color: var(--text);
+    }
+
+    .btn-nav {
+      background: var(--white);
+      color: var(--text) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2px;
+      font-size: 0.78rem !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.06em;
+      transition: background var(--transition), color var(--transition) !important;
+    }
+
+    .navbar.scrolled .btn-nav {
+      background: var(--text);
+      color: var(--white) !important;
+    }
+
+    .btn-nav:hover {
+      opacity: 0.85;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--white);
+      transition: background var(--transition), transform 0.3s, opacity 0.3s;
+    }
+
+    .navbar.scrolled .hamburger span {
+      background: var(--text);
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile nav overlay */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(320px, 100vw);
+      background: var(--white);
+      z-index: 99;
+      padding: 5rem 2.5rem 2.5rem;
+      flex-direction: column;
+      gap: 2rem;
+      transform: translateX(100%);
+      transition: transform 0.4s var(--ease);
+      box-shadow: -8px 0 40px rgba(0,0,0,0.12);
+    }
+
+    .mobile-nav.open {
+      transform: translateX(0);
+    }
+
+    .mobile-nav a {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      z-index: 98;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .mobile-nav-overlay.open {
+      opacity: 1;
     }
 
     /* ===========================
-       HERO — FOTO REAL SHOWROOM
+       HERO
     =========================== */
-    #hero {
-      min-height: 100vh;
+    .hero {
       position: relative;
+      width: 100%;
+      height: 100svh;
+      min-height: 600px;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       overflow: hidden;
     }
 
-    .hero-photo {
+    .hero-bg {
       position: absolute;
       inset: 0;
-      background: url('foto-kit-organico.jpeg') center center / cover no-repeat;
+      background-image: url('foto-kit-organico.jpeg');
+      background-size: cover;
+      background-position: center 40%;
+      transition: transform 0.1s linear;
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
       background: linear-gradient(
-        105deg,
-        rgba(20, 10, 5, 0.72) 0%,
-        rgba(30, 15, 8, 0.55) 55%,
-        rgba(20, 10, 5, 0.25) 100%
+        to bottom,
+        rgba(0,0,0,0.25) 0%,
+        rgba(0,0,0,0.30) 50%,
+        rgba(0,0,0,0.50) 100%
       );
     }
 
     .hero-content {
       position: relative;
-      z-index: 10;
-      max-width: 620px;
-      padding: 140px 60px 100px;
-      animation: fadeInUp 1s ease 0.3s both;
+      z-index: 2;
+      text-align: center;
+      padding: 0 clamp(1.5rem, 6vw, 4rem);
+      max-width: 800px;
+      animation: fadeUp 1.2s var(--ease) both;
     }
 
     .hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(196,162,101,0.15);
-      border: 1px solid rgba(196,162,101,0.35);
-      color: var(--dourado-claro);
-      padding: 8px 18px;
-      border-radius: 100px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 28px;
-    }
-
-    .hero-content h1 {
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
-      color: var(--branco);
-      margin-bottom: 24px;
-      font-weight: 700;
-    }
-    .hero-content h1 em {
-      font-style: italic;
-      color: var(--bege);
-    }
-
-    .hero-content p {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 44px;
-      font-weight: 300;
-      line-height: 1.75;
-      max-width: 480px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--dourado);
-      color: var(--branco);
-      padding: 16px 32px;
-      border-radius: 100px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: var(--transicao);
-      border: none;
-      cursor: pointer;
-      letter-spacing: 0.02em;
-    }
-    .btn-primary:hover {
-      background: var(--dourado-claro);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(196,162,101,0.4);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: transparent;
-      color: rgba(255,255,255,0.85);
-      padding: 16px 28px;
-      border-radius: 100px;
-      font-size: 0.92rem;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
       font-weight: 500;
-      text-decoration: none;
-      transition: var(--transicao);
-      border: 1.5px solid rgba(255,255,255,0.3);
-    }
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.1);
-      border-color: rgba(255,255,255,0.55);
-      color: var(--branco);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 1.5rem;
     }
 
-    .hero-stats {
-      position: absolute;
-      bottom: 50px;
-      left: 60px;
-      display: flex;
-      gap: 48px;
-      z-index: 10;
-      animation: fadeIn 1s ease 0.8s both;
+    .hero h1 {
+      color: var(--white);
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 2px 30px rgba(0,0,0,0.2);
     }
-    .hero-stat strong {
-      display: block;
-      font-family: var(--font-titulo);
-      font-size: 1.8rem;
-      color: var(--branco);
-      font-weight: 700;
-      line-height: 1;
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+      color: rgba(255,255,255,0.75);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      margin-bottom: 2.5rem;
+      font-family: var(--font-serif);
+      font-style: italic;
     }
-    .hero-stat span {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.06em;
+
+    .btn-hero {
+      display: inline-block;
+      background: var(--white);
+      color: var(--text);
+      padding: 0.9rem 2.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: background var(--transition), color var(--transition), transform 0.2s;
+    }
+
+    .btn-hero:hover {
+      background: var(--accent);
+      color: var(--white);
+      transform: translateY(-1px);
     }
 
     .hero-scroll {
       position: absolute;
-      bottom: 40px;
-      right: 40px;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
-      color: rgba(255,255,255,0.4);
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      z-index: 10;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.55);
     }
+
+    .hero-scroll span {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
     .scroll-line {
       width: 1px;
       height: 40px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
-      animation: fadeIn 1s ease 1.2s both;
+      background: rgba(255,255,255,0.4);
+      position: relative;
+      overflow: hidden;
     }
 
-    @media (max-width: 768px) {
-      .hero-content { padding: 110px 24px 80px; }
-      .hero-stats { left: 24px; bottom: 30px; gap: 24px; }
-      .hero-scroll { display: none; }
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.9);
+      animation: scroll-bounce 1.6s ease-in-out infinite;
     }
 
     /* ===========================
-       SEÇÕES GERAIS
+       SECTION BASE
     =========================== */
-    section { padding: 100px 40px; }
+    section {
+      padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 4rem);
+    }
 
     .section-inner {
-      max-width: 1140px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    .section-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
-    .section-header h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      color: var(--marrom);
-      margin: 12px 0 20px;
-    }
-    .section-header p {
-      font-size: 1.05rem;
-      color: var(--texto-suave);
-      max-width: 560px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    .divider {
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--dourado), transparent);
-      margin: 20px auto 0;
-    }
-
-    @media (max-width: 768px) {
-      section { padding: 72px 24px; }
-      .section-header { margin-bottom: 48px; }
-    }
-
     /* ===========================
-       BARRA PROMO
+       ABOUT
     =========================== */
-    .promo-bar {
-      background: linear-gradient(90deg, var(--verde-escuro), var(--verde-oliva), var(--dourado), var(--verde-oliva), var(--verde-escuro));
-      background-size: 300% 100%;
-      animation: shimmer 6s ease infinite;
-      padding: 10px 20px;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--branco);
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      position: relative;
-      z-index: 1001;
-    }
-    .promo-bar a {
-      color: var(--dourado-claro);
-      font-weight: 700;
-      text-decoration: none;
-    }
-    .promo-bar a:hover { text-decoration: underline; }
-
-    /* ===========================
-       SOBRE
-    =========================== */
-    #sobre {
-      background: var(--branco);
-      position: relative;
-      overflow: hidden;
+    .about {
+      background: var(--bg);
     }
 
-    .sobre-grid {
+    .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      gap: clamp(3rem, 6vw, 6rem);
       align-items: center;
     }
 
-    .sobre-photo {
+    .about-image {
       position: relative;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      aspect-ratio: 4/5;
-      box-shadow: var(--sombra);
     }
-    .sobre-photo img {
+
+    .about-image img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .about-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .about-text .label {
+      display: block;
+    }
+
+    .about-text h2 {
+      color: var(--text);
+    }
+
+    .about-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .about-feature {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .about-feature-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .about-feature span {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: 0.03em;
+    }
+
+    /* ===========================
+       PRODUCTS
+    =========================== */
+    .products {
+      background: var(--white);
+    }
+
+    .products-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 3vw, 2.5rem);
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .product-card:hover {
+      box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+    }
+
+    .product-card-image {
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      flex-shrink: 0;
+    }
+
+    .product-card-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
+      transition: transform 0.7s var(--ease);
     }
-    .sobre-photo:hover img {
+
+    .product-card:hover .product-card-image img {
       transform: scale(1.04);
     }
 
-    .sobre-tag {
-      position: absolute;
-      bottom: 28px;
-      right: -16px;
-      background: var(--branco);
-      border-radius: var(--radius);
-      padding: 18px 22px;
-      box-shadow: var(--sombra);
+    .product-card-body {
+      padding: 1.8rem;
       display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .sobre-tag-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--verde-oliva), var(--verde-escuro));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .sobre-tag strong {
-      display: block;
-      font-family: var(--font-titulo);
-      font-size: 1.1rem;
-      color: var(--marrom);
-    }
-    .sobre-tag span {
-      font-size: 0.78rem;
-      color: var(--texto-suave);
+      flex-direction: column;
+      gap: 0.8rem;
+      flex: 1;
     }
 
-    .sobre-text h2 {
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      color: var(--marrom);
-      margin: 12px 0 24px;
-    }
-    .sobre-text p {
-      color: var(--texto-suave);
-      line-height: 1.8;
-      margin-bottom: 20px;
-      font-size: 1rem;
+    .product-card-body h3 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text);
     }
 
-    .sobre-pilares {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 36px;
-    }
-    .pilar {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 16px;
-      background: var(--creme);
-      border-radius: var(--radius);
-      border: 1px solid rgba(123,139,111,0.15);
-    }
-    .pilar-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--dourado);
-      margin-top: 5px;
-      flex-shrink: 0;
-    }
-    .pilar strong {
-      display: block;
+    .product-card-body p {
       font-size: 0.85rem;
-      color: var(--marrom);
-      font-weight: 600;
-    }
-    .pilar span {
-      font-size: 0.78rem;
-      color: var(--texto-suave);
-    }
-
-    @media (max-width: 900px) {
-      .sobre-grid { grid-template-columns: 1fr; gap: 48px; }
-      .sobre-tag { right: 16px; }
-    }
-
-    /* ===========================
-       GALERIA
-    =========================== */
-    #galeria {
-      background: var(--creme);
-      padding: 100px 40px;
-    }
-
-    .galeria-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto;
-      gap: 16px;
-    }
-
-    .galeria-item {
-      overflow: hidden;
-      border-radius: var(--radius-lg);
-      position: relative;
-    }
-
-    .galeria-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.55s ease;
-    }
-
-    .galeria-item:hover img {
-      transform: scale(1.06);
-    }
-
-    /* Item grande (ocupa 2 colunas) */
-    .galeria-item.large {
-      grid-column: span 2;
-      min-height: 400px;
-    }
-
-    /* Item alto */
-    .galeria-item.tall {
-      grid-row: span 2;
-      min-height: 540px;
-    }
-
-    /* Items normais */
-    .galeria-item.normal {
-      min-height: 260px;
-    }
-
-    /* Overlay sutil ao hover */
-    .galeria-item::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(61,43,31,0);
-      transition: background 0.35s ease;
-      pointer-events: none;
-    }
-    .galeria-item:hover::after {
-      background: rgba(61,43,31,0.08);
-    }
-
-    @media (max-width: 768px) {
-      #galeria { padding: 72px 24px; }
-      .galeria-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-      }
-      .galeria-item.large { grid-column: span 2; min-height: 260px; }
-      .galeria-item.tall { grid-row: span 1; min-height: 200px; }
-      .galeria-item.normal { min-height: 180px; }
-    }
-
-    @media (max-width: 480px) {
-      .galeria-grid { grid-template-columns: 1fr; }
-      .galeria-item.large { grid-column: span 1; }
-    }
-
-    /* ===========================
-       NOSSAS LINHAS
-    =========================== */
-    #linhas {
-      background: var(--marrom);
-      position: relative;
-    }
-    #linhas::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 80% at 0% 50%, rgba(123,139,111,0.18) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 100% 50%, rgba(196,162,101,0.1) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    #linhas .section-header h2 { color: var(--branco); }
-    #linhas .section-header p { color: rgba(255,255,255,0.6); }
-    #linhas .label { color: var(--dourado-claro); }
-
-    .linhas-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-
-    .linha-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transition: var(--transicao);
-    }
-    .linha-card:hover {
-      transform: translateY(-8px);
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(196,162,101,0.25);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
-    }
-
-    .linha-photo {
-      position: relative;
-      aspect-ratio: 4/3;
-      overflow: hidden;
-    }
-    .linha-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.55s ease;
-    }
-    .linha-card:hover .linha-photo img {
-      transform: scale(1.06);
-    }
-
-    .linha-badge {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      background: rgba(255,255,255,0.92);
-      color: var(--marrom);
-      padding: 6px 14px;
-      border-radius: 100px;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      backdrop-filter: blur(4px);
-    }
-
-    .linha-info {
-      padding: 28px;
-    }
-    .linha-info .label { color: var(--dourado-claro); }
-    .linha-info h3 {
-      font-size: 1.35rem;
-      color: var(--branco);
-      margin: 8px 0 10px;
-    }
-    .linha-info .desc {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.55);
       line-height: 1.65;
-      margin-bottom: 20px;
     }
 
-    .linha-itens {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
+    .product-items {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-transform: uppercase;
     }
-    .item-tag {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.14);
-      color: rgba(255,255,255,0.65);
-      padding: 4px 12px;
-      border-radius: 100px;
+
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid var(--text);
+      color: var(--text);
+      padding: 0.75rem 1.5rem;
       font-size: 0.75rem;
       font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 1px;
+      margin-top: auto;
+      transition: background var(--transition), color var(--transition);
+      text-align: center;
     }
 
-    .linha-consulte {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.4);
-      margin-bottom: 20px;
-      font-style: italic;
-    }
-
-    .btn-card {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      padding: 14px 24px;
-      background: var(--dourado);
-      color: var(--branco);
-      border-radius: var(--radius);
-      font-size: 0.88rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: var(--transicao);
-      letter-spacing: 0.02em;
-    }
-    .btn-card:hover {
-      background: var(--dourado-claro);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(196,162,101,0.4);
-    }
-
-    @media (max-width: 900px) {
-      .linhas-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+    .btn-outline:hover {
+      background: var(--text);
+      color: var(--white);
     }
 
     /* ===========================
-       DETALHES / CRAFTSMANSHIP
+       GALLERY
     =========================== */
-    #detalhes {
-      background: var(--branco);
-      padding: 0;
-      overflow: hidden;
+    .gallery {
+      background: var(--bg);
     }
 
-    .detalhes-inner {
+    .gallery-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .gallery-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 600px;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+      gap: clamp(0.8rem, 1.5vw, 1.2rem);
     }
 
-    .detalhes-photo {
-      position: relative;
+    .gallery-item {
       overflow: hidden;
+      border-radius: 2px;
+      position: relative;
     }
-    .detalhes-photo img {
+
+    .gallery-item:nth-child(1) {
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.8s var(--ease);
       display: block;
-      transition: transform 0.8s ease;
-    }
-    .detalhes-photo:hover img {
-      transform: scale(1.04);
     }
 
-    .detalhes-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 72px;
-      background: var(--creme);
-    }
-    .detalhes-content h2 {
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      color: var(--marrom);
-      margin: 12px 0 24px;
-    }
-    .detalhes-content p {
-      color: var(--texto-suave);
-      line-height: 1.8;
-      margin-bottom: 16px;
-      font-size: 1rem;
-    }
+    .gallery-item:nth-child(1) img { min-height: 500px; }
+    .gallery-item:nth-child(2) img { min-height: 240px; }
+    .gallery-item:nth-child(3) img { min-height: 240px; }
+    .gallery-item:nth-child(4) img { min-height: 240px; }
 
-    .detalhes-itens {
-      margin-top: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .detalhe-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .detalhe-num {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--dourado);
-      color: var(--branco);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-titulo);
-      font-size: 0.9rem;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .detalhe-texto strong {
-      display: block;
-      font-size: 0.9rem;
-      color: var(--marrom);
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .detalhe-texto span {
-      font-size: 0.82rem;
-      color: var(--texto-suave);
-      line-height: 1.5;
-    }
-
-    @media (max-width: 900px) {
-      .detalhes-inner { grid-template-columns: 1fr; }
-      .detalhes-photo { min-height: 380px; }
-      .detalhes-content { padding: 60px 32px; }
+    .gallery-item:hover img {
+      transform: scale(1.05);
     }
 
     /* ===========================
-       COMO FUNCIONA
+       PROCESS
     =========================== */
-    #processo {
-      background: var(--marrom);
-      position: relative;
-      overflow: hidden;
+    .process {
+      background: var(--white);
     }
-    #processo::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 80% at 0% 50%, rgba(123,139,111,0.25) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 100% 50%, rgba(196,162,101,0.12) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    #processo .section-header h2 { color: var(--branco); }
-    #processo .section-header p { color: rgba(255,255,255,0.6); }
-    #processo .label { color: var(--dourado-claro); }
 
-    .processo-steps {
+    .process-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .process-steps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
+      position: relative;
       gap: 0;
-      position: relative;
     }
 
-    .processo-steps::before {
-      content: '';
+    .process-line {
       position: absolute;
-      top: 38px;
-      left: 12.5%;
-      width: 75%;
+      top: 18px;
+      left: calc(12.5% + 1px);
+      right: calc(12.5% + 1px);
       height: 1px;
-      background: linear-gradient(90deg, var(--verde-oliva), var(--dourado), var(--verde-oliva), var(--dourado));
-      opacity: 0.3;
+      background: var(--border);
+      z-index: 0;
     }
 
-    .step {
-      text-align: center;
-      padding: 0 20px;
-      position: relative;
-    }
-
-    .step-num {
-      width: 76px;
-      height: 76px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--verde-oliva), var(--verde-escuro));
+    .process-step {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      margin: 0 auto 24px;
-      box-shadow: 0 8px 24px rgba(90,107,80,0.4);
+      text-align: center;
+      padding: 0 1.5rem;
       position: relative;
       z-index: 1;
     }
-    .step-num svg { width: 32px; height: 32px; }
 
-    .step h4 {
-      font-size: 1.05rem;
-      color: var(--branco);
-      margin-bottom: 12px;
-    }
-    .step p {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.65;
-    }
-
-    .step-arrow {
-      position: absolute;
-      top: 28px;
-      right: -8px;
-      color: rgba(196,162,101,0.5);
-      font-size: 1.4rem;
-      z-index: 2;
-    }
-
-    @media (max-width: 900px) {
-      .processo-steps {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-      }
-      .processo-steps::before { display: none; }
-      .step-arrow { display: none; }
-    }
-
-    @media (max-width: 480px) {
-      .processo-steps { grid-template-columns: 1fr; }
-    }
-
-    /* ===========================
-       DIFERENCIAIS
-    =========================== */
-    #diferenciais {
-      background: var(--creme);
-    }
-
-    .diferenciais-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .diferencial-card {
-      background: var(--branco);
-      border-radius: var(--radius-lg);
-      padding: 36px 28px;
-      border: 1px solid rgba(212,197,169,0.35);
-      transition: var(--transicao);
-    }
-    .diferencial-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--sombra-hover);
-      border-color: rgba(196,162,101,0.2);
-    }
-
-    .dif-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: var(--radius);
-      background: linear-gradient(135deg, var(--bege-claro), var(--bege));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      color: var(--verde-escuro);
-    }
-    .dif-icon svg { width: 24px; height: 24px; }
-
-    .diferencial-card h4 {
-      font-size: 1rem;
-      color: var(--marrom);
-      margin-bottom: 10px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-    .diferencial-card p {
-      font-size: 0.85rem;
-      color: var(--texto-suave);
-      line-height: 1.65;
-    }
-
-    @media (max-width: 900px) {
-      .diferenciais-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 480px) {
-      .diferenciais-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ===========================
-       DEPOIMENTOS
-    =========================== */
-    #depoimentos {
-      background: var(--branco);
-    }
-
-    .depoimentos-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-
-    .depoimento-card {
-      background: var(--creme);
-      border-radius: var(--radius-lg);
-      padding: 36px 28px;
-      border: 1px solid rgba(212,197,169,0.3);
-      position: relative;
-      transition: var(--transicao);
-    }
-    .depoimento-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--sombra);
-    }
-
-    .estrelas { display: flex; gap: 3px; margin-bottom: 16px; }
-    .estrela { color: var(--dourado); font-size: 1rem; }
-
-    .aspas {
-      font-family: var(--font-titulo);
-      font-size: 4rem;
-      color: var(--bege);
-      line-height: 0.6;
-      margin-bottom: 16px;
-    }
-
-    .depoimento-card p {
-      font-size: 0.9rem;
-      color: var(--texto-suave);
-      line-height: 1.75;
-      margin-bottom: 24px;
-    }
-
-    .depoimento-autor {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .autor-avatar {
-      width: 44px;
-      height: 44px;
+    .process-number {
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
+      background: var(--white);
+      border: 1px solid var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-titulo);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--branco);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.2rem;
       flex-shrink: 0;
     }
-    .avatar-1 { background: linear-gradient(135deg, var(--verde-oliva), var(--verde-escuro)); }
-    .avatar-2 { background: linear-gradient(135deg, var(--marrom-medio), var(--marrom)); }
-    .avatar-3 { background: linear-gradient(135deg, var(--dourado), #B8860B); }
 
-    .autor-info strong {
+    .process-step h4 {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .process-step p {
+      font-size: 0.82rem;
+    }
+
+    /* ===========================
+       TESTIMONIALS
+    =========================== */
+    .testimonials {
+      background: var(--bg);
+    }
+
+    .testimonials-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: clamp(3rem, 6vw, 4rem);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 3vw, 2.5rem);
+    }
+
+    .testimonial-card {
+      padding: 2rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+    }
+
+    .quote-mark {
+      font-family: var(--font-serif);
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--border);
+      margin-bottom: 0.8rem;
       display: block;
-      font-size: 0.88rem;
-      color: var(--marrom);
-      font-weight: 600;
-    }
-    .autor-info span {
-      font-size: 0.78rem;
-      color: var(--texto-suave);
     }
 
-    @media (max-width: 900px) {
-      .depoimentos-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+    .testimonial-text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-author {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
     }
 
     /* ===========================
        FAQ
     =========================== */
-    #faq {
-      background: var(--creme);
+    .faq {
+      background: var(--white);
+    }
+
+    .faq-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: clamp(3rem, 5vw, 4rem);
     }
 
     .faq-list {
-      max-width: 780px;
-      margin: 0 auto;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--border);
     }
 
     .faq-item {
-      border-bottom: 1px solid rgba(212,197,169,0.5);
+      border-bottom: 1px solid var(--border);
     }
 
     .faq-question {
       width: 100%;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      padding: 24px 0;
-      background: transparent;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.4rem 0;
+      background: none;
       border: none;
       cursor: pointer;
       text-align: left;
-      font-family: var(--font-corpo);
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--marrom);
-      transition: color 0.2s;
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--text);
+      transition: color var(--transition);
     }
-    .faq-question:hover { color: var(--verde-escuro); }
+
+    .faq-question:hover {
+      color: var(--accent);
+    }
 
     .faq-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--bege-claro);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 20px;
+      height: 20px;
       flex-shrink: 0;
-      transition: var(--transicao);
+      position: relative;
+      transition: transform 0.3s var(--ease);
     }
-    .faq-icon svg { width: 14px; height: 14px; }
 
-    .faq-item.open .faq-icon {
-      background: var(--verde-oliva);
-      transform: rotate(45deg);
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: currentColor;
+      border-radius: 1px;
     }
-    .faq-item.open .faq-icon svg { stroke: white; }
+
+    .faq-icon::before {
+      width: 12px; height: 1px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .faq-icon::after {
+      width: 1px; height: 12px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .faq-item.open .faq-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+      opacity: 0;
+    }
 
     .faq-answer {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.3s ease;
+      transition: max-height 0.4s var(--ease), padding 0.4s;
     }
+
     .faq-item.open .faq-answer {
-      max-height: 200px;
-      padding-bottom: 20px;
+      max-height: 400px;
     }
-    .faq-answer p {
+
+    .faq-answer-inner {
+      padding-bottom: 1.4rem;
+    }
+
+    .faq-answer-inner p {
       font-size: 0.9rem;
-      color: var(--texto-suave);
-      line-height: 1.75;
+      line-height: 1.8;
     }
 
     /* ===========================
-       CTA FINAL
+       CTA SECTION
     =========================== */
-    #contato {
-      background: linear-gradient(145deg, var(--marrom) 0%, #2A1A10 50%, #1A0F08 100%);
-      position: relative;
-      overflow: hidden;
+    .cta-section {
+      background: var(--dark);
       text-align: center;
-    }
-    #contato::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 70% at 20% 50%, rgba(123,139,111,0.2) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 70% at 80% 50%, rgba(196,162,101,0.12) 0%, transparent 60%);
-      pointer-events: none;
+      padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 4rem);
     }
 
-    .contato-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
-      margin: 0 auto;
+    .cta-section .label {
+      color: rgba(255,255,255,0.4);
+      display: block;
+      margin-bottom: 1.2rem;
     }
 
-    #contato .label { color: var(--dourado-claro); }
-    #contato h2 {
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      color: var(--branco);
-      margin: 16px 0 20px;
-    }
-    #contato p {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.75;
-      margin-bottom: 44px;
+    .cta-section h2 {
+      color: var(--white);
+      margin-bottom: 1rem;
     }
 
-    .contato-buttons {
+    .cta-section > .section-inner > p {
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 2.5rem;
+      font-size: 1rem;
+    }
+
+    .cta-buttons {
       display: flex;
-      gap: 16px;
+      gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 52px;
+      margin-bottom: 3rem;
     }
 
     .btn-whatsapp {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 0.6rem;
       background: #25D366;
-      color: var(--branco);
-      padding: 16px 32px;
-      border-radius: 100px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: var(--transicao);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: background var(--transition), transform 0.2s;
     }
+
     .btn-whatsapp:hover {
-      background: #1ebe58;
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(37,211,102,0.4);
+      background: #1eb558;
+      transform: translateY(-1px);
     }
 
     .btn-instagram {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 0.6rem;
       background: transparent;
       color: rgba(255,255,255,0.8);
-      padding: 16px 28px;
-      border-radius: 100px;
-      font-size: 0.95rem;
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 0.9rem 2rem;
+      font-size: 0.8rem;
       font-weight: 500;
-      text-decoration: none;
-      transition: var(--transicao);
-      border: 1.5px solid rgba(255,255,255,0.25);
-    }
-    .btn-instagram:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.5);
-      color: var(--branco);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 1px;
+      transition: border-color var(--transition), color var(--transition);
     }
 
-    .contato-info {
-      display: flex;
-      gap: 40px;
-      justify-content: center;
-      flex-wrap: wrap;
+    .btn-instagram:hover {
+      border-color: rgba(255,255,255,0.6);
+      color: var(--white);
     }
-    .info-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.45);
+
+    .cta-address {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.04em;
     }
-    .info-item svg { width: 16px; height: 16px; flex-shrink: 0; }
 
     /* ===========================
        FOOTER
     =========================== */
-    footer {
-      background: #1A0F08;
-      padding: 40px;
-    }
-
-    .footer-inner {
-      max-width: 1140px;
-      margin: 0 auto;
+    .footer {
+      background: var(--dark-alt);
+      padding: 1.8rem clamp(1.5rem, 6vw, 4rem);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
       flex-wrap: wrap;
+      gap: 1rem;
     }
 
-    .footer-logo {
-      font-family: var(--font-titulo);
-      font-size: 1.3rem;
-      color: var(--bege);
-      font-weight: 700;
-    }
-    .footer-logo span {
-      display: block;
-      font-family: var(--font-corpo);
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.35);
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-top: 2px;
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em;
     }
 
     .footer-links {
       display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
+      gap: 1.5rem;
+      list-style: none;
     }
+
     .footer-links a {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.4);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--bege); }
-
-    .footer-copy {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.25);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color var(--transition);
     }
 
-    @media (max-width: 768px) {
-      footer { padding: 32px 24px; }
-      .footer-inner { flex-direction: column; text-align: center; }
-      .footer-links { justify-content: center; }
+    .footer-links a:hover {
+      color: rgba(255,255,255,0.75);
     }
 
     /* ===========================
-       WHATSAPP FLUTUANTE
+       FLOATING WHATSAPP
     =========================== */
-    .whatsapp-float {
+    .float-whatsapp {
       position: fixed;
-      bottom: 32px;
-      right: 32px;
-      z-index: 999;
-    }
-    .whatsapp-float a {
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 50;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 60px;
-      height: 60px;
-      background: #25D366;
-      border-radius: 50%;
-      box-shadow: 0 8px 30px rgba(37,211,102,0.4);
-      text-decoration: none;
-      transition: var(--transicao);
-      position: relative;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .whatsapp-float a:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 40px rgba(37,211,102,0.5);
-    }
-    .whatsapp-float a::before {
+
+    .float-whatsapp::before {
       content: '';
       position: absolute;
-      inset: -4px;
+      inset: 0;
       border-radius: 50%;
-      border: 2px solid rgba(37,211,102,0.4);
+      background: #25D366;
       animation: pulse-ring 2s ease-out infinite;
     }
-    .whatsapp-float svg { width: 28px; height: 28px; fill: white; }
 
-    .float-tooltip {
-      position: absolute;
-      right: 72px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--marrom);
-      color: var(--branco);
-      padding: 8px 16px;
-      border-radius: 100px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
+    .float-whatsapp:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.5);
     }
-    .whatsapp-float a:hover + .float-tooltip { opacity: 1; }
 
-    @media (max-width: 480px) {
-      .whatsapp-float { bottom: 20px; right: 20px; }
+    .float-whatsapp svg {
+      position: relative;
+      z-index: 1;
     }
 
     /* ===========================
-       UTILITY
+       RESPONSIVE
     =========================== */
-    .delay-1 { transition-delay: 0.1s; }
-    .delay-2 { transition-delay: 0.2s; }
-    .delay-3 { transition-delay: 0.3s; }
-    .delay-4 { transition-delay: 0.4s; }
+    @media (max-width: 1024px) {
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .testimonials-grid .testimonial-card:nth-child(3) {
+        grid-column: span 2;
+        max-width: 480px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .mobile-nav {
+        display: flex;
+      }
+
+      .mobile-nav-overlay {
+        display: block;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image img {
+        aspect-ratio: 4/3;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .process-steps {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .process-line {
+        display: none;
+      }
+
+      .process-step {
+        align-items: flex-start;
+        text-align: left;
+        flex-direction: row;
+        gap: 1.5rem;
+        padding: 0;
+      }
+
+      .process-number {
+        margin-bottom: 0;
+      }
+
+      .process-step-text h4 {
+        font-family: var(--font-serif);
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: var(--text);
+        margin-bottom: 0.4rem;
+      }
+
+      .process-step-text p {
+        font-size: 0.82rem;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials-grid .testimonial-card:nth-child(3) {
+        grid-column: auto;
+        max-width: 100%;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item:nth-child(1) {
+        grid-row: auto;
+      }
+
+      .gallery-item:nth-child(1) img,
+      .gallery-item:nth-child(2) img,
+      .gallery-item:nth-child(3) img,
+      .gallery-item:nth-child(4) img {
+        min-height: 260px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.5rem, 11vw, 4rem);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn-whatsapp,
+      .btn-instagram {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Barra promocional -->
-  <div class="promo-bar">
-    Frete grátis para toda a Região Metropolitana do Recife &nbsp;·&nbsp;
-    <a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." target="_blank">Solicitar orçamento →</a>
-  </div>
+  <!-- ===========================
+       MOBILE OVERLAY
+  =========================== -->
+  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
 
-  <!-- Navegação -->
-  <nav id="navbar">
-    <a class="nav-logo" href="#">Ateliê Nobile</a>
-    <ul class="nav-links">
-      <li><a href="#sobre">O Ateliê</a></li>
-      <li><a href="#galeria">Galeria</a></li>
-      <li><a href="#linhas">Nossas Linhas</a></li>
-      <li><a href="#diferenciais">Diferenciais</a></li>
-      <li><a href="#faq">FAQ</a></li>
+  <!-- ===========================
+       NAVBAR
+  =========================== -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="navbar-logo">Ateliê Nobile</a>
+
+    <ul class="navbar-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="#contato">Contato</a></li>
       <li>
-        <a class="nav-cta" href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." target="_blank">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.938 1.399 5.614L.057 23.547a.75.75 0 00.92.92l5.933-1.342A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.49-5.186-1.352l-.372-.214-3.857.873.873-3.857-.214-.372A9.952 9.952 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-          </svg>
-          WhatsApp
-        </a>
+        <a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." class="btn-nav" target="_blank" rel="noopener">WhatsApp</a>
       </li>
     </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
-  <!-- ========================
-       HERO — SHOWROOM
-  ======================== -->
-  <section id="hero">
-    <div class="hero-photo"></div>
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#sobre" class="mobile-nav-link">Sobre</a>
+    <a href="#produtos" class="mobile-nav-link">Produtos</a>
+    <a href="#galeria" class="mobile-nav-link">Galeria</a>
+    <a href="#contato" class="mobile-nav-link">Contato</a>
+    <a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." target="_blank" rel="noopener" style="color: #25D366; border-bottom: none; font-size: 1.1rem; margin-top: auto;">
+      WhatsApp →
+    </a>
+  </nav>
+
+  <!-- ===========================
+       HERO
+  =========================== -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg" id="heroBg"></div>
     <div class="hero-overlay"></div>
-
     <div class="hero-content">
-      <div class="hero-label">
-        <svg width="8" height="8" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
-        Ateliê Artesanal · Recife/PE
-      </div>
-
-      <h1>Sofás feitos à mão com <em>design exclusivo</em></h1>
-
-      <p>Cada peça sai das mãos dos nossos artesãos com cuidado e identidade própria. Mobiliário que conta uma história e dura gerações.</p>
-
-      <div class="hero-buttons">
-        <a class="btn-primary" href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." target="_blank">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.938 1.399 5.614L.057 23.547a.75.75 0 00.92.92l5.933-1.342A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.49-5.186-1.352l-.372-.214-3.857.873.873-3.857-.214-.372A9.952 9.952 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-          </svg>
-          Solicite seu orçamento
-        </a>
-        <a class="btn-secondary" href="#galeria">
-          Ver nossa galeria
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
+      <p class="hero-label">Sofás Artesanais · Recife</p>
+      <h1>Design que<br>você sente</h1>
+      <p class="hero-sub">Cada peça, uma obra feita à mão com alma e precisão</p>
+      <a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." class="btn-hero" target="_blank" rel="noopener">
+        Solicite seu Orçamento
+      </a>
     </div>
-
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <strong>+200</strong>
-        <span>lares transformados</span>
-      </div>
-      <div class="hero-stat">
-        <strong>5 anos</strong>
-        <span>de ateliê</span>
-      </div>
-      <div class="hero-stat">
-        <strong>100%</strong>
-        <span>artesanal</span>
-      </div>
-    </div>
-
-    <div class="hero-scroll">
+    <div class="hero-scroll" aria-hidden="true">
+      <span>Role</span>
       <div class="scroll-line"></div>
-      scroll
     </div>
   </section>
 
-  <!-- ========================
-       SOBRE O ATELIÊ
-  ======================== -->
-  <section id="sobre">
+  <!-- ===========================
+       ABOUT
+  =========================== -->
+  <section class="about" id="sobre">
     <div class="section-inner">
-      <div class="sobre-grid">
-
-        <div class="sobre-photo animate-in">
-          <img src="foto-kit-classico.jpeg" alt="Kit completo Linha Clássica — sofá e poltrona cinza" loading="lazy" />
-          <div class="sobre-tag">
-            <div class="sobre-tag-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                <path d="M2 17l10 5 10-5"/>
-                <path d="M2 12l10 5 10-5"/>
-              </svg>
+      <div class="about-grid">
+        <div class="about-image reveal">
+          <img src="foto-kit-classico.jpeg" alt="Conjunto sofá e poltrona Ateliê Nobile" loading="lazy" />
+        </div>
+        <div class="about-text">
+          <span class="label reveal reveal-delay-1">O Ateliê</span>
+          <h2 class="reveal reveal-delay-1">Feito à mão,<br>entregue com alma</h2>
+          <span class="divider reveal reveal-delay-2"></span>
+          <p class="reveal reveal-delay-2">
+            No Ateliê Nobile, cada sofá nasce de um processo artesanal criterioso. Escolhemos os materiais com cuidado, desenhamos cada curva com intenção e entregamos uma peça que transforma o ambiente — e a experiência de quem vive nele.
+          </p>
+          <p class="reveal reveal-delay-3">
+            Localizado em Recife, trabalhamos com madeiras selecionadas, espumas de alta densidade e tecidos premium. O resultado é um móvel que une estética refinada e durabilidade real.
+          </p>
+          <div class="about-features reveal reveal-delay-4">
+            <div class="about-feature">
+              <div class="about-feature-dot"></div>
+              <span>Produção 100% artesanal</span>
             </div>
-            <div>
-              <strong>Design Autoral</strong>
-              <span>Cada peça, uma obra única</span>
+            <div class="about-feature">
+              <div class="about-feature-dot"></div>
+              <span>Personalização completa de tecido e dimensões</span>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-dot"></div>
+              <span>Materiais premium com garantia de qualidade</span>
             </div>
           </div>
         </div>
-
-        <div class="sobre-text animate-in delay-2">
-          <div class="label">Sobre o Ateliê</div>
-          <h2>Feito com as mãos, entregue com o coração</h2>
-          <p>
-            O Ateliê Nobile nasceu da paixão pela arte de transformar espaços. Cada sofá que sai do nosso ateliê carrega horas de dedicação, escolha cuidadosa de materiais e um olho apurado para beleza e conforto.
-          </p>
-          <p>
-            Não fazemos produção em série. Cada peça é construída sob medida, com madeira de reflorestamento, espuma D33 de alta densidade e tecidos que passam pela nossa curadoria antes de chegar às suas mãos.
-          </p>
-
-          <div class="sobre-pilares">
-            <div class="pilar">
-              <div class="pilar-dot"></div>
-              <div>
-                <strong>Artesanato genuíno</strong>
-                <span>Feito à mão, do zero</span>
-              </div>
-            </div>
-            <div class="pilar">
-              <div class="pilar-dot"></div>
-              <div>
-                <strong>Peças exclusivas</strong>
-                <span>Design autoral único</span>
-              </div>
-            </div>
-            <div class="pilar">
-              <div class="pilar-dot"></div>
-              <div>
-                <strong>Materiais premium</strong>
-                <span>Seleção rigorosa</span>
-              </div>
-            </div>
-            <div class="pilar">
-              <div class="pilar-dot"></div>
-              <div>
-                <strong>Personalização</strong>
-                <span>Sua cor, seu tecido</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ========================
-       GALERIA
-  ======================== -->
-  <section id="galeria">
+  <!-- ===========================
+       PRODUCTS
+  =========================== -->
+  <section class="products" id="produtos">
     <div class="section-inner">
-      <div class="section-header animate-in">
-        <div class="label">Galeria</div>
-        <h2>Cada peça, um universo</h2>
-        <p>Conheça alguns dos nossos trabalhos. Formas, texturas e cores que transformam qualquer ambiente.</p>
-        <div class="divider"></div>
+      <div class="products-header">
+        <span class="label reveal">Coleções</span>
+        <h2 class="reveal reveal-delay-1">Nossas Linhas</h2>
       </div>
-
-      <div class="galeria-grid">
-
-        <!-- Kit Clássico — item grande -->
-        <div class="galeria-item large animate-in">
-          <img src="foto-kit-classico.jpeg" alt="Kit sofá e poltrona cinza — Ateliê Nobile" loading="lazy" />
-        </div>
-
-        <!-- Puff — item alto lateral -->
-        <div class="galeria-item tall animate-in delay-1">
-          <img src="foto-puff.jpeg" alt="Puff redondo cinza com pés em madeira" loading="lazy" />
-        </div>
-
-        <!-- Kit Orgânico -->
-        <div class="galeria-item normal animate-in delay-2">
-          <img src="foto-kit-organico.jpeg" alt="Kit Linha Orgânica — sofá e poltrona verde curvo" loading="lazy" />
-        </div>
-
-        <!-- Sofá Clássico -->
-        <div class="galeria-item normal animate-in delay-3">
-          <img src="foto-sofa-classico.jpeg" alt="Sofá Linha Clássica — branco e cinza em ambiente moderno" loading="lazy" />
-        </div>
-
-        <!-- Kit Clássico -->
-        <div class="galeria-item normal animate-in">
-          <img src="foto-kit-classico.jpeg" alt="Kit Linha Clássica — sofá e poltrona cinza" loading="lazy" />
-        </div>
-
-        <!-- Poltrona Azul -->
-        <div class="galeria-item normal animate-in delay-1">
-          <img src="foto-poltrona-azul.jpeg" alt="Poltrona quadrada azul — Linha Confort" loading="lazy" />
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================
-       NOSSAS LINHAS
-  ======================== -->
-  <section id="linhas">
-    <div class="section-inner">
-      <div class="section-header animate-in">
-        <div class="label">Nossas Linhas</div>
-        <h2>Encontre o sofá ideal para você</h2>
-        <p>Três linhas cuidadosamente desenvolvidas para diferentes estilos de vida e decoração. Cada kit inclui sofá, poltrona e puff.</p>
-        <div class="divider" style="background: linear-gradient(90deg, var(--dourado-claro), transparent);"></div>
-      </div>
-
-      <div class="linhas-grid">
+      <div class="products-grid">
 
         <!-- Linha Orgânica -->
-        <div class="linha-card animate-in">
-          <div class="linha-photo">
-            <div class="linha-badge">● Mais Popular</div>
-            <img src="foto-kit-organico.jpeg" alt="Linha Orgânica — sofá verde com curvas suaves" loading="lazy" />
+        <div class="product-card reveal">
+          <div class="product-card-image">
+            <img src="foto-kit-organico.jpeg" alt="Linha Orgânica — Sofá curvo com poltrona" loading="lazy" />
           </div>
-          <div class="linha-info">
-            <div class="label">Linha 01</div>
+          <div class="product-card-body">
             <h3>Linha Orgânica</h3>
-            <p class="desc">Curvas suaves e formas fluidas que abraçam o corpo. Design contemporâneo que transforma qualquer ambiente em um refúgio de conforto e estilo.</p>
-            <div class="linha-itens">
-              <span class="item-tag">Sofá</span>
-              <span class="item-tag">Poltrona</span>
-              <span class="item-tag">Puff Redondo</span>
-            </div>
-            <p class="linha-consulte">Consulte valores pelo WhatsApp</p>
-            <a class="btn-card" href="https://wa.me/5581986725748?text=Olá!%20Tenho%20interesse%20na%20Linha%20Orgânica%20do%20Ateliê%20Nobile.%20Pode%20me%20passar%20mais%20informações?" target="_blank">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.938 1.399 5.614L.057 23.547a.75.75 0 00.92.92l5.933-1.342A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.49-5.186-1.352l-.372-.214-3.857.873.873-3.857-.214-.372A9.952 9.952 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-              </svg>
-              Solicitar Orçamento
+            <p>Formas suaves e curvas naturais que trazem fluidez e sofisticação para qualquer ambiente.</p>
+            <span class="product-items">Sofá · Poltrona · Puff</span>
+            <a href="https://wa.me/5581986725748?text=Olá!%20Tenho%20interesse%20na%20Linha%20Orgânica%20do%20Ateliê%20Nobile." class="btn-outline" target="_blank" rel="noopener">
+              Consultar via WhatsApp
             </a>
           </div>
         </div>
 
         <!-- Linha Clássica -->
-        <div class="linha-card animate-in delay-1">
-          <div class="linha-photo">
-            <img src="foto-sofa-classico.jpeg" alt="Linha Clássica — sofá branco e cinza elegante" loading="lazy" />
+        <div class="product-card reveal reveal-delay-1">
+          <div class="product-card-image">
+            <img src="foto-sofa-classico.jpeg" alt="Linha Clássica — Sofá reto em ambiente moderno" loading="lazy" />
           </div>
-          <div class="linha-info">
-            <div class="label">Linha 02</div>
+          <div class="product-card-body">
             <h3>Linha Clássica</h3>
-            <p class="desc">Linhas retas e elegância atemporal que nunca saem de moda. Perfeita para quem busca sofisticação e presença em qualquer ambiente.</p>
-            <div class="linha-itens">
-              <span class="item-tag">Sofá</span>
-              <span class="item-tag">Poltrona</span>
-              <span class="item-tag">Puff Quadrado</span>
-            </div>
-            <p class="linha-consulte">Consulte valores pelo WhatsApp</p>
-            <a class="btn-card" href="https://wa.me/5581986725748?text=Olá!%20Tenho%20interesse%20na%20Linha%20Clássica%20do%20Ateliê%20Nobile.%20Pode%20me%20passar%20mais%20informações?" target="_blank">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.938 1.399 5.614L.057 23.547a.75.75 0 00.92.92l5.933-1.342A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.49-5.186-1.352l-.372-.214-3.857.873.873-3.857-.214-.372A9.952 9.952 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-              </svg>
-              Solicitar Orçamento
+            <p>Linhas retas e proporções equilibradas para quem valoriza elegância atemporal e conforto duradouro.</p>
+            <span class="product-items">Sofá · Poltrona · Puff</span>
+            <a href="https://wa.me/5581986725748?text=Olá!%20Tenho%20interesse%20na%20Linha%20Clássica%20do%20Ateliê%20Nobile." class="btn-outline" target="_blank" rel="noopener">
+              Consultar via WhatsApp
             </a>
           </div>
         </div>
 
         <!-- Linha Confort -->
-        <div class="linha-card animate-in delay-2">
-          <div class="linha-photo">
-            <img src="foto-poltrona-azul.jpeg" alt="Linha Confort — poltrona azul quadrada acolchoada" loading="lazy" />
+        <div class="product-card reveal reveal-delay-2">
+          <div class="product-card-image">
+            <img src="foto-poltrona-azul.jpeg" alt="Linha Confort — Poltrona azul estruturada" loading="lazy" />
           </div>
-          <div class="linha-info">
-            <div class="label">Linha 03</div>
+          <div class="product-card-body">
             <h3>Linha Confort</h3>
-            <p class="desc">Ultra acolchoante e de máximo conforto. Para quem não abre mão de horas de descanso com estilo. O abraço que seu corpo merece.</p>
-            <div class="linha-itens">
-              <span class="item-tag">Sofá</span>
-              <span class="item-tag">Poltrona</span>
-              <span class="item-tag">Puff Grande</span>
-            </div>
-            <p class="linha-consulte">Consulte valores pelo WhatsApp</p>
-            <a class="btn-card" href="https://wa.me/5581986725748?text=Olá!%20Tenho%20interesse%20na%20Linha%20Confort%20do%20Ateliê%20Nobile.%20Pode%20me%20passar%20mais%20informações?" target="_blank">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.938 1.399 5.614L.057 23.547a.75.75 0 00.92.92l5.933-1.342A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.49-5.186-1.352l-.372-.214-3.857.873.873-3.857-.214-.372A9.952 9.952 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-              </svg>
-              Solicitar Orçamento
+            <p>Estrutura robusta e acolchoamento generoso que convida ao descanso sem abrir mão do estilo.</p>
+            <span class="product-items">Sofá · Poltrona · Puff</span>
+            <a href="https://wa.me/5581986725748?text=Olá!%20Tenho%20interesse%20na%20Linha%20Confort%20do%20Ateliê%20Nobile." class="btn-outline" target="_blank" rel="noopener">
+              Consultar via WhatsApp
             </a>
           </div>
         </div>
@@ -1656,365 +1307,193 @@
     </div>
   </section>
 
-  <!-- ========================
-       DETALHES QUE FAZEM A DIFERENÇA
-  ======================== -->
-  <section id="detalhes">
-    <div class="detalhes-inner">
-
-      <div class="detalhes-photo animate-in">
-        <img src="foto-puff.jpeg" alt="Puff redondo artesanal — detalhe dos pés em madeira e tecido premium" loading="lazy" />
-      </div>
-
-      <div class="detalhes-content animate-in delay-2">
-        <div class="label">Artesanato</div>
-        <h2>Detalhes que fazem a diferença</h2>
-        <p>
-          Do corte do tecido ao último ponto de costura, cada etapa é realizada com atenção obsessiva ao detalhe. É assim que garantimos peças que duram e encantam por gerações.
-        </p>
-
-        <div class="detalhes-itens">
-          <div class="detalhe-item">
-            <div class="detalhe-num">1</div>
-            <div class="detalhe-texto">
-              <strong>Estrutura em madeira maciça de reflorestamento</strong>
-              <span>Base sólida, sustentável e certificada que garante décadas de uso.</span>
-            </div>
-          </div>
-          <div class="detalhe-item">
-            <div class="detalhe-num">2</div>
-            <div class="detalhe-texto">
-              <strong>Espuma D33 de alta densidade</strong>
-              <span>Conforto que não afunda com o tempo — mantém volume e suporte por anos.</span>
-            </div>
-          </div>
-          <div class="detalhe-item">
-            <div class="detalhe-num">3</div>
-            <div class="detalhe-texto">
-              <strong>Tecidos e couros selecionados a dedo</strong>
-              <span>Curadoria rigorosa de texturas e cores para elevar qualquer ambiente.</span>
-            </div>
-          </div>
-          <div class="detalhe-item">
-            <div class="detalhe-num">4</div>
-            <div class="detalhe-texto">
-              <strong>Costura artesanal e acabamentos impecáveis</strong>
-              <span>Cada ponto feito à mão por artesãos apaixonados pelo ofício.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========================
-       COMO FUNCIONA
-  ======================== -->
-  <section id="processo">
+  <!-- ===========================
+       GALLERY
+  =========================== -->
+  <section class="gallery" id="galeria">
     <div class="section-inner">
-      <div class="section-header animate-in">
-        <div class="label">Como Funciona</div>
-        <h2>Da escolha à entrega</h2>
-        <p>Um processo simples e transparente para você receber a peça dos sonhos.</p>
-        <div class="divider" style="background: linear-gradient(90deg, var(--dourado-claro), transparent);"></div>
+      <div class="gallery-header">
+        <span class="label reveal">Galeria</span>
+        <h2 class="reveal reveal-delay-1">As Peças</h2>
       </div>
-
-      <div class="processo-steps">
-
-        <div class="step animate-in">
-          <div class="step-num">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 6v6l4 2"/>
-            </svg>
-          </div>
-          <h4>Escolha o Modelo</h4>
-          <p>Navegue pelas 3 linhas e encontre o sofá que combina com seu estilo e espaço.</p>
-          <div class="step-arrow">→</div>
+      <div class="gallery-grid reveal">
+        <div class="gallery-item">
+          <img src="foto-kit-organico.jpeg" alt="Kit Orgânico — Sofá curvo verde com poltrona e puff" loading="lazy" />
         </div>
-
-        <div class="step animate-in delay-1">
-          <div class="step-num">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-              <circle cx="12" cy="12" r="3"/>
-              <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-            </svg>
-          </div>
-          <h4>Personalize</h4>
-          <p>Escolha a cor, o tecido e os acabamentos. Cada detalhe é adaptado ao seu gosto.</p>
-          <div class="step-arrow">→</div>
+        <div class="gallery-item">
+          <img src="foto-sofa-classico.jpeg" alt="Sofá Clássico em ambiente contemporâneo" loading="lazy" />
         </div>
-
-        <div class="step animate-in delay-2">
-          <div class="step-num">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-              <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
-            </svg>
-          </div>
-          <h4>Fabricação Artesanal</h4>
-          <p>Nossos artesãos trabalham cada peça com atenção e cuidado, levando 15 a 20 dias.</p>
-          <div class="step-arrow">→</div>
+        <div class="gallery-item">
+          <img src="foto-puff.jpeg" alt="Puff redondo cinza com base em madeira" loading="lazy" />
         </div>
-
-        <div class="step animate-in delay-3">
-          <div class="step-num">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-              <rect x="1" y="3" width="15" height="13" rx="2"/>
-              <path d="M16 8h4l3 3v5h-7V8z"/>
-              <circle cx="5.5" cy="18.5" r="2.5"/>
-              <circle cx="18.5" cy="18.5" r="2.5"/>
-            </svg>
-          </div>
-          <h4>Entrega em Casa</h4>
-          <p>Entregamos na sua casa em toda a região metropolitana do Recife. Cuidado do início ao fim.</p>
+        <div class="gallery-item">
+          <img src="foto-poltrona-azul.jpeg" alt="Poltrona azul estruturada Linha Confort" loading="lazy" />
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ========================
-       DIFERENCIAIS
-  ======================== -->
-  <section id="diferenciais">
+  <!-- ===========================
+       PROCESS
+  =========================== -->
+  <section class="process" id="processo">
     <div class="section-inner">
-      <div class="section-header animate-in">
-        <div class="label">Nossos Diferenciais</div>
-        <h2>Por que escolher o Ateliê Nobile?</h2>
-        <p>Qualidade que se vê, se toca e se sente. Cada detalhe pensado para durar.</p>
-        <div class="divider"></div>
+      <div class="process-header">
+        <span class="label reveal">Do início ao fim</span>
+        <h2 class="reveal reveal-delay-1">Como Funciona</h2>
       </div>
+      <div class="process-steps reveal reveal-delay-2">
+        <div class="process-line" aria-hidden="true"></div>
 
-      <div class="diferenciais-grid">
-
-        <div class="diferencial-card animate-in">
-          <div class="dif-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 8h1a4 4 0 010 8h-1"/>
-              <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
-              <line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
-            </svg>
+        <div class="process-step">
+          <div class="process-number">01</div>
+          <div class="process-step-text">
+            <h4>Escolha</h4>
+            <p>Selecione a linha que combina com seu ambiente e estilo de vida.</p>
           </div>
-          <h4>100% Feito à Mão</h4>
-          <p>Cada peça é montada artesanalmente por profissionais apaixonados pelo ofício. Nenhuma máquina substitui o toque humano.</p>
         </div>
 
-        <div class="diferencial-card animate-in delay-1">
-          <div class="dif-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
+        <div class="process-step">
+          <div class="process-number">02</div>
+          <div class="process-step-text">
+            <h4>Personalize</h4>
+            <p>Defina tecido, cor, dimensão e acabamentos conforme sua visão.</p>
           </div>
-          <h4>Madeira de Reflorestamento</h4>
-          <p>Estrutura sólida em madeira certificada de reflorestamento. Resistente, sustentável e responsável com o planeta.</p>
         </div>
 
-        <div class="diferencial-card animate-in delay-2">
-          <div class="dif-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
-            </svg>
+        <div class="process-step">
+          <div class="process-number">03</div>
+          <div class="process-step-text">
+            <h4>Fabricação</h4>
+            <p>Sua peça é feita à mão por nossos artesãos com total dedicação.</p>
           </div>
-          <h4>Espuma D33 Alta Densidade</h4>
-          <p>Conforto que não afunda com o tempo. Espuma de alta densidade que mantém o volume e suporte por anos.</p>
         </div>
 
-        <div class="diferencial-card animate-in">
-          <div class="dif-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-            </svg>
+        <div class="process-step">
+          <div class="process-number">04</div>
+          <div class="process-step-text">
+            <h4>Entrega</h4>
+            <p>Receba em casa com cuidado, pontualidade e acompanhamento.</p>
           </div>
-          <h4>Tecidos Premium Importados</h4>
-          <p>Curadoria rigorosa de tecidos e couros importados. Texturas e cores que elevam qualquer ambiente.</p>
-        </div>
-
-        <div class="diferencial-card animate-in delay-1">
-          <div class="dif-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20 6 9 17 4 12"/>
-            </svg>
-          </div>
-          <h4>Garantia de 2 Anos</h4>
-          <p>Confiança total na qualidade dos nossos produtos. Garantia completa contra defeitos de fabricação por 2 anos.</p>
-        </div>
-
-        <div class="diferencial-card animate-in delay-2">
-          <div class="dif-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="1" y="3" width="15" height="13" rx="2"/>
-              <path d="M16 8h4l3 3v5h-7V8z"/>
-              <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
-            </svg>
-          </div>
-          <h4>Entrega na Grande Recife</h4>
-          <p>Entregamos em toda a região metropolitana com cuidado especial para que o produto chegue perfeito.</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ========================
-       DEPOIMENTOS
-  ======================== -->
-  <section id="depoimentos">
+  <!-- ===========================
+       TESTIMONIALS
+  =========================== -->
+  <section class="testimonials" id="depoimentos">
     <div class="section-inner">
-      <div class="section-header animate-in">
-        <div class="label">Depoimentos</div>
-        <h2>O que nossos clientes dizem</h2>
-        <p>Famílias reais de Recife que transformaram seus lares com o Ateliê Nobile.</p>
-        <div class="divider"></div>
+      <div class="testimonials-header">
+        <span class="label reveal">Depoimentos</span>
+        <h2 class="reveal reveal-delay-1">O que dizem</h2>
       </div>
+      <div class="testimonials-grid">
 
-      <div class="depoimentos-grid">
-
-        <div class="depoimento-card animate-in">
-          <div class="estrelas">
-            <span class="estrela">★</span><span class="estrela">★</span><span class="estrela">★</span><span class="estrela">★</span><span class="estrela">★</span>
-          </div>
-          <div class="aspas">"</div>
-          <p>Recebemos o sofá da Linha Orgânica há 8 meses e toda visita que chega fica encantada. A qualidade é impressionante — parece que foi feito especialmente para a gente, porque foi! Vale cada centavo.</p>
-          <div class="depoimento-autor">
-            <div class="autor-avatar avatar-1">C</div>
-            <div class="autor-info">
-              <strong>Camila Araújo</strong>
-              <span>Boa Viagem, Recife</span>
-            </div>
-          </div>
+        <div class="testimonial-card reveal">
+          <span class="quote-mark">"</span>
+          <p class="testimonial-text">O sofá ficou exatamente como imaginei. A qualidade do tecido e o acabamento são impecáveis — parece peça de loja de design europeu.</p>
+          <span class="testimonial-author">Mariana C. · Boa Viagem, Recife</span>
         </div>
 
-        <div class="depoimento-card animate-in delay-1">
-          <div class="estrelas">
-            <span class="estrela">★</span><span class="estrela">★</span><span class="estrela">★</span><span class="estrela">★</span><span class="estrela">★</span>
-          </div>
-          <div class="aspas">"</div>
-          <p>Pedi o kit completo — sofá, poltrona e puff — na cor terracota. Ficou exatamente como eu imaginei. O Andson foi super atencioso na escolha do tecido. Recomendo demais!</p>
-          <div class="depoimento-autor">
-            <div class="autor-avatar avatar-2">R</div>
-            <div class="autor-info">
-              <strong>Rodrigo Menezes</strong>
-              <span>Casa Forte, Recife</span>
-            </div>
-          </div>
+        <div class="testimonial-card reveal reveal-delay-1">
+          <span class="quote-mark">"</span>
+          <p class="testimonial-text">Atendimento atencioso do começo ao fim. Personalizamos tudo e o resultado superou nossas expectativas. Vale cada centavo.</p>
+          <span class="testimonial-author">Rafael e Ana · Aflitos, Recife</span>
         </div>
 
-        <div class="depoimento-card animate-in delay-2">
-          <div class="estrelas">
-            <span class="estrela">★</span><span class="estrela">★</span><span class="estrela">★</span><span class="estrela">★</span><span class="estrela">★</span>
-          </div>
-          <div class="aspas">"</div>
-          <p>Tinha medo de comprar pela internet, mas o atendimento no WhatsApp foi tão transparente que confiei. Chegou no prazo, embalado com cuidado, e é ainda mais lindo pessoalmente.</p>
-          <div class="depoimento-autor">
-            <div class="autor-avatar avatar-3">F</div>
-            <div class="autor-info">
-              <strong>Fernanda Leal</strong>
-              <span>Aflitos, Recife</span>
-            </div>
-          </div>
+        <div class="testimonial-card reveal reveal-delay-2">
+          <span class="quote-mark">"</span>
+          <p class="testimonial-text">Nunca pensei que um sofá pudesse transformar tanto um ambiente. O Ateliê Nobile entrega design de verdade, feito com cuidado real.</p>
+          <span class="testimonial-author">Cláudia M. · Derby, Recife</span>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ========================
+  <!-- ===========================
        FAQ
-  ======================== -->
-  <section id="faq">
+  =========================== -->
+  <section class="faq" id="faq">
     <div class="section-inner">
-      <div class="section-header animate-in">
-        <div class="label">Perguntas Frequentes</div>
-        <h2>Tudo o que você precisa saber</h2>
-        <p>Tirou todas as dúvidas? Fale com a gente pelo WhatsApp.</p>
-        <div class="divider"></div>
+      <div class="faq-header">
+        <span class="label reveal">Dúvidas</span>
+        <h2 class="reveal reveal-delay-1">Perguntas frequentes</h2>
       </div>
-
-      <div class="faq-list animate-in">
+      <div class="faq-list reveal reveal-delay-2">
 
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            <span>Qual é o prazo de entrega?</span>
-            <div class="faq-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-              </svg>
-            </div>
+          <button class="faq-question">
+            Vocês trabalham com personalização completa?
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
           <div class="faq-answer">
-            <p>Nosso prazo de fabricação é de 15 a 20 dias úteis após a confirmação do pedido e pagamento do sinal. Como cada peça é feita à mão e personalizada, esse tempo é necessário para garantir a qualidade que você merece.</p>
+            <div class="faq-answer-inner">
+              <p>Sim. Cada peça é feita sob medida. Você escolhe o tecido, a cor, as dimensões, os acabamentos e detalhes como pés e costuras. Nosso time te guia em cada decisão.</p>
+            </div>
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            <span>Posso escolher a cor e o tecido do sofá?</span>
-            <div class="faq-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-              </svg>
-            </div>
+          <button class="faq-question">
+            Qual é o prazo de fabricação e entrega?
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
           <div class="faq-answer">
-            <p>Sim! Essa é uma das nossas maiores vantagens. Você escolhe a cor, o tipo de tecido (veludo, linho, courino premium e outras opções) e detalhes de acabamento. Enviamos amostras para você avaliar antes de fechar o pedido.</p>
+            <div class="faq-answer-inner">
+              <p>O prazo médio é de 20 a 35 dias após confirmação do pedido, dependendo da linha e da complexidade da personalização. Você recebe atualizações durante o processo.</p>
+            </div>
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            <span>Quais as formas de pagamento?</span>
-            <div class="faq-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-              </svg>
-            </div>
+          <button class="faq-question">
+            Vocês entregam fora de Recife?
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
           <div class="faq-answer">
-            <p>Aceitamos PIX (com desconto especial), cartão de crédito em até 12x sem juros e transferência bancária. O pagamento funciona com 50% de entrada no fechamento e 50% na entrega.</p>
+            <div class="faq-answer-inner">
+              <p>Sim, entregamos para todo o Brasil. O frete é calculado conforme o destino e será informado no orçamento. Para entregas em Recife e Região Metropolitana, temos serviço próprio.</p>
+            </div>
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            <span>O frete é cobrado?</span>
-            <div class="faq-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-              </svg>
-            </div>
+          <button class="faq-question">
+            Como funciona o orçamento?
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
           <div class="faq-answer">
-            <p>Frete grátis para toda a Região Metropolitana do Recife (Recife, Olinda, Caruaru, Jaboatão dos Guararapes, Camaragibe, São Lourenço da Mata e mais). Para outras cidades de Pernambuco, consulte-nos no WhatsApp.</p>
+            <div class="faq-answer-inner">
+              <p>Entre em contato pelo WhatsApp. Vamos entender sua necessidade, apresentar as opções e enviar um orçamento detalhado sem compromisso.</p>
+            </div>
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            <span>Como posso ver os modelos antes de comprar?</span>
-            <div class="faq-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-              </svg>
-            </div>
+          <button class="faq-question">
+            Quais materiais são utilizados?
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
           <div class="faq-answer">
-            <p>Você pode visitar nosso ateliê em Recife, onde temos peças expostas para você ver e sentar. Também temos um Instagram rico com fotos e vídeos reais dos nossos trabalhos. Entre em contato para agendar uma visita!</p>
+            <div class="faq-answer-inner">
+              <p>Utilizamos madeira de reflorestamento certificada, espuma D33 de alta densidade, molas ensacadas e tecidos de linha premium. Todos os materiais são selecionados para garantir conforto e durabilidade.</p>
+            </div>
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            <span>A garantia cobre o quê?</span>
-            <div class="faq-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-              </svg>
-            </div>
+          <button class="faq-question">
+            Há garantia nas peças?
+            <span class="faq-icon" aria-hidden="true"></span>
           </button>
           <div class="faq-answer">
-            <p>Nossa garantia de 2 anos cobre defeitos de fabricação, como problemas na estrutura, no estofamento e nos acabamentos. Use o sofá sem preocupação — estamos aqui para qualquer eventualidade.</p>
+            <div class="faq-answer-inner">
+              <p>Sim. Todas as peças possuem garantia de 12 meses contra defeitos de fabricação. Nosso compromisso vai além da entrega — estamos à disposição para qualquer ajuste necessário.</p>
+            </div>
           </div>
         </div>
 
@@ -2022,136 +1501,120 @@
     </div>
   </section>
 
-  <!-- ========================
-       CTA FINAL
-  ======================== -->
-  <section id="contato">
-    <div class="contato-inner">
-      <div class="label animate-in">Fale Conosco</div>
-      <h2 class="animate-in">Pronto para transformar<br>seu espaço?</h2>
-      <p class="animate-in">Solicite um orçamento agora mesmo. Respondemos em minutos pelo WhatsApp e estamos prontos para criar o sofá dos seus sonhos.</p>
-
-      <div class="contato-buttons animate-in">
-        <a class="btn-whatsapp" href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." target="_blank">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.938 1.399 5.614L.057 23.547a.75.75 0 00.92.92l5.933-1.342A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.49-5.186-1.352l-.372-.214-3.857.873.873-3.857-.214-.372A9.952 9.952 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-          </svg>
-          Chamar no WhatsApp
+  <!-- ===========================
+       CTA
+  =========================== -->
+  <section class="cta-section" id="contato">
+    <div class="section-inner">
+      <span class="label">Vamos conversar</span>
+      <h2 class="reveal">Vamos criar<br>o seu sofá?</h2>
+      <p class="reveal reveal-delay-1">Entre em contato pelo WhatsApp ou Instagram.<br>Atendemos de segunda a sábado.</p>
+      <div class="cta-buttons reveal reveal-delay-2">
+        <a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." class="btn-whatsapp" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
         </a>
-        <a class="btn-instagram" href="https://www.instagram.com/atelie.nobile" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-          </svg>
-          Ver no Instagram
+        <a href="https://www.instagram.com/atelie.nobile" class="btn-instagram" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram
         </a>
       </div>
-
-      <div class="contato-info animate-in">
-        <div class="info-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
-          Rua Luiza de Albuquerque Paiva Souza, Recife/PE
-        </div>
-        <div class="info-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 4.18 2 2 0 015 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L9.91 9a16 16 0 006.09 6.09l.36-.36a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-          </svg>
-          81 9 8672-5748
-        </div>
-        <div class="info-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="2" width="20" height="20" rx="5"/>
-            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-          </svg>
-          @atelie.nobile
-        </div>
-      </div>
+      <p class="cta-address reveal reveal-delay-3">Recife, PE · (81) 98672-5748</p>
     </div>
   </section>
 
-  <!-- ========================
+  <!-- ===========================
        FOOTER
-  ======================== -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-logo">
-        Ateliê Nobile
-        <span>Sofás artesanais · Recife/PE</span>
-      </div>
-      <div class="footer-links">
-        <a href="#sobre">O Ateliê</a>
-        <a href="#galeria">Galeria</a>
-        <a href="#linhas">Nossas Linhas</a>
-        <a href="#diferenciais">Diferenciais</a>
-        <a href="#faq">FAQ</a>
-        <a href="https://www.instagram.com/atelie.nobile" target="_blank">Instagram</a>
-      </div>
-      <div class="footer-copy">
-        © 2025 Ateliê Nobile. Todos os direitos reservados.
-      </div>
-    </div>
+  =========================== -->
+  <footer class="footer">
+    <span class="footer-copy">© 2026 Ateliê Nobile · Recife, PE</span>
+    <ul class="footer-links">
+      <li><a href="https://www.instagram.com/atelie.nobile" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." target="_blank" rel="noopener">WhatsApp</a></li>
+    </ul>
   </footer>
 
-  <!-- WhatsApp Flutuante -->
-  <div class="whatsapp-float">
-    <a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." target="_blank" aria-label="Falar no WhatsApp">
-      <svg viewBox="0 0 24 24">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.938 1.399 5.614L.057 23.547a.75.75 0 00.92.92l5.933-1.342A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.49-5.186-1.352l-.372-.214-3.857.873.873-3.857-.214-.372A9.952 9.952 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-      </svg>
-    </a>
-    <div class="float-tooltip">Falar no WhatsApp</div>
-  </div>
+  <!-- ===========================
+       FLOATING WHATSAPP
+  =========================== -->
+  <a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." class="float-whatsapp" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
 
-  <!-- ========================
-       SCRIPTS
-  ======================== -->
+  <!-- ===========================
+       JAVASCRIPT
+  =========================== -->
   <script>
-    // Navbar scroll
+    // --- Navbar scroll ---
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
+    const onScroll = () => {
       navbar.classList.toggle('scrolled', window.scrollY > 60);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // --- Hamburger / Mobile nav ---
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+
+    const openMobileNav = () => {
+      hamburger.classList.add('open');
+      mobileNav.classList.add('open');
+      mobileOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeMobileNav = () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      mobileOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    };
+
+    hamburger.addEventListener('click', () => {
+      if (mobileNav.classList.contains('open')) closeMobileNav();
+      else openMobileNav();
     });
 
-    // IntersectionObserver para animações
-    const observer = new IntersectionObserver((entries) => {
+    mobileOverlay.addEventListener('click', closeMobileNav);
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', closeMobileNav);
+    });
+
+    // --- Reveal on scroll ---
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // FAQ accordion
-    function toggleFaq(btn) {
-      const item = btn.parentElement;
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-    }
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          const offset = 80;
-          const top = target.getBoundingClientRect().top + window.scrollY - offset;
-          window.scrollTo({ top, behavior: 'smooth' });
-        }
+    // --- FAQ accordion ---
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
       });
     });
+
+    // --- Subtle parallax on hero ---
+    const heroBg = document.getElementById('heroBg');
+    const parallax = () => {
+      const y = window.scrollY;
+      if (y < window.innerHeight * 1.5) {
+        heroBg.style.transform = `translateY(${y * 0.25}px)`;
+      }
+    };
+    window.addEventListener('scroll', parallax, { passive: true });
   </script>
+
 </body>
 </html>
