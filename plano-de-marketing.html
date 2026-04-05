@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano de Marketing — Ateliê Nobile</title>
+<style>
+  :root {
+    --marrom: #5C3D2E;
+    --marrom-claro: #8B5E3C;
+    --bege: #F5EDE3;
+    --bege-escuro: #E8D5C0;
+    --oliva: #6B7C5E;
+    --oliva-claro: #8FA07A;
+    --creme: #FBF7F2;
+    --texto: #2C1810;
+    --texto-suave: #6B4F3A;
+    --branco: #FFFFFF;
+    --sombra: rgba(92,61,46,0.12);
+    --sombra-forte: rgba(92,61,46,0.22);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--creme);
+    color: var(--texto);
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--marrom) 0%, var(--marrom-claro) 60%, var(--oliva) 100%);
+    color: var(--branco);
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .header-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 30px;
+    padding: 6px 20px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .header h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .header h1 span {
+    color: var(--bege-escuro);
+    font-style: italic;
+  }
+
+  .header-sub {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    font-family: 'Arial', sans-serif;
+    font-weight: 300;
+    margin-bottom: 30px;
+  }
+
+  .header-meta {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    background: rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+  }
+
+  .meta-item strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 2px;
+  }
+
+  /* NAV */
+  .nav {
+    background: var(--marrom);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav a {
+    display: inline-block;
+    color: var(--bege);
+    text-decoration: none;
+    padding: 14px 18px;
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    border-bottom: 2px solid transparent;
+  }
+
+  .nav a:hover {
+    opacity: 1;
+    border-bottom-color: var(--bege-escuro);
+  }
+
+  /* CONTAINER */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 20px 60px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-top: 60px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--bege-escuro);
+  }
+
+  .section-num {
+    background: var(--marrom);
+    color: var(--branco);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    color: var(--marrom);
+    font-weight: normal;
+  }
+
+  .section-subtitle {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: var(--texto-suave);
+    margin-top: 3px;
+  }
+
+  /* CARDS */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 22px;
+  }
+
+  .card {
+    background: var(--branco);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 2px 12px var(--sombra);
+    border: 1px solid var(--bege-escuro);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .card:hover {
+    box-shadow: 0 6px 24px var(--sombra-forte);
+    transform: translateY(-2px);
+  }
+
+  .card-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--bege-escuro);
+    color: var(--marrom);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 10px;
+  }
+
+  .card-tag {
+    display: inline-block;
+    background: var(--bege);
+    color: var(--marrom-claro);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 11px;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    margin-left: 8px;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+    color: var(--marrom);
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .card-label {
+    font-size: 11px;
+    font-family: 'Arial', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--oliva);
+    font-weight: bold;
+    margin: 12px 0 5px;
+  }
+
+  .card p {
+    font-size: 14px;
+    color: var(--texto-suave);
+    line-height: 1.65;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .copy-box {
+    background: var(--bege);
+    border-left: 3px solid var(--marrom-claro);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px;
+    font-size: 13px;
+    font-family: 'Arial', sans-serif;
+    color: var(--texto);
+    line-height: 1.7;
+    margin: 10px 0;
+    white-space: pre-line;
+  }
+
+  .hashtags {
+    font-size: 12px;
+    color: var(--oliva);
+    font-family: 'Arial', sans-serif;
+    line-height: 1.8;
+    margin-top: 8px;
+  }
+
+  .duracao {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--oliva);
+    color: var(--branco);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 10px;
+  }
+
+  /* POSICIONAMENTO */
+  .pos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+
+  .pos-card {
+    background: var(--branco);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 2px 10px var(--sombra);
+    border-top: 4px solid var(--marrom-claro);
+    text-align: center;
+  }
+
+  .pos-card .icon { font-size: 2rem; margin-bottom: 10px; }
+  .pos-card h4 { font-size: 1rem; color: var(--marrom); margin-bottom: 8px; }
+  .pos-card p { font-size: 13px; color: var(--texto-suave); font-family: 'Arial', sans-serif; }
+
+  .proposta-valor {
+    background: linear-gradient(135deg, var(--marrom), var(--oliva));
+    color: var(--branco);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .proposta-valor h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  .proposta-valor p {
+    font-size: 15px;
+    opacity: 0.9;
+    font-family: 'Arial', sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* TRÁFEGO PAGO */
+  .campanha-card {
+    background: var(--branco);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 2px 12px var(--sombra);
+    border: 1px solid var(--bege-escuro);
+    margin-bottom: 18px;
+  }
+
+  .campanha-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--bege-escuro);
+  }
+
+  .campanha-nome {
+    font-size: 1.1rem;
+    color: var(--marrom);
+  }
+
+  .campanha-orcamento {
+    background: var(--marrom);
+    color: var(--branco);
+    border-radius: 20px;
+    padding: 5px 16px;
+    font-size: 14px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+  }
+
+  .tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .tag {
+    background: var(--bege);
+    color: var(--marrom-claro);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-family: 'Arial', sans-serif;
+  }
+
+  /* CALENDÁRIO */
+  .calendario {
+    background: var(--branco);
+    border-radius: 16px;
+    box-shadow: 0 2px 12px var(--sombra);
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .cal-header {
+    background: var(--marrom);
+    color: var(--branco);
+    padding: 16px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .cal-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 1fr 80px;
+    gap: 0;
+    border-bottom: 1px solid var(--bege-escuro);
+  }
+
+  .cal-row:last-child { border-bottom: none; }
+
+  .cal-row.cal-head {
+    background: var(--bege);
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--marrom);
+  }
+
+  .cal-cell {
+    padding: 12px 16px;
+    font-size: 13px;
+    font-family: 'Arial', sans-serif;
+    color: var(--texto-suave);
+    border-right: 1px solid var(--bege-escuro);
+  }
+
+  .cal-cell:last-child { border-right: none; }
+
+  .cal-cell strong {
+    display: block;
+    color: var(--marrom);
+    margin-bottom: 2px;
+  }
+
+  .cal-tipo {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: bold;
+  }
+
+  .tipo-feed { background: #E8F4FD; color: #1565C0; }
+  .tipo-reels { background: #F3E5F5; color: #6A1B9A; }
+  .tipo-stories { background: #E8F5E9; color: #2E7D32; }
+
+  /* FUNIL */
+  .funil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: 20px 0;
+  }
+
+  .funil-step {
+    width: 100%;
+    max-width: 600px;
+    background: var(--branco);
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 2px 10px var(--sombra);
+    border: 1px solid var(--bege-escuro);
+    margin-bottom: 4px;
+    position: relative;
+  }
+
+  .funil-arrow {
+    font-size: 1.5rem;
+    color: var(--marrom-claro);
+    margin: 2px 0;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .funil-step h4 {
+    color: var(--marrom);
+    font-size: 1rem;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .funil-step p {
+    font-size: 13px;
+    font-family: 'Arial', sans-serif;
+    color: var(--texto-suave);
+  }
+
+  .step-num {
+    background: var(--marrom);
+    color: var(--branco);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  /* SCRIPTS WPP */
+  .script-card {
+    background: var(--branco);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 2px 10px var(--sombra);
+    border: 1px solid var(--bege-escuro);
+    margin-bottom: 16px;
+  }
+
+  .script-card h4 {
+    color: var(--marrom);
+    font-size: 1rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .wpp-bubble {
+    background: #DCF8C6;
+    border-radius: 12px 12px 12px 2px;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-family: 'Arial', sans-serif;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    max-width: 90%;
+    line-height: 1.65;
+    white-space: pre-line;
+  }
+
+  /* KPIs */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+
+  .kpi-card {
+    background: var(--branco);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 10px var(--sombra);
+    text-align: center;
+    border-bottom: 3px solid var(--marrom-claro);
+  }
+
+  .kpi-card .kpi-icon { font-size: 1.8rem; margin-bottom: 8px; }
+  .kpi-card .kpi-val { font-size: 1.4rem; color: var(--marrom); font-weight: bold; font-family: 'Arial', sans-serif; }
+  .kpi-card .kpi-label { font-size: 12px; color: var(--texto-suave); font-family: 'Arial', sans-serif; margin-top: 4px; }
+
+  /* INFO BOX */
+  .info-box {
+    background: var(--bege);
+    border-radius: 12px;
+    padding: 20px 24px;
+    border-left: 4px solid var(--marrom-claro);
+    margin: 16px 0;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: var(--texto-suave);
+  }
+
+  .info-box strong { color: var(--marrom); }
+
+  /* FOOTER */
+  .footer {
+    background: var(--marrom);
+    color: var(--bege);
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+  }
+
+  .footer p { opacity: 0.8; margin-top: 6px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .header { padding: 40px 20px 35px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .cal-row { grid-template-columns: 70px 1fr; }
+    .cal-cell:nth-child(3), .cal-cell:nth-child(4) { display: none; }
+    .cal-row.cal-head .cal-cell:nth-child(3),
+    .cal-row.cal-head .cal-cell:nth-child(4) { display: none; }
+  }
+
+  ul.check-list {
+    list-style: none;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: var(--texto-suave);
+  }
+
+  ul.check-list li {
+    padding: 5px 0;
+    padding-left: 22px;
+    position: relative;
+  }
+
+  ul.check-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--oliva);
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-badge">Consultoria de Marketing — Abril 2026</div>
+  <h1><span>Ateliê</span> Nobile</h1>
+  <div class="header-sub">Plano Estratégico de Marketing Digital — Instagram + Tráfego Pago</div>
+  <div class="header-meta">
+    <div class="meta-item"><strong>@atelie.nobile</strong>Instagram</div>
+    <div class="meta-item"><strong>R$2.600</strong>Ticket Médio Sofá</div>
+    <div class="meta-item"><strong>R$2.500/mês</strong>Budget Marketing</div>
+    <div class="meta-item"><strong>Recife / PE</strong>Região de Atuação</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#posicionamento">1. Posicionamento</a>
+  <a href="#feed">2. Feed (10 Posts)</a>
+  <a href="#reels">3. Reels (10 Vídeos)</a>
+  <a href="#ads">4. Criativos ADS</a>
+  <a href="#trafego">5. Tráfego Pago</a>
+  <a href="#calendario">6. Calendário</a>
+  <a href="#funil">7. Funil de Vendas</a>
+</nav>
+
+<div class="container">
+
+  <!-- ================================================ -->
+  <!-- SEÇÃO 1 — POSICIONAMENTO -->
+  <!-- ================================================ -->
+  <div class="section" id="posicionamento">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div>
+        <div class="section-title">Posicionamento de Marca</div>
+        <div class="section-subtitle">Identidade, diferenciais e proposta de valor do Ateliê Nobile</div>
+      </div>
+    </div>
+
+    <div class="proposta-valor">
+      <h3>"Sofás que contam a história de quem escolhe o que é único."</h3>
+      <p>O Ateliê Nobile não vende sofá — vende a experiência de ter uma peça exclusiva, feita à mão, pensada para o seu espaço. Artesanal de verdade. Design de verdade.</p>
+    </div>
+
+    <div class="pos-grid">
+      <div class="pos-card">
+        <div class="icon">🪡</div>
+        <h4>Ateliê, não fábrica</h4>
+        <p>Cada peça é construída à mão, com atenção ao detalhe. Não existe escala industrial — existe dedicação artesanal.</p>
+      </div>
+      <div class="pos-card">
+        <div class="icon">🎨</div>
+        <h4>3 Linhas de Design</h4>
+        <p>Três identidades visuais distintas para diferentes estilos de lar — do clássico ao contemporâneo.</p>
+      </div>
+      <div class="pos-card">
+        <div class="icon">💬</div>
+        <h4>Tom de Voz</h4>
+        <p>Elegante, mas acolhedor. Culto, mas acessível. Como um ateliê que te recebe bem e explica cada escolha.</p>
+      </div>
+      <div class="pos-card">
+        <div class="icon">📍</div>
+        <h4>Enraizado em Recife</h4>
+        <p>Feito aqui, pensado para quem vive aqui. Entrega e montagem na região metropolitana com cuidado.</p>
+      </div>
+      <div class="pos-card">
+        <div class="icon">✨</div>
+        <h4>Personalização Real</h4>
+        <p>O cliente escolhe tecido, acabamento, tamanho. A peça é feita para aquela sala — não para um showroom.</p>
+      </div>
+      <div class="pos-card">
+        <div class="icon">💎</div>
+        <h4>Qualidade Visível</h4>
+        <p>Estrutura sólida, costura impecável, espuma premium. O acabamento fala por si só — e o conteúdo vai mostrar isso.</p>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>Diferencial de comunicação:</strong> Enquanto concorrentes mostram apenas o produto acabado, o Ateliê Nobile mostra o <em>processo</em> — as mãos que constroem, o tecido que é escolhido, o cliente que recebe. Isso cria desejo, confiança e justifica o preço premium.
+    </div>
+  </div>
+
+
+  <!-- ================================================ -->
+  <!-- SEÇÃO 2 — FEED -->
+  <!-- ================================================ -->
+  <div class="section" id="feed">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div>
+        <div class="section-title">Conteúdo Orgânico — Feed</div>
+        <div class="section-subtitle">10 posts estáticos com copy pronta, visual detalhado e hashtags</div>
+      </div>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- POST 1 -->
+      <div class="card">
+        <div><span class="card-num">1</span><span class="card-tag">Processo</span></div>
+        <h3>As mãos por trás do seu sofá</h3>
+        <div class="card-label">Descrição Visual</div>
+        <p>Foto close-up das mãos de Andson costurando ou aplicando o tecido no sofá. Luz natural, fundo desfocado do ateliê. Tons quentes.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">Cada ponto foi dado pensando na família que vai sentar aqui. 🪡
+
+No Ateliê Nobile, seu sofá não sai de uma esteira — sai das mãos de quem entende que conforto e beleza são feitos com cuidado.
+
+Artesanal. Exclusivo. Seu.
+
+👇 Conta nos comentários: qual é o estilo de sala dos seus sonhos?</div>
+        <div class="hashtags">#AteliêNobile #SofáArtesanal #FeitoÀMão #DecorRecife #SofáDeDesign #ArtesanatoComEstilo #InterioresRecife #MóvelArtesanal #DecorNordeste</div>
+      </div>
+
+      <!-- POST 2 -->
+      <div class="card">
+        <div><span class="card-num">2</span><span class="card-tag">Antes/Depois</span></div>
+        <h3>A sala que mudou de vida</h3>
+        <div class="card-label">Descrição Visual</div>
+        <p>Carrossel: foto 1 = sala antes (sem o sofá, ambiente vazio/antigo). Foto 2 = sala depois com o sofá Nobile montado e decorado.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">Você sabia que um sofá muda o tamanho de uma sala? 🏠✨
+
+Não falamos de metros quadrados. Falamos de como o ambiente inteiro respira diferente quando a peça principal é certa.
+
+Esse foi o resultado para a [nome do cliente/bairro]. Um sofá feito do zero, no estilo que ela escolheu.
+
+🔗 Encomende o seu pelo link na bio. Orçamento sem compromisso.</div>
+        <div class="hashtags">#AntesEDepois #TransformaçãoDeSala #SofáNobile #DecorDeInteriores #SalaDeEstar #SofáSobMedida #AmbienteElegante #RecifeDécor</div>
+      </div>
+
+      <!-- POST 3 -->
+      <div class="card">
+        <div><span class="card-num">3</span><span class="card-tag">Kit Completo</span></div>
+        <h3>O kit que completa qualquer sala</h3>
+        <div class="card-label">Descrição Visual</div>
+        <p>Flat lay ou foto ambiente mostrando o conjunto: sofá + poltrona + puff em harmonia. Ângulo frontal, iluminação estúdio ou natural.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">Sofá. Poltrona. Puff. ✔️✔️✔️
+
+Quando tudo combina, a sala vira o ambiente que você sempre imaginou.
+
+Nossos kits completos são pensados para criar harmonia visual — mesmo tecido, mesmo acabamento, mesma linguagem de design.
+
+Kit completo a partir de R$3.600 parcelado em até 12x sem juros*.
+
+📩 Clique no link da bio ou nos chame no WhatsApp para montar o seu kit personalizado.</div>
+        <div class="hashtags">#KitSofá #SofáPoltrona #ConjuntoDeSala #SofáNobile #DecorCompleto #AteliêNobile #InterioresRecife #SalaDecorada #KitCompleto</div>
+      </div>
+
+      <!-- POST 4 -->
+      <div class="card">
+        <div><span class="card-num">4</span><span class="card-tag">Depoimento</span></div>
+        <h3>O que os clientes dizem (print/citação)</h3>
+        <div class="card-label">Descrição Visual</div>
+        <p>Arte com fundo bege/marrom, foto do cliente em casa com o sofá, e a frase do depoimento em tipografia elegante. Pode ser print do WhatsApp emoldurado.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">"Quando chegou, minha filha ficou olhando e disse: mãe, parece sofá de loja de shopping." 🥺
+
+Esse é o efeito Nobile. Uma peça artesanal que entrega resultado de alto padrão — direto do nosso ateliê para a sua sala.
+
+Obrigado, [Nome]! Que alegria receber esse retorno 🙏
+
+Quer ser o próximo? Link na bio.</div>
+        <div class="hashtags">#ClienteSatisfeito #SofáNobile #DepoimentoReal #AteliêNobile #TransformaçãoDeAmbiênte #SofáDeLuxo #RecifePE</div>
+      </div>
+
+      <!-- POST 5 -->
+      <div class="card">
+        <div><span class="card-num">5</span><span class="card-tag">Bastidores</span></div>
+        <h3>Por dentro do ateliê</h3>
+        <div class="card-label">Descrição Visual</div>
+        <p>Carrossel de fotos do ateliê: bancada de trabalho, rolos de tecido organizados por cor, ferramentas, estrutura de sofá sendo montada.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">Esse é o lugar onde tudo começa. 🛠️
+
+Rolos de tecido que vão virar sofás. Estruturas que vão suportar memórias. Mãos que transformam matéria-prima em design.
+
+Você já imaginou como é feito o seu futuro sofá? Swipe para ver o processo 👉
+
+Cada etapa tem a atenção que sua sala merece.
+
+#bastidores #ateliênobile</div>
+        <div class="hashtags">#BastidoresDoAteliê #FaçaVocêSabeComo #ProcessoCriativo #ArtesanatoFino #SofáArtesanal #AteliêNobile #DesignDeInteriores</div>
+      </div>
+
+      <!-- POST 6 -->
+      <div class="card">
+        <div><span class="card-num">6</span><span class="card-tag">Diferencial</span></div>
+        <h3>Por que o sofá artesanal dura mais?</h3>
+        <div class="card-label">Descrição Visual</div>
+        <p>Arte informativa estilo carrossel: slide 1 = sofá Nobile; slides 2-4 = comparação de estrutura (espuma, costura, tecido) com dados visuais simples.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">O sofá de loja dura 2 anos. O nosso, 10. Sabe por quê? 👇
+
+▪️ Estrutura de madeira maciça — sem compensado
+▪️ Espuma D-33 alta resiliência — não afunda com o tempo
+▪️ Costura reforçada — tecido que não abre na tensão
+▪️ Finalização manual — cada detalhe revisado
+
+Preço parecido com alguns da loja. Qualidade que não tem comparação.
+
+Swipe para entender o que faz a diferença 👉</div>
+        <div class="hashtags">#SofáDeQualidade #ArtesanalVsFábrica #InvestimentoEmCasa #SofáQueDeura #AteliêNobile #CompreBemCompre #DecorInteligente</div>
+      </div>
+
+      <!-- POST 7 -->
+      <div class="card">
+        <div><span class="card-num">7</span><span class="card-tag">Escolha de Tecido</span></div>
+        <h3>Qual tecido é o seu?</h3>
+        <div class="card-label">Descrição Visual</div>
+        <p>Flat lay com amostras de tecido sobre superfície de madeira — veludo, linho, suede, couríssimo. Cada amostra com uma etiqueta manuscrita.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">O tecido certo muda tudo. 🧵
+
+Veludo? Elegância e aconchego para salas mais formais.
+Linho? Leveza e naturalidade para ambientes modernos.
+Suede? Sofisticação que combina com tudo.
+Couríssimo? Praticidade para famílias com crianças.
+
+No Ateliê Nobile, você escolhe. Nós construímos.
+
+Comenta aqui: qual desses te ganhou? 👇</div>
+        <div class="hashtags">#TecidoParaSofá #SofáPersonalizado #EscolhaSeuEstilo #AteliêNobile #VeludoSofá #SuedeSofá #DecorSala #PersonalizaçãoDeInteriores</div>
+      </div>
+
+      <!-- POST 8 -->
+      <div class="card">
+        <div><span class="card-num">8</span><span class="card-tag">Ambientação</span></div>
+        <h3>A sala que inspira — estilo completo</h3>
+        <div class="card-label">Descrição Visual</div>
+        <p>Foto ambiente profissional (ou bem produzida) do sofá + poltrona + puff em sala decorada. Plantas, tapete, quadros ao fundo. Luz suave.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">Esse é o ambiente que você fecha os olhos e imagina. 🏡
+
+Sofá de 3 lugares + poltrona + puff. Tudo do mesmo ateliê, mesma linha, mesma história.
+
+Cada peça foi feita à mão aqui em Recife. Do ateliê direto para a sua sala.
+
+Isso é o que o Ateliê Nobile faz: transforma vontade em espaço.
+
+📩 Orçamento no WhatsApp ou link na bio.</div>
+        <div class="hashtags">#InspiracaoDecor #SalaDeEstar #SofáDeLuxo #AteliêNobile #InterioresRecife #EstiloDeVida #DecorNordeste #SalaInspiradora</div>
+      </div>
+
+      <!-- POST 9 -->
+      <div class="card">
+        <div><span class="card-num">9</span><span class="card-tag">Objeção</span></div>
+        <h3>"É caro" — quebrando a objeção</h3>
+        <div class="card-label">Descrição Visual</div>
+        <p>Arte tipográfica com fundo marrom. Texto grande: "R$2.600 / 12x = R$216/mês. Menos que uma conta de TV a cabo e 10 anos de sofá." Elegante e direto.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">Deixa eu fazer uma conta rápida. 🧮
+
+Sofá de loja: R$1.800 que afunda em 2 anos.
+Sofá Nobile: R$2.600 que dura 10 anos — ou R$216/mês no cartão.
+
+Em 10 anos? São R$21,67/mês.
+
+Mas vai além do preço: você tem um sofá feito para você, com o tecido que você escolheu, com acabamento que você não acha na prateleira de nenhuma loja.
+
+Investimento inteligente. Beleza permanente. 💛</div>
+        <div class="hashtags">#InvestimentoEmCasa #SofáParcelado #ComprarBem #AteliêNobile #ValePena #DecorSemGastançar #SofáArtesanal</div>
+      </div>
+
+      <!-- POST 10 -->
+      <div class="card">
+        <div><span class="card-num">10</span><span class="card-tag">CTA Direto</span></div>
+        <h3>Encomende agora — vagas limitadas</h3>
+        <div class="card-label">Descrição Visual</div>
+        <p>Arte com fundo bege/marrom, foto do sofá ao lado, texto sobreposto: "Novas encomendas abertas" ou "X vagas disponíveis este mês". Sóbrio e elegante.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">Cada mês, aceitamos um número limitado de encomendas. 📋
+
+O motivo é simples: artesanal leva tempo. E tempo é o que garante que cada peça saia perfeita.
+
+Se você está pensando em renovar sua sala, agora é a hora certa. As vagas de maio estão quase fechadas.
+
+👇 Clique no link da bio ou nos chame no WhatsApp para garantir a sua vaga e receber o orçamento sem compromisso.
+
+O sofá que você sempre quis está esperando por uma decisão. 🛋️</div>
+        <div class="hashtags">#VagasLimitadas #EncomendeSeuSofá #AteliêNobile #SofáArtesanal #DecorRecife #SofáSobMedida #TransformesuaSala</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ================================================ -->
+  <!-- SEÇÃO 3 — REELS -->
+  <!-- ================================================ -->
+  <div class="section" id="reels">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div>
+        <div class="section-title">Conteúdo Orgânico — Reels / Vídeos</div>
+        <div class="section-subtitle">10 conceitos de vídeo com roteiro, duração e copy de legenda</div>
+      </div>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- REEL 1 -->
+      <div class="card">
+        <div><span class="card-num">1</span><span class="card-tag">ASMR</span><span class="duracao">⏱ 30–45s</span></div>
+        <h3>ASMR do ateliê — sons da fabricação</h3>
+        <div class="card-label">Roteiro</div>
+        <p>Sem narração. Só sons: agulha entrando no tecido, tesoura cortando, esponja sendo colocada, tecido sendo esticado. Close-ups lentos de cada etapa. Cortes suaves com fade. Finaliza com o sofá pronto sendo colocado na sala.</p>
+        <div class="card-label">Música / Áudio</div>
+        <p>Som ambiente do ateliê (sem música) ou trilha lo-fi suave instrumental. Trending: buscar "cozy atelier ASMR" no Reels.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">Às vezes o conteúdo mais honesto é esse — sem filtro, sem edição pesada. Só o som de um sofá nascendo. 🪡
+
+Dá o play com fone 🎧</div>
+      </div>
+
+      <!-- REEL 2 -->
+      <div class="card">
+        <div><span class="card-num">2</span><span class="card-tag">Transformação</span><span class="duracao">⏱ 15–20s</span></div>
+        <h3>Timelapse: do esqueleto ao sofá acabado</h3>
+        <div class="card-label">Roteiro</div>
+        <p>Gravar o mesmo ângulo em vários momentos da produção: 1) estrutura de madeira nua; 2) espuma colada; 3) tecido sendo preso; 4) poltronas costuradas; 5) produto finalizado. Editar como timelapse acelerado. Música animada. Termina com "from scratch" ou "feito do zero".</p>
+        <div class="card-label">Música / Áudio</div>
+        <p>Trending de transformação / satisfying — buscar no Reels por "before after glow up" ou usar som trending do momento.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">Do zero para a sala dos seus sonhos. 🛋️✨
+
+Isso é o que acontece aqui no Ateliê Nobile toda semana. Topa fazer um assim pra você?
+
+📩 Link na bio</div>
+      </div>
+
+      <!-- REEL 3 -->
+      <div class="card">
+        <div><span class="card-num">3</span><span class="card-tag">Entrega</span><span class="duracao">⏱ 30–60s</span></div>
+        <h3>O momento da entrega — reação do cliente</h3>
+        <div class="card-label">Roteiro</div>
+        <p>Gravar a chegada do sofá na casa do cliente. Começa no ateliê carregando. Corta para o sofá na frente da porta. Corta para o cliente vendo pela primeira vez. Termina com o cliente sentado, sorrindo, falando "ficou incrível" ou similar. Pode ser vertical (stories) ou quadrado.</p>
+        <div class="card-label">Música / Áudio</div>
+        <p>Música emocional/lifting — tipo "Proud of You" ou trilha instrumental que remete a conquista. Pode usar áudio trending de "unboxing reação".</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">Esse é o momento favorito do Andson. Quando o sofá chega na casa e a reação do cliente diz tudo. 🥺
+
+Cada entrega tem uma história. Essa é a de [Nome/Bairro].
+
+Quer escrever a sua? 📩 Link na bio.</div>
+      </div>
+
+      <!-- REEL 4 -->
+      <div class="card">
+        <div><span class="card-num">4</span><span class="card-tag">Tour</span><span class="duracao">⏱ 45–60s</span></div>
+        <h3>Tour pelo ateliê — "como é por dentro"</h3>
+        <div class="card-label">Roteiro</div>
+        <p>Andson aparece na câmera: "Quer ver onde nasce o seu sofá?" Faz um tour pelo ateliê mostrando: área de corte, área de montagem, estoque de tecidos, peça em andamento. Fala enquanto caminha — tom casual, orgulhoso. Termina apontando para sofá acabado.</p>
+        <div class="card-label">Música / Áudio</div>
+        <p>Fundo instrumental suave. Voz do Andson no primeiro plano. Cortes dinâmicos entre os ambientes.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">Nunca mostrei tudo isso assim. 👀
+
+Do corte do tecido à entrega na sua sala — é tudo feito aqui, com as minhas mãos.
+
+Segue pra não perder os próximos bastidores 🏭</div>
+      </div>
+
+      <!-- REEL 5 -->
+      <div class="card">
+        <div><span class="card-num">5</span><span class="card-tag">Comparação</span><span class="duracao">⏱ 30s</span></div>
+        <h3>Sofá de loja vs. sofá artesanal</h3>
+        <div class="card-label">Roteiro</div>
+        <p>Tela dividida ou cortes alternados. Lado 1: sofá genérico de loja (referência visual de um sofá barato comum). Lado 2: sofá Nobile sendo fabricado. Texto na tela comparando: "Costura industrial" x "Costura à mão". "Espuma padrão" x "Espuma D-33 high density". "Garantia: 6 meses" x "Durabilidade: +10 anos". Finaliza com logo Nobile.</p>
+        <div class="card-label">Música / Áudio</div>
+        <p>Trending "expectativa vs realidade" — áudio popular no Reels. Cortes no ritmo da batida.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">Antes de comprar, compara. 👇
+
+Parece barato até o dia que afunda, descostura ou você precisa trocar em 2 anos.
+
+No Ateliê Nobile, você compra uma vez e resolve.
+
+#NaoComparePreco #CompareTudo</div>
+      </div>
+
+      <!-- REEL 6 -->
+      <div class="card">
+        <div><span class="card-num">6</span><span class="card-tag">POV</span><span class="duracao">⏱ 20–30s</span></div>
+        <h3>POV: você escolhendo o tecido do seu sofá</h3>
+        <div class="card-label">Roteiro</div>
+        <p>Câmera em primeira pessoa (POV). Mão folheando amostras de tecido sobre a mesa. Cada tecido aparece com legenda: "Veludo chocolate ✓", "Suede caramelo ✓". Termina com a tela escrita: "E o seu? Faz o orçamento." Curto e viciante.</p>
+        <div class="card-label">Música / Áudio</div>
+        <p>Áudio satisfying / trending "POV you're choosing" — ritmo lento e elegante. Ou simplesmente o som das amostras sendo folheadas.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">A melhor parte? Você escolhe tudo. 🎨
+
+Tecido, cor, tamanho, acabamento. A gente constrói exatamente o que você imaginou.
+
+📩 Faz o orçamento agora — link na bio.</div>
+      </div>
+
+      <!-- REEL 7 -->
+      <div class="card">
+        <div><span class="card-num">7</span><span class="card-tag">Educativo</span><span class="duracao">⏱ 45s</span></div>
+        <h3>"3 erros que as pessoas cometem ao comprar sofá"</h3>
+        <div class="card-label">Roteiro</div>
+        <p>Andson na câmera, tom direto e amigável. "Vou te contar 3 erros que vejo toda semana:" 1) "Comprar pelo preço sem perguntar sobre a espuma" — mostra a diferença; 2) "Não medir o espaço da sala corretamente" — mostra com fita métrica; 3) "Escolher tecido sem pensar no uso diário" — mostra amostras. Termina: "Quer acertar? Me chama no WhatsApp."</p>
+        <div class="card-label">Música / Áudio</div>
+        <p>Fundo suave, voz do Andson em destaque. Texto na tela reforçando cada ponto (acessibilidade + retenção).</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">Já ajudei muita gente a não errar na compra do sofá. Agora é sua vez. 👇
+
+Salva esse vídeo antes de comprar o seu próximo.
+
+Dúvidas? Faz o orçamento no link da bio. 🛋️</div>
+      </div>
+
+      <!-- REEL 8 -->
+      <div class="card">
+        <div><span class="card-num">8</span><span class="card-tag">Satisfying</span><span class="duracao">⏱ 15–20s</span></div>
+        <h3>Close: costura perfeita em câmera lenta</h3>
+        <div class="card-label">Roteiro</div>
+        <p>Câmera muito próxima da agulha/máquina costurando o tecido. Câmera lenta. Sem narração, sem texto. Só a costura perfeita, linha após linha. Finaliza com plano aberto do sofá acabado. Nada mais.</p>
+        <div class="card-label">Música / Áudio</div>
+        <p>Som ambiente ou trilha satisfying suave. Estilo "slow motion craft". Cenas assim viralizam pela estética pura.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">Às vezes não precisa de palavra. 🪡
+
+#AteliêNobile #SofáArtesanal #Satisfying</div>
+      </div>
+
+      <!-- REEL 9 -->
+      <div class="card">
+        <div><span class="card-num">9</span><span class="card-tag">Lifestyle</span><span class="duracao">⏱ 30s</span></div>
+        <h3>Domingo com o sofá Nobile — lifestyle</h3>
+        <div class="card-label">Roteiro</div>
+        <p>Cenas de estilo de vida: casal sentado no sofá com café, criança dormindo na poltrona, livro sobre o puff, luz da tarde entrando pela janela. Sem produto sendo vendido explicitamente. Só o mood de "você quer essa vida". Texto final: "Ateliê Nobile — para quem sabe o que quer em casa."</p>
+        <div class="card-label">Música / Áudio</div>
+        <p>Trilha lo-fi aconchegante ou instrumental de domingo preguiçoso. Trending "cozy morning vibes".</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">A gente não vende sofá. A gente vende esse momento. ☕🌿
+
+O lugar onde o domingo acontece. Onde a família descansa. Onde você respira.
+
+Ateliê Nobile — feito à mão, para a sua vida.</div>
+      </div>
+
+      <!-- REEL 10 -->
+      <div class="card">
+        <div><span class="card-num">10</span><span class="card-tag">Funil</span><span class="duracao">⏱ 30s</span></div>
+        <h3>Como funciona o processo de encomenda</h3>
+        <div class="card-label">Roteiro</div>
+        <p>Andson mostra o processo em 4 cortes rápidos: 1) "Você me chama no WhatsApp" — mostra celular; 2) "Escolhemos juntos o tecido e o modelo" — mostra amostras; 3) "A gente produz em [X] dias" — mostra ateliê; 4) "Entrego montado na sua casa" — mostra entrega. Texto na tela acompanha cada passo.</p>
+        <div class="card-label">Música / Áudio</div>
+        <p>Áudio de processo/passo-a-passo, leve e confiante. Trending: "how it works" style.</p>
+        <div class="card-label">Copy</div>
+        <div class="copy-box">É mais simples do que você imagina. 👇
+
+4 passos para ter o sofá que você sempre quis — sem sair de casa pra escolher.
+
+Começa agora: link na bio 🛋️</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ================================================ -->
+  <!-- SEÇÃO 4 — ADS -->
+  <!-- ================================================ -->
+  <div class="section" id="ads">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div>
+        <div class="section-title">Criativos para ADS — Anúncios Pagos</div>
+        <div class="section-subtitle">10 scripts completos de vídeo para campanhas no Meta Ads</div>
+      </div>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- ADS 1 -->
+      <div class="card">
+        <div><span class="card-num">1</span><span class="card-tag">Awareness</span><span class="duracao">⏱ 15s</span></div>
+        <h3>Hook de impacto: "Você ainda compra sofá em loja?"</h3>
+        <div class="card-label">Formato</div><p>Reels vertical (9:16)</p>
+        <div class="card-label">Hook (0–3s)</div>
+        <div class="copy-box">Texto na tela: "Você ainda compra sofá em loja?" — Andson olhando direto para a câmera, expressão questionadora.</div>
+        <div class="card-label">Corpo (3–12s)</div>
+        <p>Corte rápido mostrando o processo artesanal: tecido, costura, montagem. Voz off: "No Ateliê Nobile você escolhe o tecido, o tamanho, o acabamento — e a gente faz do zero pra você."</p>
+        <div class="card-label">CTA (12–15s)</div>
+        <div class="copy-box">Tela com logo + "Clique e peça seu orçamento grátis"</div>
+        <div class="card-label">Copy do Anúncio</div>
+        <div class="copy-box">Sofás artesanais feitos sob medida em Recife. Escolha o tecido, o modelo, o tamanho. A gente produz e entrega montado. ➡️ Orçamento grátis no link.</div>
+        <div class="card-label">Público</div><p>Mulheres e casais, 28–50 anos, Recife/Caruaru/João Pessoa, interesse em decoração de interiores, reforma de casa, móveis.</p>
+      </div>
+
+      <!-- ADS 2 -->
+      <div class="card">
+        <div><span class="card-num">2</span><span class="card-tag">Conversão</span><span class="duracao">⏱ 30s</span></div>
+        <h3>Antes/depois rápido com preço revelado</h3>
+        <div class="card-label">Formato</div><p>Feed quadrado (1:1) ou Reels (9:16)</p>
+        <div class="card-label">Hook (0–3s)</div>
+        <div class="copy-box">"Olha o que a sala dela virou em 3 semanas..." — imagem da sala antes (vazia ou com sofá velho)</div>
+        <div class="card-label">Corpo (3–25s)</div>
+        <p>Transição para sala depois com sofá Nobile completo. Andson narra: "Ela me mandou mensagem, escolheu o veludo verde, a gente produziu em 18 dias e entregou montado. Olha o resultado." Mostra reação da cliente.</p>
+        <div class="card-label">CTA (25–30s)</div>
+        <div class="copy-box">"Kits a partir de R$3.600 parcelado. Clica no link e manda mensagem agora."</div>
+        <div class="card-label">Copy do Anúncio</div>
+        <div class="copy-box">Sofá + poltrona + puff artesanal em Recife. A partir de R$3.600 parcelado em 12x. Feito do zero para a sua sala. Manda mensagem e garanta a sua vaga. 🛋️</div>
+        <div class="card-label">Público</div><p>Mulheres 30–55, Recife e região metropolitana, interesse em casa e decoração, reforma de apartamento, Pinterest, houzz.</p>
+      </div>
+
+      <!-- ADS 3 -->
+      <div class="card">
+        <div><span class="card-num">3</span><span class="card-tag">Retenção</span><span class="duracao">⏱ 15s</span></div>
+        <h3>ASMR fabricação — hook visual sem fala</h3>
+        <div class="card-label">Formato</div><p>Reels vertical (9:16)</p>
+        <div class="card-label">Hook (0–3s)</div>
+        <div class="copy-box">Close extremo de agulha costurando veludo — sons reais do ateliê. Sem texto, sem narração. Pura estética.</div>
+        <div class="card-label">Corpo (3–12s)</div>
+        <p>Sequência de closes: tecido cortado, espuma encaixada, sofá finalizado. Texto aparece gradualmente: "Artesanal. Exclusivo. Seu."</p>
+        <div class="card-label">CTA (12–15s)</div>
+        <div class="copy-box">Logo + "Ateliê Nobile — link na bio" ou botão "Saiba mais"</div>
+        <div class="card-label">Copy do Anúncio</div>
+        <div class="copy-box">Quando você assiste com atenção, entende por que vale a pena. Sofás artesanais feitos à mão em Recife. Orçamento sem compromisso. 👇</div>
+        <div class="card-label">Público</div><p>Interesses: design de interiores, artesanato, decoração premium. Lookalike de seguidores do perfil.</p>
+      </div>
+
+      <!-- ADS 4 -->
+      <div class="card">
+        <div><span class="card-num">4</span><span class="card-tag">Urgência</span><span class="duracao">⏱ 30s</span></div>
+        <h3>Vagas limitadas do mês</h3>
+        <div class="card-label">Formato</div><p>Stories vertical (9:16)</p>
+        <div class="card-label">Hook (0–3s)</div>
+        <div class="copy-box">Andson na câmera: "Gente, só temos 5 vagas abertas esse mês. Deixa eu explicar por quê."</div>
+        <div class="card-label">Corpo (3–25s)</div>
+        <p>Explica o processo artesanal — cada sofá leva dias, a atenção é total. Mostra o ateliê funcionando com uma encomenda em andamento. "Aceito poucos clientes por mês justamente pra garantir que cada um receba o melhor."</p>
+        <div class="card-label">CTA (25–30s)</div>
+        <div class="copy-box">"Se você quer garantir a sua vaga em maio, manda mensagem agora. Link na bio."</div>
+        <div class="card-label">Copy do Anúncio</div>
+        <div class="copy-box">⚠️ Apenas 5 vagas em maio. O Ateliê Nobile produz em quantidade limitada para garantir qualidade artesanal em cada peça. Garanta a sua. 📩</div>
+        <div class="card-label">Público</div><p>Retargeting: pessoas que visitaram o perfil ou assistiram mais de 50% de outros vídeos nos últimos 30 dias.</p>
+      </div>
+
+      <!-- ADS 5 -->
+      <div class="card">
+        <div><span class="card-num">5</span><span class="card-tag">Objeção</span><span class="duracao">⏱ 30s</span></div>
+        <h3>"Achei caro" — quebrando a objeção em vídeo</h3>
+        <div class="card-label">Formato</div><p>Reels ou Feed (1:1)</p>
+        <div class="card-label">Hook (0–3s)</div>
+        <div class="copy-box">Andson sorrindo: "Você vai achar caro. Até eu te mostrar o que está incluído."</div>
+        <div class="card-label">Corpo (3–25s)</div>
+        <p>Lista visual com texto e narração: "Estrutura de madeira maciça. Espuma de alta resiliência. Tecido de sua escolha. Costura reforçada à mão. Entrega e montagem incluídas. Garantia real." Mostra cada item rapidamente enquanto fala.</p>
+        <div class="card-label">CTA (25–30s)</div>
+        <div class="copy-box">"E tudo isso por R$216 por mês. Parece caro agora?" — Link para WhatsApp.</div>
+        <div class="card-label">Copy do Anúncio</div>
+        <div class="copy-box">Sofá artesanal em Recife a partir de R$216/mês. Estrutura, espuma, tecido, montagem — tudo incluído. Orçamento gratuito. Manda mensagem agora. 🛋️</div>
+        <div class="card-label">Público</div><p>Retargeting de quem interagiu mas não converteu + lookalike de compradores.</p>
+      </div>
+
+      <!-- ADS 6 -->
+      <div class="card">
+        <div><span class="card-num">6</span><span class="card-tag">Social Proof</span><span class="duracao">⏱ 30s</span></div>
+        <h3>Depoimento em vídeo de cliente real</h3>
+        <div class="card-label">Formato</div><p>Feed quadrado (1:1) ou Reels</p>
+        <div class="card-label">Hook (0–3s)</div>
+        <div class="copy-box">Cliente na câmera, na frente do sofá: "Gente, olha o resultado..." — mostra o sofá por trás.</div>
+        <div class="card-label">Corpo (3–25s)</div>
+        <p>Cliente fala naturalmente sobre a experiência: como foi o atendimento, quanto tempo levou, como ficou o resultado, se indicaria. Andson pode aparecer brevemente agradecendo.</p>
+        <div class="card-label">CTA (25–30s)</div>
+        <div class="copy-box">Texto na tela: "Quer o mesmo resultado? Link na bio." + Logo Nobile.</div>
+        <div class="card-label">Copy do Anúncio</div>
+        <div class="copy-box">Esse é o resultado de quem escolheu o Ateliê Nobile. Sofá artesanal feito sob medida em Recife. Você pode ser o próximo. 📩 Orçamento grátis.</div>
+        <div class="card-label">Público</div><p>Cold audience — mulheres 28–55, Recife/região metropolitana, interesse em decor, arquitetura, casamento/novo lar.</p>
+      </div>
+
+      <!-- ADS 7 -->
+      <div class="card">
+        <div><span class="card-num">7</span><span class="card-tag">Produto</span><span class="duracao">⏱ 15s</span></div>
+        <h3>Showcase dos 3 kits — carrossel de produto</h3>
+        <div class="card-label">Formato</div><p>Carrossel de imagens (Feed) ou vídeo slideshow</p>
+        <div class="card-label">Hook (0–3s)</div>
+        <div class="copy-box">Texto animado: "3 estilos. 1 ateliê. Qual é o seu?" — primeiro card com o kit mais popular.</div>
+        <div class="card-label">Corpo</div>
+        <p>Cada card/frame mostra um dos 3 kits com nome, foto ambiente e preço. Visual limpo, fundo neutro, lettering elegante.</p>
+        <div class="card-label">CTA</div>
+        <div class="copy-box">Último card: "Todos personalizáveis. Orçamento grátis → link na bio."</div>
+        <div class="card-label">Copy do Anúncio</div>
+        <div class="copy-box">3 linhas de design artesanal. Sofá + poltrona + puff feitos à mão em Recife. Escolha o seu estilo e personalize. Orçamento sem compromisso. 🛋️</div>
+        <div class="card-label">Público</div><p>Mulheres 30–55, interesse em decoração de interiores, arquitetura, houzz, pinterest. Recife + João Pessoa.</p>
+      </div>
+
+      <!-- ADS 8 -->
+      <div class="card">
+        <div><span class="card-num">8</span><span class="card-tag">Storytelling</span><span class="duracao">⏱ 60s</span></div>
+        <h3>A história do Andson e do ateliê</h3>
+        <div class="card-label">Formato</div><p>Reels vertical (9:16) — formato mais longo para awareness e conexão</p>
+        <div class="card-label">Hook (0–3s)</div>
+        <div class="copy-box">Andson: "Eu aprendi a fazer sofá com as próprias mãos. E hoje faço isso pra você."</div>
+        <div class="card-label">Corpo (3–50s)</div>
+        <p>Conta a história: de onde veio o ateliê, por que artesanal, o que o diferencia. Mostra imagens do ateliê, das mãos trabalhando, das entregas. Tom pessoal, autêntico. "Cada sofá tem o meu nome. Por isso não faço qualquer sofá."</p>
+        <div class="card-label">CTA (50–60s)</div>
+        <div class="copy-box">"Se você quer uma peça com essa história, me chama. Link na bio."</div>
+        <div class="card-label">Copy do Anúncio</div>
+        <div class="copy-box">Por que sofá artesanal? Porque quem faz com as próprias mãos coloca o nome no que faz. Ateliê Nobile, Recife. 📩</div>
+        <div class="card-label">Público</div><p>Cold audience ampla. Mulheres + casais, 28–50, Recife, interesse em artesanato, qualidade de vida, decoração.</p>
+      </div>
+
+      <!-- ADS 9 -->
+      <div class="card">
+        <div><span class="card-num">9</span><span class="card-tag">Remarketing</span><span class="duracao">⏱ 15s</span></div>
+        <h3>Retargeting direto — "Ainda pensando?"</h3>
+        <div class="card-label">Formato</div><p>Stories vertical (9:16)</p>
+        <div class="card-label">Hook (0–3s)</div>
+        <div class="copy-box">Texto na tela: "Ainda pensando no sofá?" — corte direto para o produto mais bonito.</div>
+        <div class="card-label">Corpo (3–12s)</div>
+        <p>Mostra rapidamente o sofá em ambiente, termina com preço parcelado na tela: "A partir de R$216/mês. Parcelado em 12x."</p>
+        <div class="card-label">CTA (12–15s)</div>
+        <div class="copy-box">"Manda mensagem agora — respondo rápido. 📩"</div>
+        <div class="card-label">Copy do Anúncio</div>
+        <div class="copy-box">Você visitou o Ateliê Nobile. Quer dar o próximo passo? Orçamento grátis e sem compromisso. A vaga pode ser sua. 👇</div>
+        <div class="card-label">Público</div><p>Retargeting exclusivo: visitantes do perfil, pessoas que interagiram com posts/anúncios nos últimos 30 dias, sem ter convertido.</p>
+      </div>
+
+      <!-- ADS 10 -->
+      <div class="card">
+        <div><span class="card-num">10</span><span class="card-tag">Localização</span><span class="duracao">⏱ 30s</span></div>
+        <h3>Entregamos na sua cidade — Recife e região</h3>
+        <div class="card-label">Formato</div><p>Feed quadrado (1:1)</p>
+        <div class="card-label">Hook (0–3s)</div>
+        <div class="copy-box">Andson: "Mora em Recife? Caruaru? Região Metropolitana? A gente entrega e monta na sua casa."</div>
+        <div class="card-label">Corpo (3–25s)</div>
+        <p>Mostra mapa da região + fotos de entregas em diferentes bairros. "Do ateliê direto pra sua sala. Sem intermediários, sem terceiros. A mesma mão que fez entrega."</p>
+        <div class="card-label">CTA (25–30s)</div>
+        <div class="copy-box">"Confirma sua cidade no WhatsApp e já te passo o orçamento. 📱"</div>
+        <div class="card-label">Copy do Anúncio</div>
+        <div class="copy-box">Ateliê Nobile — sofás artesanais com entrega e montagem em Recife, Olinda, Caruaru e região metropolitana. Orçamento grátis. Manda mensagem! 🛋️📍</div>
+        <div class="card-label">Público</div><p>Segmentação geográfica: raio 80km de Recife. Mulheres + casais, 28–55 anos, interesse em casa, decoração, reforma.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ================================================ -->
+  <!-- SEÇÃO 5 — TRÁFEGO PAGO -->
+  <!-- ================================================ -->
+  <div class="section" id="trafego">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div>
+        <div class="section-title">Estratégia de Tráfego Pago</div>
+        <div class="section-subtitle">Estrutura de campanhas, públicos, orçamento e KPIs — Meta Ads (Instagram/Facebook)</div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>Budget total: R$2.000/mês em ads + R$500/mês gestor de tráfego = R$2.500/mês</strong><br>
+      Objetivo principal: gerar conversas no WhatsApp que evoluam para encomenda. O ciclo de venda é consultivo — o anúncio abre a conversa, o Andson fecha.
+    </div>
+
+    <!-- Campanha 1 -->
+    <div class="campanha-card">
+      <div class="campanha-header">
+        <div class="campanha-nome">🎯 Campanha 1 — Awareness (Conhecimento de Marca)</div>
+        <div class="campanha-orcamento">R$400/mês</div>
+      </div>
+      <p style="font-family:Arial,sans-serif;font-size:14px;color:var(--texto-suave);margin-bottom:12px">Objetivo: fazer Recife conhecer o Ateliê Nobile. Expandir o alcance. Alimentar o topo do funil.</p>
+      <div class="card-label">Públicos</div>
+      <div class="tags-list">
+        <span class="tag">Mulheres 28–55, Recife + Região</span>
+        <span class="tag">Interesse: Decoração de Interiores</span>
+        <span class="tag">Interesse: Reforma de Casa</span>
+        <span class="tag">Interesse: Design de Interiores</span>
+        <span class="tag">Interesse: Pinterest / Houzz</span>
+        <span class="tag">Comportamento: Recém-casados</span>
+        <span class="tag">Comportamento: Novo lar</span>
+      </div>
+      <div class="card-label" style="margin-top:12px">Criativos recomendados</div>
+      <p style="font-family:Arial,sans-serif;font-size:13px;color:var(--texto-suave)">ADS 1 (hook impacto), ADS 3 (ASMR), ADS 8 (storytelling Andson), Reel tour pelo ateliê.</p>
+    </div>
+
+    <!-- Campanha 2 -->
+    <div class="campanha-card">
+      <div class="campanha-header">
+        <div class="campanha-nome">💡 Campanha 2 — Consideração (Tráfego + Engajamento)</div>
+        <div class="campanha-orcamento">R$700/mês</div>
+      </div>
+      <p style="font-family:Arial,sans-serif;font-size:14px;color:var(--texto-suave);margin-bottom:12px">Objetivo: levar pessoas para o perfil, aumentar o engajamento, gerar visualizações de vídeo. Construir audiência quente.</p>
+      <div class="card-label">Públicos</div>
+      <div class="tags-list">
+        <span class="tag">Engajadores dos últimos 60 dias</span>
+        <span class="tag">Visitantes do perfil</span>
+        <span class="tag">Lookalike 1% de seguidores</span>
+        <span class="tag">Lookalike 1% de quem assistiu 75% dos vídeos</span>
+      </div>
+      <div class="card-label" style="margin-top:12px">Criativos recomendados</div>
+      <p style="font-family:Arial,sans-serif;font-size:13px;color:var(--texto-suave)">ADS 2 (antes/depois), ADS 5 (objeção preço), ADS 6 (depoimento), ADS 7 (3 kits).</p>
+    </div>
+
+    <!-- Campanha 3 -->
+    <div class="campanha-card">
+      <div class="campanha-header">
+        <div class="campanha-nome">🛒 Campanha 3 — Conversão (WhatsApp / Mensagens)</div>
+        <div class="campanha-orcamento">R$700/mês</div>
+      </div>
+      <p style="font-family:Arial,sans-serif;font-size:14px;color:var(--texto-suave);margin-bottom:12px">Objetivo: gerar conversas no WhatsApp com intenção de compra. CTAs diretos. Orçamento sem compromisso.</p>
+      <div class="card-label">Públicos</div>
+      <div class="tags-list">
+        <span class="tag">Retargeting: visitantes do perfil (30d)</span>
+        <span class="tag">Retargeting: assistiram +50% dos vídeos</span>
+        <span class="tag">Retargeting: clicaram no link da bio</span>
+        <span class="tag">Lookalike 1% de pessoas que mandaram mensagem</span>
+      </div>
+      <div class="card-label" style="margin-top:12px">Criativos recomendados</div>
+      <p style="font-family:Arial,sans-serif;font-size:13px;color:var(--texto-suave)">ADS 4 (urgência vagas), ADS 9 (retargeting "ainda pensando"), ADS 10 (localização).</p>
+    </div>
+
+    <!-- Campanha 4 -->
+    <div class="campanha-card">
+      <div class="campanha-header">
+        <div class="campanha-nome">🔄 Campanha 4 — Teste de Criativos (Buffer)</div>
+        <div class="campanha-orcamento">R$200/mês</div>
+      </div>
+      <p style="font-family:Arial,sans-serif;font-size:14px;color:var(--texto-suave)">Reserve R$200/mês para testar novos criativos, hooks diferentes e variações de copy. Identificar o que performa melhor e escalar nas campanhas principais.</p>
+    </div>
+
+    <!-- KPIs -->
+    <div class="card-label" style="margin: 20px 0 12px;">Métricas e KPIs — Metas Mensais</div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-icon">👁️</div><div class="kpi-val">50k+</div><div class="kpi-label">Alcance Mensal</div></div>
+      <div class="kpi-card"><div class="kpi-icon">▶️</div><div class="kpi-val">20k+</div><div class="kpi-label">Visualizações de Vídeo</div></div>
+      <div class="kpi-card"><div class="kpi-icon">💬</div><div class="kpi-val">30+</div><div class="kpi-label">Conversas WhatsApp/mês</div></div>
+      <div class="kpi-card"><div class="kpi-icon">🛋️</div><div class="kpi-val">3–5</div><div class="kpi-label">Encomendas/mês</div></div>
+      <div class="kpi-card"><div class="kpi-icon">💰</div><div class="kpi-val">&lt;R$70</div><div class="kpi-label">Custo por Conversa</div></div>
+      <div class="kpi-card"><div class="kpi-icon">📈</div><div class="kpi-val">&gt;10x</div><div class="kpi-label">ROAS (Retorno sobre ad)</div></div>
+    </div>
+
+    <div class="info-box" style="margin-top:20px">
+      <strong>Papel do Gestor de Tráfego (R$500/mês):</strong> Responsável por criar e otimizar as campanhas no Meta Ads, testar criativos, ajustar públicos semanalmente, reportar resultados e escalar o que funciona. O Andson foca no atendimento e produção — o gestor cuida da máquina de aquisição.
+    </div>
+  </div>
+
+
+  <!-- ================================================ -->
+  <!-- SEÇÃO 6 — CALENDÁRIO -->
+  <!-- ================================================ -->
+  <div class="section" id="calendario">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div>
+        <div class="section-title">Calendário Editorial — Primeiro Mês</div>
+        <div class="section-subtitle">Grade semanal de publicações, frequência e melhores horários para Recife</div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>Frequência recomendada:</strong> 4–5 posts por semana (2 feed + 2 reels + 1 stories/caixinha). Melhor horários para Recife: <strong>12h–13h</strong> (almoço) e <strong>19h–21h</strong> (pós-trabalho). Evitar segundas-feiras cedo e domingos à tarde.
+    </div>
+
+    <!-- Semana 1 -->
+    <div class="calendario">
+      <div class="cal-header">Semana 1 — Apresentação do Ateliê</div>
+      <div class="cal-row cal-head">
+        <div class="cal-cell">Dia</div>
+        <div class="cal-cell">Conteúdo</div>
+        <div class="cal-cell">Objetivo</div>
+        <div class="cal-cell">Horário</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Segunda</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-reels">Reels</span> Tour pelo ateliê (Reel 4)</div>
+        <div class="cal-cell">Apresentar o espaço, gerar curiosidade</div>
+        <div class="cal-cell">19h</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Quarta</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-feed">Feed</span> As mãos por trás do sofá (Post 1)</div>
+        <div class="cal-cell">Humanizar a marca, contar a história</div>
+        <div class="cal-cell">12h30</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Quinta</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-reels">Reels</span> ASMR fabricação (Reel 1)</div>
+        <div class="cal-cell">Gerar retenção e compartilhamentos</div>
+        <div class="cal-cell">19h30</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Sábado</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-feed">Feed</span> Por dentro do ateliê — bastidores (Post 5)</div>
+        <div class="cal-cell">Bastidores, engajamento nos comentários</div>
+        <div class="cal-cell">11h</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Domingo</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-stories">Stories</span> Caixinha de perguntas: "Qual estilo de sala você tem?"</div>
+        <div class="cal-cell">Pesquisa de audiência + engajamento</div>
+        <div class="cal-cell">16h</div>
+      </div>
+    </div>
+
+    <!-- Semana 2 -->
+    <div class="calendario">
+      <div class="cal-header">Semana 2 — Produto e Diferencial</div>
+      <div class="cal-row cal-head">
+        <div class="cal-cell">Dia</div>
+        <div class="cal-cell">Conteúdo</div>
+        <div class="cal-cell">Objetivo</div>
+        <div class="cal-cell">Horário</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Terça</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-reels">Reels</span> Sofá de loja vs. artesanal (Reel 5)</div>
+        <div class="cal-cell">Educar, quebrar objeção de preço</div>
+        <div class="cal-cell">19h</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Quarta</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-feed">Feed</span> Por que sofá artesanal dura mais (Post 6)</div>
+        <div class="cal-cell">Conteúdo educativo, salvar e compartilhar</div>
+        <div class="cal-cell">12h</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Sexta</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-reels">Reels</span> Timelapse: do esqueleto ao sofá (Reel 2)</div>
+        <div class="cal-cell">Viralização, fascínio pelo processo</div>
+        <div class="cal-cell">18h</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Sábado</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-feed">Feed</span> Qual tecido é o seu? (Post 7)</div>
+        <div class="cal-cell">Engajamento nos comentários</div>
+        <div class="cal-cell">11h30</div>
+      </div>
+    </div>
+
+    <!-- Semana 3 -->
+    <div class="calendario">
+      <div class="cal-header">Semana 3 — Prova Social e Conversão</div>
+      <div class="cal-row cal-head">
+        <div class="cal-cell">Dia</div>
+        <div class="cal-cell">Conteúdo</div>
+        <div class="cal-cell">Objetivo</div>
+        <div class="cal-cell">Horário</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Segunda</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-reels">Reels</span> Entrega ao cliente (Reel 3)</div>
+        <div class="cal-cell">Emoção, prova social, desejo</div>
+        <div class="cal-cell">19h</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Quarta</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-feed">Feed</span> Depoimento do cliente (Post 4)</div>
+        <div class="cal-cell">Confiança, quebra de objeção</div>
+        <div class="cal-cell">12h</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Quinta</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-reels">Reels</span> 3 erros ao comprar sofá (Reel 7)</div>
+        <div class="cal-cell">Autoridade, salvar, compartilhar</div>
+        <div class="cal-cell">20h</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Sábado</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-feed">Feed</span> Antes/depois — a sala que mudou (Post 2)</div>
+        <div class="cal-cell">Resultado visual, CTA de orçamento</div>
+        <div class="cal-cell">11h</div>
+      </div>
+    </div>
+
+    <!-- Semana 4 -->
+    <div class="calendario">
+      <div class="cal-header">Semana 4 — Kits, Lifestyle e Fechamento</div>
+      <div class="cal-row cal-head">
+        <div class="cal-cell">Dia</div>
+        <div class="cal-cell">Conteúdo</div>
+        <div class="cal-cell">Objetivo</div>
+        <div class="cal-cell">Horário</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Terça</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-reels">Reels</span> Domingo com o sofá Nobile — lifestyle (Reel 9)</div>
+        <div class="cal-cell">Desejo de estilo de vida</div>
+        <div class="cal-cell">19h</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Quarta</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-feed">Feed</span> O kit que completa qualquer sala (Post 3)</div>
+        <div class="cal-cell">Mostrar o kit completo, CTA</div>
+        <div class="cal-cell">12h30</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Sexta</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-reels">Reels</span> Como funciona a encomenda (Reel 10)</div>
+        <div class="cal-cell">Reduzir fricção, explicar o processo</div>
+        <div class="cal-cell">18h</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-cell"><strong>Sábado</strong></div>
+        <div class="cal-cell"><span class="cal-tipo tipo-feed">Feed</span> Encomende agora — vagas limitadas (Post 10)</div>
+        <div class="cal-cell">CTA direto, urgência, conversão</div>
+        <div class="cal-cell">11h</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================================================ -->
+  <!-- SEÇÃO 7 — FUNIL DE VENDAS -->
+  <!-- ================================================ -->
+  <div class="section" id="funil">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div>
+        <div class="section-title">Funil de Vendas</div>
+        <div class="section-subtitle">Instagram → WhatsApp → Encomenda → Venda — scripts prontos para usar</div>
+      </div>
+    </div>
+
+    <div class="funil">
+      <div class="funil-step">
+        <h4><span class="step-num">1</span> Instagram — Descoberta</h4>
+        <p>O cliente vê um Reel, post ou anúncio. Se engaja, segue, salva o conteúdo. Começa a consumir mais. O perfil precisa ter identidade clara e CTA visível na bio: "Faço sofás artesanais sob medida | Orçamento no WhatsApp 📩"</p>
+      </div>
+      <div class="funil-arrow">↓</div>
+      <div class="funil-step">
+        <h4><span class="step-num">2</span> Link na Bio → WhatsApp</h4>
+        <p>O cliente clica no link da bio e vai direto para o WhatsApp. O link deve abrir com mensagem pré-preenchida para facilitar o início da conversa.</p>
+      </div>
+      <div class="funil-arrow">↓</div>
+      <div class="funil-step">
+        <h4><span class="step-num">3</span> Primeiro Contato — WhatsApp</h4>
+        <p>Andson responde rapidamente (meta: em até 2h). Qualifica o lead, entende a necessidade, mostra opções. Aqui está o script de primeiro contato.</p>
+      </div>
+      <div class="funil-arrow">↓</div>
+      <div class="funil-step">
+        <h4><span class="step-num">4</span> Orçamento + Apresentação Visual</h4>
+        <p>Envio de catálogo, fotos dos kits, opções de tecido. Apresentação do prazo de entrega e condições de pagamento.</p>
+      </div>
+      <div class="funil-arrow">↓</div>
+      <div class="funil-step">
+        <h4><span class="step-num">5</span> Visita / Encomenda</h4>
+        <p>Visita ao ateliê (opcional) ou escolha final pelo WhatsApp. Pagamento de sinal (30–50%), início da produção.</p>
+      </div>
+      <div class="funil-arrow">↓</div>
+      <div class="funil-step">
+        <h4><span class="step-num">6</span> Entrega + Pós-venda</h4>
+        <p>Entrega e montagem na casa do cliente. Foto do resultado. Pedido de depoimento. Indicação para amigos e família.</p>
+      </div>
+    </div>
+
+    <!-- SCRIPTS WPP -->
+    <div class="card-label" style="margin: 30px 0 15px; font-size: 14px;">Scripts de Atendimento no WhatsApp</div>
+
+    <div class="script-card">
+      <h4>💬 Mensagem de Boas-vindas (automática ou manual)</h4>
+      <div class="wpp-bubble">Oi! 👋 Bem-vindo ao Ateliê Nobile!
+
+Sou o Andson, faço sofás artesanais sob medida aqui em Recife.
+
+Para te ajudar melhor, me conta rapidinho:
+
+1️⃣ Que tipo de peça você está buscando? (sofá, kit completo, poltrona...)
+2️⃣ Já tem algum estilo ou cor em mente?
+3️⃣ Qual é o tamanho da sua sala?
+
+Com essas informações já consigo te dar uma ideia bem certinha de preço e prazo 😊</div>
+    </div>
+
+    <div class="script-card">
+      <h4>💬 Apresentação do Kit Completo</h4>
+      <div class="wpp-bubble">Perfeito! Deixa eu te mostrar o que tenho pra você 🛋️
+
+Trabalho com 3 linhas:
+▪️ Linha Clássica — veludo, tons neutros e quentes
+▪️ Linha Moderna — suede, linhas retas, minimalista
+▪️ Linha Natural — linho e tecidos naturais, estilo orgânico
+
+O kit completo (sofá 3 lugares + poltrona + puff) começa em R$3.600, parcelado em até 12x sem juros no cartão 💳
+
+Você personaliza: tecido, cor, tamanho e alguns detalhes de acabamento.
+
+Posso te mandar o catálogo visual agora? Fica mais fácil de visualizar 📸</div>
+    </div>
+
+    <div class="script-card">
+      <h4>💬 Follow-up — Dia 2 (cliente que não respondeu)</h4>
+      <div class="wpp-bubble">Oi [Nome]! 😊
+
+Só passando pra ver se você teve a chance de olhar as opções que mandei.
+
+Qualquer dúvida sobre tecido, tamanho ou prazo — pode perguntar à vontade, sem compromisso.
+
+E se ainda estiver pensando, sem problema. Quando você quiser, é só falar 🙏</div>
+    </div>
+
+    <div class="script-card">
+      <h4>💬 Follow-up — Dia 5 (cliente que demonstrou interesse)</h4>
+      <div class="wpp-bubble">Oi [Nome]! Andson aqui do Ateliê Nobile 👋
+
+Queria te avisar que as vagas de maio estão quase fechando. Aceito um número limitado de encomendas por mês justamente pra garantir que cada peça saia perfeita ✅
+
+Se quiser garantir a sua, a gente fecha agora mesmo — só precisa de 50% de entrada pra começar a produção.
+
+O que você acha? Consigo te dar um prazo certinho de entrega assim que confirmar 🗓️</div>
+    </div>
+
+    <div class="script-card">
+      <h4>💬 Pedido de Depoimento (pós-entrega)</h4>
+      <div class="wpp-bubble">Oi [Nome]! 🥰 Ficou incrível na sala de vocês!
+
+Tenho um favor pra pedir: você toparia gravar um vídeo curtinho falando sobre a experiência? Pode ser de 30 segundos mesmo, sentado no sofá 😄
+
+Isso ajuda muito outras pessoas a conhecerem o ateliê. E se quiser indicar pra amigos ou família, tenho uma condição especial pra indicações!
+
+Qualquer coisa, só falar. Obrigado pela confiança, foi um prazer fazer essa peça pra você! 🙏✨</div>
+    </div>
+
+    <div class="info-box">
+      <strong>Dica de ouro:</strong> Configure o WhatsApp Business com catálogo, etiquetas de atendimento (novo lead, proposta enviada, aguardando, fechado) e respostas rápidas para as perguntas mais frequentes. Isso organiza o funil e agiliza o atendimento.
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>Ateliê Nobile — Plano de Marketing Digital 2026</strong>
+  <p>Consultoria elaborada por Patrick Suyti • Abril 2026</p>
+  <p style="margin-top:10px;opacity:0.5;font-size:12px">Instagram: @atelie.nobile • Recife, PE</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,2563 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plano de Negócio — Ateliê Nobile</title>
+  <style>
+    :root {
+      --marrom-escuro: #3D2B1F;
+      --marrom-medio: #6B4226;
+      --marrom-claro: #A0694A;
+      --bege-escuro: #C4A882;
+      --bege-claro: #F0E6D3;
+      --bege-fundo: #FAF6F0;
+      --oliva: #6B7A4A;
+      --oliva-claro: #8E9E68;
+      --creme: #FFFDF9;
+      --cinza-texto: #4A4A4A;
+      --cinza-leve: #F5F0EA;
+      --dourado: #B08040;
+      --sombra: rgba(61, 43, 31, 0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--bege-fundo);
+      color: var(--cinza-texto);
+      line-height: 1.7;
+    }
+
+    /* TIPOGRAFIA */
+    h1, h2, h3, h4 {
+      font-family: 'Georgia', serif;
+      color: var(--marrom-escuro);
+    }
+
+    /* ======= CAPA ======= */
+    .capa {
+      background: linear-gradient(160deg, var(--marrom-escuro) 0%, var(--marrom-medio) 55%, var(--marrom-claro) 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .capa::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(192,168,130,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .capa::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(107,122,74,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .capa-logo {
+      width: 120px;
+      height: 120px;
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(192,168,130,0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .capa-logo svg {
+      width: 64px;
+      height: 64px;
+      opacity: 0.9;
+    }
+
+    .capa-tag {
+      font-family: 'Georgia', serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--bege-escuro);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .capa-nome {
+      font-size: clamp(42px, 8vw, 72px);
+      font-weight: normal;
+      color: #FFFDF9;
+      letter-spacing: 3px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 8px;
+    }
+
+    .capa-sub {
+      font-size: 16px;
+      color: var(--bege-escuro);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .capa-linha {
+      width: 80px;
+      height: 1px;
+      background: var(--bege-escuro);
+      margin: 0 auto 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .capa-doc-titulo {
+      font-size: clamp(18px, 3vw, 24px);
+      color: #FFFDF9;
+      font-weight: normal;
+      text-align: center;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .capa-badges {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .capa-badge {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(192,168,130,0.3);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-size: 12px;
+      color: var(--bege-escuro);
+      letter-spacing: 1px;
+    }
+
+    .capa-rodape {
+      position: absolute;
+      bottom: 32px;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(192,168,130,0.5);
+      letter-spacing: 2px;
+      z-index: 1;
+    }
+
+    /* ======= CONTAINER GERAL ======= */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ======= SEÇÕES ======= */
+    .secao {
+      padding: 72px 0;
+      border-bottom: 1px solid rgba(160,105,74,0.15);
+    }
+
+    .secao:last-child { border-bottom: none; }
+
+    .secao-numero {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--marrom-claro);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .secao-titulo {
+      font-size: clamp(26px, 4vw, 38px);
+      color: var(--marrom-escuro);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .secao-desc {
+      font-size: 16px;
+      color: var(--marrom-claro);
+      margin-bottom: 40px;
+      max-width: 600px;
+    }
+
+    /* ======= SUMÁRIO EXECUTIVO ======= */
+    .sumario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .sumario-card {
+      background: var(--creme);
+      border: 1px solid rgba(160,105,74,0.2);
+      border-radius: 12px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sumario-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--marrom-claro), var(--bege-escuro));
+    }
+
+    .sumario-card-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .sumario-card-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--marrom-claro);
+      margin-bottom: 6px;
+    }
+
+    .sumario-card-valor {
+      font-size: 26px;
+      font-weight: bold;
+      color: var(--marrom-escuro);
+    }
+
+    .sumario-card-detalhe {
+      font-size: 12px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .destaque-box {
+      background: linear-gradient(135deg, var(--marrom-escuro) 0%, var(--marrom-medio) 100%);
+      border-radius: 16px;
+      padding: 40px 48px;
+      color: #FFFDF9;
+      margin: 40px 0;
+    }
+
+    .destaque-box h3 {
+      color: var(--bege-escuro);
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .destaque-box p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: rgba(255,253,249,0.9);
+    }
+
+    /* ======= ANÁLISE DE MERCADO ======= */
+    .mercado-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 640px) {
+      .mercado-grid { grid-template-columns: 1fr; }
+    }
+
+    .mercado-card {
+      background: var(--creme);
+      border-radius: 12px;
+      padding: 32px;
+      border: 1px solid rgba(160,105,74,0.15);
+    }
+
+    .mercado-card h4 {
+      font-size: 16px;
+      color: var(--marrom-escuro);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mercado-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .mercado-card ul li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(160,105,74,0.1);
+      font-size: 14px;
+      color: var(--cinza-texto);
+      display: flex;
+      gap: 10px;
+    }
+
+    .mercado-card ul li:last-child { border-bottom: none; }
+
+    .mercado-card ul li::before {
+      content: '→';
+      color: var(--marrom-claro);
+      flex-shrink: 0;
+    }
+
+    /* ======= PRODUTOS ======= */
+    .kit-card {
+      background: var(--creme);
+      border: 1px solid rgba(160,105,74,0.2);
+      border-radius: 16px;
+      padding: 36px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kit-card.destaque {
+      border-color: var(--marrom-claro);
+      background: linear-gradient(135deg, #FFFDF9, #F9F0E3);
+    }
+
+    .kit-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--marrom-claro);
+      color: white;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+
+    .kit-nome {
+      font-size: 22px;
+      color: var(--marrom-escuro);
+      margin-bottom: 8px;
+    }
+
+    .kit-desc {
+      font-size: 13px;
+      color: var(--marrom-claro);
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+
+    .kit-produtos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 540px) {
+      .kit-produtos { grid-template-columns: 1fr; }
+    }
+
+    .kit-produto-item {
+      background: rgba(160,105,74,0.08);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .kit-produto-icon { font-size: 24px; margin-bottom: 8px; }
+
+    .kit-produto-nome {
+      font-size: 13px;
+      color: var(--marrom-escuro);
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .kit-produto-preco {
+      font-size: 18px;
+      color: var(--marrom-claro);
+    }
+
+    .kit-produto-custo {
+      font-size: 11px;
+      color: #999;
+    }
+
+    .kit-financeiro {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      border-top: 1px solid rgba(160,105,74,0.15);
+    }
+
+    .kit-fin-item { text-align: center; }
+
+    .kit-fin-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 4px;
+    }
+
+    .kit-fin-valor {
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--marrom-escuro);
+    }
+
+    .kit-fin-valor.verde { color: var(--oliva); }
+    .kit-fin-valor.pct {
+      font-size: 16px;
+      color: var(--oliva-claro);
+    }
+
+    /* ======= TABELAS ======= */
+    .tabela-wrapper {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(160,105,74,0.2);
+      margin: 32px 0;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead th {
+      background: var(--marrom-escuro);
+      color: var(--bege-claro);
+      padding: 14px 16px;
+      text-align: left;
+      font-weight: normal;
+      font-size: 12px;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    thead th:first-child { border-radius: 0; }
+
+    tbody tr {
+      border-bottom: 1px solid rgba(160,105,74,0.1);
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+
+    tbody tr:nth-child(even) {
+      background: rgba(160,105,74,0.04);
+    }
+
+    tbody tr:hover {
+      background: rgba(160,105,74,0.08);
+    }
+
+    td {
+      padding: 12px 16px;
+      color: var(--cinza-texto);
+      white-space: nowrap;
+    }
+
+    td.fase-1 { border-left: 3px solid var(--bege-escuro); }
+    td.fase-2 { border-left: 3px solid var(--marrom-claro); }
+    td.fase-3 { border-left: 3px solid var(--marrom-escuro); }
+
+    .valor-positivo { color: var(--oliva); font-weight: bold; }
+    .valor-negativo { color: #C0392B; }
+    .valor-neutro { color: var(--cinza-texto); }
+    .valor-destaque { color: var(--marrom-escuro); font-weight: bold; font-size: 15px; }
+
+    tfoot td {
+      background: var(--marrom-escuro);
+      color: var(--bege-claro);
+      font-weight: bold;
+      padding: 14px 16px;
+    }
+
+    /* ======= GRÁFICO DE BARRAS ======= */
+    .grafico-container {
+      background: var(--creme);
+      border: 1px solid rgba(160,105,74,0.15);
+      border-radius: 16px;
+      padding: 40px 32px;
+      margin: 40px 0;
+    }
+
+    .grafico-titulo {
+      font-size: 14px;
+      color: var(--marrom-escuro);
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+
+    .grafico-barras {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      height: 180px;
+      padding-bottom: 40px;
+      border-bottom: 2px solid rgba(160,105,74,0.3);
+      position: relative;
+    }
+
+    .grafico-barra-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+    }
+
+    .grafico-barra {
+      width: 100%;
+      border-radius: 6px 6px 0 0;
+      transition: all 0.3s;
+      min-height: 4px;
+      position: relative;
+    }
+
+    .barra-fat { background: linear-gradient(180deg, var(--marrom-claro), var(--marrom-escuro)); }
+    .barra-luc { background: linear-gradient(180deg, var(--oliva-claro), var(--oliva)); }
+
+    .grafico-label {
+      font-size: 10px;
+      color: #999;
+      text-align: center;
+      margin-top: 8px;
+      position: absolute;
+      bottom: -28px;
+      width: 100%;
+    }
+
+    .grafico-valor {
+      font-size: 9px;
+      color: var(--marrom-claro);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .grafico-legenda {
+      display: flex;
+      gap: 24px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+
+    .legenda-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .legenda-cor {
+      width: 16px;
+      height: 8px;
+      border-radius: 2px;
+    }
+
+    /* ======= TIMELINE ======= */
+    .timeline {
+      position: relative;
+      padding: 20px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--bege-escuro), var(--marrom-medio), var(--marrom-escuro));
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .timeline-dot {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dot-fase1 {
+      background: var(--bege-claro);
+      border: 2px solid var(--bege-escuro);
+    }
+
+    .dot-fase2 {
+      background: #F0E0CC;
+      border: 2px solid var(--marrom-claro);
+    }
+
+    .dot-fase3 {
+      background: var(--marrom-escuro);
+      border: 2px solid var(--marrom-escuro);
+    }
+
+    .timeline-content {
+      flex: 1;
+      background: var(--creme);
+      border-radius: 12px;
+      padding: 28px 32px;
+      border: 1px solid rgba(160,105,74,0.15);
+    }
+
+    .timeline-fase {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--marrom-claro);
+      margin-bottom: 6px;
+    }
+
+    .timeline-titulo {
+      font-size: 20px;
+      color: var(--marrom-escuro);
+      margin-bottom: 12px;
+    }
+
+    .timeline-metricas {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 16px 0;
+      padding: 16px;
+      background: rgba(160,105,74,0.06);
+      border-radius: 8px;
+    }
+
+    .timeline-metrica { text-align: center; }
+
+    .timeline-met-label {
+      font-size: 10px;
+      color: #999;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .timeline-met-valor {
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--marrom-escuro);
+    }
+
+    .timeline-lista {
+      list-style: none;
+      margin-top: 16px;
+    }
+
+    .timeline-lista li {
+      padding: 6px 0;
+      font-size: 14px;
+      color: var(--cinza-texto);
+      display: flex;
+      gap: 10px;
+    }
+
+    .timeline-lista li::before {
+      content: '✓';
+      color: var(--oliva);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* ======= KPIs ======= */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .kpi-card {
+      background: var(--creme);
+      border: 1px solid rgba(160,105,74,0.2);
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .kpi-icon { font-size: 32px; margin-bottom: 12px; }
+
+    .kpi-nome {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--marrom-claro);
+      margin-bottom: 8px;
+    }
+
+    .kpi-meta {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--marrom-escuro);
+      margin-bottom: 4px;
+    }
+
+    .kpi-freq {
+      font-size: 11px;
+      color: #999;
+      margin-bottom: 12px;
+    }
+
+    .kpi-desc {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* ======= RISCOS ======= */
+    .risco-item {
+      display: grid;
+      grid-template-columns: 3fr 1fr 3fr;
+      gap: 24px;
+      align-items: start;
+      padding: 24px;
+      background: var(--creme);
+      border-radius: 12px;
+      border: 1px solid rgba(160,105,74,0.15);
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .risco-item { grid-template-columns: 1fr; }
+    }
+
+    .risco-titulo {
+      font-size: 15px;
+      font-weight: bold;
+      color: var(--marrom-escuro);
+      margin-bottom: 8px;
+    }
+
+    .risco-desc {
+      font-size: 13px;
+      color: var(--cinza-texto);
+      line-height: 1.6;
+    }
+
+    .risco-nivel {
+      text-align: center;
+    }
+
+    .risco-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .nivel-alto { background: #FEE2E2; color: #991B1B; }
+    .nivel-medio { background: #FEF3C7; color: #92400E; }
+    .nivel-baixo { background: #D1FAE5; color: #065F46; }
+
+    .mitigacao-titulo {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--oliva);
+      margin-bottom: 8px;
+    }
+
+    .mitigacao-desc {
+      font-size: 13px;
+      color: var(--cinza-texto);
+      line-height: 1.6;
+    }
+
+    /* ======= CHECKLIST ======= */
+    .checklist-fase {
+      margin-bottom: 40px;
+    }
+
+    .checklist-fase-titulo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .checklist-fase-numero {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--marrom-escuro);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .checklist-fase-nome {
+      font-size: 20px;
+      color: var(--marrom-escuro);
+    }
+
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 12px;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--creme);
+      border-radius: 10px;
+      border: 1px solid rgba(160,105,74,0.12);
+    }
+
+    .check-box {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(160,105,74,0.4);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .checklist-item-texto {
+      font-size: 14px;
+      color: var(--cinza-texto);
+      line-height: 1.4;
+    }
+
+    .checklist-item-texto strong {
+      display: block;
+      color: var(--marrom-escuro);
+      margin-bottom: 2px;
+    }
+
+    /* ======= TRÁFEGO PAGO ======= */
+    .trafego-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .trafego-grid { grid-template-columns: 1fr; }
+    }
+
+    .funil-container {
+      background: var(--creme);
+      border: 1px solid rgba(160,105,74,0.15);
+      border-radius: 12px;
+      padding: 32px;
+    }
+
+    .funil-etapa {
+      margin-bottom: 4px;
+      border-radius: 6px;
+      padding: 14px 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .funil-e1 { background: var(--marrom-escuro); }
+    .funil-e2 { background: var(--marrom-medio); margin: 0 8px; }
+    .funil-e3 { background: var(--marrom-claro); margin: 0 16px; }
+    .funil-e4 { background: var(--oliva); margin: 0 24px; }
+    .funil-e5 { background: var(--oliva-claro); margin: 0 32px; }
+
+    .funil-etapa-nome { font-size: 13px; }
+    .funil-etapa-valor { font-size: 16px; font-weight: bold; }
+
+    /* ======= INVESTIMENTO INICIAL ======= */
+    .capital-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin: 32px 0;
+    }
+
+    .capital-card {
+      background: var(--creme);
+      border: 1px solid rgba(160,105,74,0.2);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .capital-icon { font-size: 28px; margin-bottom: 10px; }
+
+    .capital-label {
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 6px;
+    }
+
+    .capital-valor {
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--marrom-escuro);
+    }
+
+    .capital-detalhe {
+      font-size: 11px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    /* ======= RODAPÉ ======= */
+    .rodape {
+      background: var(--marrom-escuro);
+      color: rgba(255,253,249,0.7);
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .rodape h3 {
+      color: var(--bege-escuro);
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .rodape p {
+      font-size: 14px;
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+
+    .rodape-linha {
+      width: 60px;
+      height: 1px;
+      background: var(--bege-escuro);
+      margin: 32px auto;
+      opacity: 0.4;
+    }
+
+    .rodape-info {
+      font-size: 12px;
+      opacity: 0.5;
+      letter-spacing: 2px;
+    }
+
+    /* ======= DIVISOR DE FASE ======= */
+    .fase-header {
+      background: linear-gradient(135deg, var(--marrom-escuro), var(--marrom-medio));
+      border-radius: 12px;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .fase-header-num {
+      font-size: 48px;
+      color: rgba(255,255,255,0.15);
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .fase-header-info {}
+
+    .fase-header-tag {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--bege-escuro);
+      margin-bottom: 4px;
+    }
+
+    .fase-header-titulo {
+      font-size: 20px;
+      color: white;
+      font-weight: normal;
+    }
+
+    .fase-header-periodo {
+      font-size: 13px;
+      color: var(--bege-escuro);
+      margin-top: 4px;
+    }
+
+    /* ======= INFO BOX ======= */
+    .info-box {
+      background: rgba(107,122,74,0.08);
+      border: 1px solid rgba(107,122,74,0.3);
+      border-left: 4px solid var(--oliva);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+
+    .info-box p {
+      font-size: 14px;
+      color: var(--cinza-texto);
+      line-height: 1.7;
+    }
+
+    .alerta-box {
+      background: rgba(176,128,64,0.08);
+      border: 1px solid rgba(176,128,64,0.3);
+      border-left: 4px solid var(--dourado);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+
+    .alerta-box p {
+      font-size: 14px;
+      color: var(--cinza-texto);
+      line-height: 1.7;
+    }
+
+    /* ======= TRÁFEGO - ORÇAMENTO ======= */
+    .orcamento-fases {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 32px 0;
+    }
+
+    @media (max-width: 640px) {
+      .orcamento-fases { grid-template-columns: 1fr; }
+    }
+
+    .orcamento-card {
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-align: center;
+      border: 1px solid rgba(160,105,74,0.2);
+    }
+
+    .orcamento-card.f1 { background: var(--bege-claro); }
+    .orcamento-card.f2 { background: #F0E0CC; }
+    .orcamento-card.f3 { background: var(--marrom-escuro); }
+
+    .orcamento-card.f3 .orcamento-titulo { color: var(--bege-escuro); }
+    .orcamento-card.f3 .orcamento-total { color: white; }
+    .orcamento-card.f3 .orcamento-item { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.1); }
+
+    .orcamento-titulo {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--marrom-claro);
+      margin-bottom: 16px;
+    }
+
+    .orcamento-total {
+      font-size: 32px;
+      font-weight: bold;
+      color: var(--marrom-escuro);
+      margin-bottom: 20px;
+    }
+
+    .orcamento-itens {}
+
+    .orcamento-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(160,105,74,0.12);
+      font-size: 13px;
+      color: var(--cinza-texto);
+    }
+
+    .orcamento-item:last-child { border-bottom: none; }
+
+    /* ======= CONTRATAÇÕES ======= */
+    .contratacao-timeline {
+      position: relative;
+    }
+
+    .contratacao-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .contratacao-mes {
+      text-align: center;
+      padding-top: 4px;
+    }
+
+    .contratacao-mes-num {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--marrom-claro);
+      line-height: 1;
+    }
+
+    .contratacao-mes-label {
+      font-size: 10px;
+      color: #999;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .contratacao-card {
+      background: var(--creme);
+      border: 1px solid rgba(160,105,74,0.2);
+      border-radius: 12px;
+      padding: 20px 24px;
+    }
+
+    .contratacao-cargo {
+      font-size: 16px;
+      color: var(--marrom-escuro);
+      margin-bottom: 6px;
+    }
+
+    .contratacao-salario {
+      font-size: 13px;
+      color: var(--marrom-claro);
+      margin-bottom: 10px;
+    }
+
+    .contratacao-resp {
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* Print-friendly */
+    @media print {
+      .capa { min-height: auto; padding: 40px; }
+      body { background: white; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- =============================== CAPA =============================== -->
+<section class="capa">
+  <div class="capa-logo">
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Sofá estilizado -->
+      <rect x="8" y="30" width="48" height="20" rx="4" fill="rgba(192,168,130,0.6)"/>
+      <rect x="4" y="24" width="12" height="26" rx="4" fill="rgba(192,168,130,0.8)"/>
+      <rect x="48" y="24" width="12" height="26" rx="4" fill="rgba(192,168,130,0.8)"/>
+      <rect x="8" y="24" width="48" height="12" rx="4" fill="rgba(255,253,249,0.7)"/>
+      <rect x="12" y="50" width="6" height="8" rx="2" fill="rgba(192,168,130,0.5)"/>
+      <rect x="46" y="50" width="6" height="8" rx="2" fill="rgba(192,168,130,0.5)"/>
+      <line x1="32" y1="24" x2="32" y2="50" stroke="rgba(192,168,130,0.3)" stroke-width="1"/>
+    </svg>
+  </div>
+  <span class="capa-tag">Plano de Negócio · Consultoria Estratégica</span>
+  <h1 class="capa-nome">Ateliê Nobile</h1>
+  <p class="capa-sub">Sofás Artesanais · @atelie.nobile</p>
+  <div class="capa-linha"></div>
+  <h2 class="capa-doc-titulo">Plano de Expansão 12 Meses<br>Da Operação Solo à Escala Industrial</h2>
+  <div class="capa-badges">
+    <span class="capa-badge">Andson · Fundador</span>
+    <span class="capa-badge">Recife · Pernambuco</span>
+    <span class="capa-badge">Abril 2026</span>
+    <span class="capa-badge">Patrick Suyti · Mentor</span>
+  </div>
+  <div class="capa-rodape">DOCUMENTO CONFIDENCIAL · USO INTERNO</div>
+</section>
+
+<!-- =============================== SUMÁRIO EXECUTIVO =============================== -->
+<section class="secao">
+  <div class="container">
+    <span class="secao-numero">01 · Sumário Executivo</span>
+    <h2 class="secao-titulo">A Oportunidade</h2>
+    <p class="secao-desc">Visão geral do negócio, potencial de mercado e projeções de crescimento para os próximos 12 meses.</p>
+
+    <div class="destaque-box">
+      <h3>📋 Visão do Negócio</h3>
+      <p>O Ateliê Nobile é uma marca de sofás artesanais com identidade premium, fundada por Andson em Recife/PE. Após anos acumulando experiência no ofício, o fundador dá o passo definitivo: deixar o CLT para empreender 100%, capitalizando em um mercado que valoriza cada vez mais peças únicas, personalizáveis e com história.</p>
+    </div>
+
+    <div class="sumario-grid">
+      <div class="sumario-card">
+        <span class="sumario-card-icon">🛋️</span>
+        <div class="sumario-card-label">Ticket Médio</div>
+        <div class="sumario-card-valor">R$ 2.800</div>
+        <div class="sumario-card-detalhe">por sofá vendido</div>
+      </div>
+      <div class="sumario-card">
+        <span class="sumario-card-icon">💰</span>
+        <div class="sumario-card-label">Margem Bruta</div>
+        <div class="sumario-card-valor">~62%</div>
+        <div class="sumario-card-detalhe">sobre o sofá principal</div>
+      </div>
+      <div class="sumario-card">
+        <span class="sumario-card-icon">📦</span>
+        <div class="sumario-card-label">Meta Mês 1</div>
+        <div class="sumario-card-valor">12 sofás</div>
+        <div class="sumario-card-detalhe">3 por semana solo</div>
+      </div>
+      <div class="sumario-card">
+        <span class="sumario-card-icon">🚀</span>
+        <div class="sumario-card-label">Faturamento Mês 12</div>
+        <div class="sumario-card-valor">R$ 130k</div>
+        <div class="sumario-card-detalhe">48 sofás com equipe</div>
+      </div>
+      <div class="sumario-card">
+        <span class="sumario-card-icon">🏦</span>
+        <div class="sumario-card-label">Capital Inicial</div>
+        <div class="sumario-card-valor">R$ 30k</div>
+        <div class="sumario-card-detalhe">rescisão do CLT</div>
+      </div>
+      <div class="sumario-card">
+        <span class="sumario-card-icon">📊</span>
+        <div class="sumario-card-label">Regime Fiscal</div>
+        <div class="sumario-card-valor">6% SN</div>
+        <div class="sumario-card-detalhe">Simples Nacional</div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <p><strong>💡 Por que agora?</strong> O mercado de decoração e mobiliário personalizado cresceu 34% no Brasil entre 2023 e 2025, impulsionado pela busca por autenticidade e diferenciação. Recife, com sua expansão imobiliária intensa nos bairros do Recife Antigo, Boa Viagem e Ilha do Leite, cria uma demanda crescente por peças que contam uma história. O Ateliê Nobile chega no momento certo, com produto certo, com capital para estruturar a operação sem depender de crédito.</p>
+    </div>
+
+    <h3 style="color:var(--marrom-escuro); margin: 40px 0 20px; font-size: 20px;">As Três Fases do Plano</h3>
+
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+      <div style="background: var(--bege-claro); border-radius: 12px; padding: 28px; border: 1px solid rgba(160,105,74,0.2);">
+        <div style="font-size: 11px; letter-spacing: 3px; color: var(--marrom-claro); text-transform: uppercase; margin-bottom: 8px;">Fase 1 · Meses 1-3</div>
+        <div style="font-size: 18px; color: var(--marrom-escuro); margin-bottom: 12px; font-weight: bold;">Operação Solo</div>
+        <div style="font-size: 13px; color: #666; line-height: 1.7;">Andson produz 12 sofás/mês sozinho. Carol apoia no WhatsApp. Faturamento de R$33k/mês com lucro líquido de ~R$15k. Construção da base digital.</div>
+      </div>
+      <div style="background: #F0E0CC; border-radius: 12px; padding: 28px; border: 1px solid rgba(160,105,74,0.3);">
+        <div style="font-size: 11px; letter-spacing: 3px; color: var(--marrom-claro); text-transform: uppercase; margin-bottom: 8px;">Fase 2 · Meses 3-6</div>
+        <div style="font-size: 18px; color: var(--marrom-escuro); margin-bottom: 12px; font-weight: bold;">Primeira Expansão</div>
+        <div style="font-size: 13px; color: #666; line-height: 1.7;">Aluguel de espaço e contratação do 1° funcionário. Produção sobe para 18-24 sofás/mês. Faturamento de R$50-65k/mês com estrutura leve.</div>
+      </div>
+      <div style="background: var(--marrom-escuro); border-radius: 12px; padding: 28px; border: 1px solid var(--marrom-escuro);">
+        <div style="font-size: 11px; letter-spacing: 3px; color: var(--bege-escuro); text-transform: uppercase; margin-bottom: 8px;">Fase 3 · Meses 6-12</div>
+        <div style="font-size: 18px; color: white; margin-bottom: 12px; font-weight: bold;">Escala Industrial</div>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.7;">4 células produtivas, Carol no administrativo. 48 sofás/mês, R$130k/mês de faturamento. Ateliê Nobile como marca consolidada em Recife.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== ANÁLISE DE MERCADO =============================== -->
+<section class="secao" style="background: var(--cinza-leve);">
+  <div class="container">
+    <span class="secao-numero">02 · Análise de Mercado</span>
+    <h2 class="secao-titulo">Onde o Ateliê Nobile se Encaixa</h2>
+    <p class="secao-desc">Panorama do mercado de sofás artesanais em Recife/PE e posicionamento competitivo da marca.</p>
+
+    <div class="mercado-grid">
+      <div class="mercado-card">
+        <h4>📈 Tendências de Mercado</h4>
+        <ul>
+          <li>Crescimento de 34% no mobiliário premium personalizado no Brasil (2023-2025)</li>
+          <li>Consumidor recifense valoriza cada vez mais "feito aqui, feito para mim"</li>
+          <li>Rejeição a móveis de grande varejo (Tok&Stok, Etna) entre classe A/B+</li>
+          <li>Influência de conteúdo de decoração no Instagram e Pinterest</li>
+          <li>Demanda por prazo de entrega curto vs. fábricas do Sul do país</li>
+          <li>Preferência por personalização de tecido, cor e dimensão</li>
+        </ul>
+      </div>
+      <div class="mercado-card">
+        <h4>🎯 Público-Alvo Primário</h4>
+        <ul>
+          <li>Mulheres 28-45 anos, classes B e A</li>
+          <li>Recém-casadas ou em mudança para apartamento novo</li>
+          <li>Profissionais liberais: médicos, advogados, dentistas</li>
+          <li>Construtoras e imobiliárias para projetos de decoração</li>
+          <li>Proprietárias de pousadas e escritórios boutique</li>
+          <li>Bairros: Boa Viagem, Madalena, Graças, Recife Antigo</li>
+        </ul>
+      </div>
+      <div class="mercado-card">
+        <h4>⚔️ Concorrência Local</h4>
+        <ul>
+          <li>Ateliês informais sem presença digital estruturada</li>
+          <li>Lojas de médio porte com produto padronizado</li>
+          <li>Marceneiros que fazem sofás como produto secundário</li>
+          <li>Ausência de marca forte no segmento artesanal em Recife</li>
+          <li>Concorrência online de SP (prazo longo = desvantagem deles)</li>
+          <li><strong>Gap:</strong> ninguém tem a combinação marca + digital + entrega rápida</li>
+        </ul>
+      </div>
+      <div class="mercado-card">
+        <h4>🏆 Vantagens Competitivas Nobile</h4>
+        <ul>
+          <li>Produção 100% artesanal com identidade única</li>
+          <li>Personalização completa: tecido, tamanho, cor, pé</li>
+          <li>Entrega em até 15 dias (vs. 45-60 dias de SP)</li>
+          <li>Atendimento próximo e humanizado via WhatsApp</li>
+          <li>Instagram como vitrine de produto e processo</li>
+          <li>Posicionamento premium sem ser inacessível</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="background: var(--creme); border-radius: 16px; padding: 36px; border: 1px solid rgba(160,105,74,0.15); margin-top: 32px;">
+      <h3 style="color: var(--marrom-escuro); margin-bottom: 20px; font-size: 18px;">📍 Posicionamento Estratégico</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+        <div style="text-align: center; padding: 20px;">
+          <div style="font-size: 36px; margin-bottom: 10px;">🏷️</div>
+          <div style="font-size: 13px; color: var(--marrom-claro); margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase;">Preço</div>
+          <div style="font-size: 15px; color: var(--marrom-escuro);">Premium Acessível<br><strong>R$2.400 – R$4.050</strong></div>
+        </div>
+        <div style="text-align: center; padding: 20px;">
+          <div style="font-size: 36px; margin-bottom: 10px;">✂️</div>
+          <div style="font-size: 13px; color: var(--marrom-claro); margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase;">Produto</div>
+          <div style="font-size: 15px; color: var(--marrom-escuro);">Artesanal<br><strong>100% Personalizado</strong></div>
+        </div>
+        <div style="text-align: center; padding: 20px;">
+          <div style="font-size: 36px; margin-bottom: 10px;">📲</div>
+          <div style="font-size: 13px; color: var(--marrom-claro); margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase;">Canal</div>
+          <div style="font-size: 15px; color: var(--marrom-escuro);">Instagram + WhatsApp<br><strong>+ Site Próprio</strong></div>
+        </div>
+        <div style="text-align: center; padding: 20px;">
+          <div style="font-size: 36px; margin-bottom: 10px;">📦</div>
+          <div style="font-size: 13px; color: var(--marrom-claro); margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase;">Entrega</div>
+          <div style="font-size: 15px; color: var(--marrom-escuro);">Local · Recife/PE<br><strong>7 a 15 dias úteis</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== PRODUTOS =============================== -->
+<section class="secao">
+  <div class="container">
+    <span class="secao-numero">03 · Produtos e Precificação</span>
+    <h2 class="secao-titulo">O Portfólio Nobile</h2>
+    <p class="secao-desc">3 kits compostos por 9 produtos, com precificação estratégica para maximizar o ticket médio e incentivar a compra do conjunto completo.</p>
+
+    <!-- Kit Principal: Sofá -->
+    <div class="kit-card destaque">
+      <span class="kit-badge">⭐ Produto Âncora</span>
+      <div class="kit-nome">Kit Nobile Essential</div>
+      <div class="kit-desc">Sofá 2 Lugares + Poltrona + Puff</div>
+      <div class="kit-produtos">
+        <div class="kit-produto-item">
+          <div class="kit-produto-icon">🛋️</div>
+          <div class="kit-produto-nome">Sofá 2 Lugares</div>
+          <div class="kit-produto-preco">R$ 2.600</div>
+          <div class="kit-produto-custo">custo ~R$ 1.000</div>
+        </div>
+        <div class="kit-produto-item">
+          <div class="kit-produto-icon">🪑</div>
+          <div class="kit-produto-nome">Poltrona</div>
+          <div class="kit-produto-preco">R$ 1.000</div>
+          <div class="kit-produto-custo">custo estimado</div>
+        </div>
+        <div class="kit-produto-item">
+          <div class="kit-produto-icon">🪨</div>
+          <div class="kit-produto-nome">Puff</div>
+          <div class="kit-produto-preco">R$ 450</div>
+          <div class="kit-produto-custo">custo estimado</div>
+        </div>
+      </div>
+      <div class="kit-financeiro">
+        <div class="kit-fin-item">
+          <div class="kit-fin-label">Preço separado</div>
+          <div class="kit-fin-valor">R$ 4.050</div>
+        </div>
+        <div class="kit-fin-item">
+          <div class="kit-fin-label">Preço Kit</div>
+          <div class="kit-fin-valor">R$ 3.600</div>
+        </div>
+        <div class="kit-fin-item">
+          <div class="kit-fin-label">Desconto</div>
+          <div class="kit-fin-valor" style="color: var(--dourado);">R$ 450</div>
+        </div>
+        <div class="kit-fin-item">
+          <div class="kit-fin-label">Margem Sofá</div>
+          <div class="kit-fin-valor verde">~R$ 1.600</div>
+        </div>
+        <div class="kit-fin-item">
+          <div class="kit-fin-label">Margem %</div>
+          <div class="kit-fin-valor pct">61,5%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kit 2 -->
+    <div class="kit-card">
+      <div class="kit-nome">Kit Nobile Premium</div>
+      <div class="kit-desc">Sofá 3 Lugares + 2 Poltronas + 2 Puffs</div>
+      <div class="kit-produtos">
+        <div class="kit-produto-item">
+          <div class="kit-produto-icon">🛋️</div>
+          <div class="kit-produto-nome">Sofá 3 Lugares</div>
+          <div class="kit-produto-preco">R$ 2.800</div>
+          <div class="kit-produto-custo">custo ~R$ 1.100</div>
+        </div>
+        <div class="kit-produto-item">
+          <div class="kit-produto-icon">🪑🪑</div>
+          <div class="kit-produto-nome">2 Poltronas</div>
+          <div class="kit-produto-preco">R$ 2.000</div>
+          <div class="kit-produto-custo">R$ 1.000 cada</div>
+        </div>
+        <div class="kit-produto-item">
+          <div class="kit-produto-icon">🪨🪨</div>
+          <div class="kit-produto-nome">2 Puffs</div>
+          <div class="kit-produto-preco">R$ 900</div>
+          <div class="kit-produto-custo">R$ 450 cada</div>
+        </div>
+      </div>
+      <div class="kit-financeiro">
+        <div class="kit-fin-item">
+          <div class="kit-fin-label">Preço separado</div>
+          <div class="kit-fin-valor">R$ 5.700</div>
+        </div>
+        <div class="kit-fin-item">
+          <div class="kit-fin-label">Preço Kit</div>
+          <div class="kit-fin-valor">R$ 5.100</div>
+        </div>
+        <div class="kit-fin-item">
+          <div class="kit-fin-label">Desconto</div>
+          <div class="kit-fin-valor" style="color: var(--dourado);">R$ 600</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kit 3 -->
+    <div class="kit-card">
+      <div class="kit-nome">Kit Nobile Exclusive</div>
+      <div class="kit-desc">Sofá Chaise + Poltrona Reclinável + Puff Grande</div>
+      <div class="kit-produtos">
+        <div class="kit-produto-item">
+          <div class="kit-produto-icon">🛋️</div>
+          <div class="kit-produto-nome">Sofá Chaise</div>
+          <div class="kit-produto-preco">R$ 3.200</div>
+          <div class="kit-produto-custo">custo ~R$ 1.300</div>
+        </div>
+        <div class="kit-produto-item">
+          <div class="kit-produto-icon">🪑</div>
+          <div class="kit-produto-nome">Poltrona Reclin.</div>
+          <div class="kit-produto-preco">R$ 1.400</div>
+          <div class="kit-produto-custo">custo ~R$ 600</div>
+        </div>
+        <div class="kit-produto-item">
+          <div class="kit-produto-icon">🪨</div>
+          <div class="kit-produto-nome">Puff Grande</div>
+          <div class="kit-produto-preco">R$ 600</div>
+          <div class="kit-produto-custo">custo ~R$ 250</div>
+        </div>
+      </div>
+      <div class="kit-financeiro">
+        <div class="kit-fin-item">
+          <div class="kit-fin-label">Preço separado</div>
+          <div class="kit-fin-valor">R$ 5.200</div>
+        </div>
+        <div class="kit-fin-item">
+          <div class="kit-fin-label">Preço Kit</div>
+          <div class="kit-fin-valor">R$ 4.700</div>
+        </div>
+        <div class="kit-fin-item">
+          <div class="kit-fin-label">Desconto</div>
+          <div class="kit-fin-valor" style="color: var(--dourado);">R$ 500</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alerta-box">
+      <p><strong>💡 Estratégia de precificação:</strong> O desconto no kit existe para aumentar o ticket e ocupar mais horas de trabalho de forma eficiente. Um cliente que compra o kit Essential gera R$3.600 em vez de R$2.600 — e o Andson organiza a produção em lote. O sofá é o produto âncora e âncora de tráfego. Poltrona e puff são upsell natural no momento da compra.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== PLANO OPERACIONAL =============================== -->
+<section class="secao" style="background: var(--cinza-leve);">
+  <div class="container">
+    <span class="secao-numero">04 · Plano Operacional</span>
+    <h2 class="secao-titulo">Como o Ateliê Funciona</h2>
+    <p class="secao-desc">Estrutura de produção, logística, espaço físico e pessoas em cada fase do crescimento.</p>
+
+    <!-- Capital Inicial -->
+    <h3 style="color: var(--marrom-escuro); margin-bottom: 20px; font-size: 18px;">Alocação do Capital Inicial — R$ 30.000</h3>
+    <div class="capital-grid">
+      <div class="capital-card">
+        <div class="capital-icon">📦</div>
+        <div class="capital-label">Estoque Inicial</div>
+        <div class="capital-valor">R$ 15.000</div>
+        <div class="capital-detalhe">matéria-prima para 12+ sofás</div>
+      </div>
+      <div class="capital-card">
+        <div class="capital-icon">💻</div>
+        <div class="capital-label">Infraestrutura Digital</div>
+        <div class="capital-valor">R$ 5.000</div>
+        <div class="capital-detalhe">site + 3 meses gestor + verba</div>
+      </div>
+      <div class="capital-card">
+        <div class="capital-icon">🏦</div>
+        <div class="capital-label">Reserva Pessoal</div>
+        <div class="capital-valor">R$ 10.000</div>
+        <div class="capital-detalhe">3-4 meses de tranquilidade</div>
+      </div>
+    </div>
+
+    <!-- Processo de Produção -->
+    <h3 style="color: var(--marrom-escuro); margin: 40px 0 20px; font-size: 18px;">🔄 Fluxo de Produção — Sofá Artesanal</h3>
+    <div style="background: var(--creme); border-radius: 16px; padding: 36px; border: 1px solid rgba(160,105,74,0.15);">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
+        <div style="text-align: center; padding: 16px 12px; background: rgba(160,105,74,0.06); border-radius: 10px;">
+          <div style="font-size: 24px; margin-bottom: 8px;">📋</div>
+          <div style="font-size: 11px; color: var(--marrom-claro); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px;">Etapa 1</div>
+          <div style="font-size: 13px; color: var(--marrom-escuro); font-weight: bold;">Pedido &<br>Confirmação</div>
+          <div style="font-size: 11px; color: #999; margin-top: 4px;">~1h</div>
+        </div>
+        <div style="text-align: center; padding: 16px 12px; background: rgba(160,105,74,0.06); border-radius: 10px;">
+          <div style="font-size: 24px; margin-bottom: 8px;">🪚</div>
+          <div style="font-size: 11px; color: var(--marrom-claro); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px;">Etapa 2</div>
+          <div style="font-size: 13px; color: var(--marrom-escuro); font-weight: bold;">Estrutura &<br>Madeira</div>
+          <div style="font-size: 11px; color: #999; margin-top: 4px;">~4h</div>
+        </div>
+        <div style="text-align: center; padding: 16px 12px; background: rgba(160,105,74,0.06); border-radius: 10px;">
+          <div style="font-size: 24px; margin-bottom: 8px;">🧱</div>
+          <div style="font-size: 11px; color: var(--marrom-claro); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px;">Etapa 3</div>
+          <div style="font-size: 13px; color: var(--marrom-escuro); font-weight: bold;">Espuma &<br>Enchimento</div>
+          <div style="font-size: 11px; color: #999; margin-top: 4px;">~2h</div>
+        </div>
+        <div style="text-align: center; padding: 16px 12px; background: rgba(160,105,74,0.06); border-radius: 10px;">
+          <div style="font-size: 24px; margin-bottom: 8px;">🧵</div>
+          <div style="font-size: 11px; color: var(--marrom-claro); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px;">Etapa 4</div>
+          <div style="font-size: 13px; color: var(--marrom-escuro); font-weight: bold;">Estofamento &<br>Costura</div>
+          <div style="font-size: 11px; color: #999; margin-top: 4px;">~6h</div>
+        </div>
+        <div style="text-align: center; padding: 16px 12px; background: rgba(160,105,74,0.06); border-radius: 10px;">
+          <div style="font-size: 24px; margin-bottom: 8px;">✅</div>
+          <div style="font-size: 11px; color: var(--marrom-claro); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px;">Etapa 5</div>
+          <div style="font-size: 13px; color: var(--marrom-escuro); font-weight: bold;">Acabamento &<br>QA</div>
+          <div style="font-size: 11px; color: #999; margin-top: 4px;">~1h</div>
+        </div>
+        <div style="text-align: center; padding: 16px 12px; background: rgba(160,105,74,0.06); border-radius: 10px;">
+          <div style="font-size: 24px; margin-bottom: 8px;">🚚</div>
+          <div style="font-size: 11px; color: var(--marrom-claro); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px;">Etapa 6</div>
+          <div style="font-size: 13px; color: var(--marrom-escuro); font-weight: bold;">Entrega &<br>Instalação</div>
+          <div style="font-size: 11px; color: #999; margin-top: 4px;">~2h</div>
+        </div>
+      </div>
+      <div class="info-box" style="margin-top: 24px; margin-bottom: 0;">
+        <p><strong>Tempo total por sofá: ~14-16 horas.</strong> Com 8h/dia de produção, Andson consegue finalizar aproximadamente 3 sofás por semana = 12/mês. Há espaço para otimização por lote (ex: cortar madeira para 3 sofás de uma vez), o que pode aumentar para 3,5-4 sofás/semana no futuro próximo.</p>
+      </div>
+    </div>
+
+    <!-- Logística e Espaço -->
+    <h3 style="color: var(--marrom-escuro); margin: 40px 0 20px; font-size: 18px;">📍 Espaço e Logística por Fase</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+      <div style="background: var(--creme); border-radius: 12px; padding: 28px; border: 1px solid rgba(160,105,74,0.15);">
+        <div style="font-size: 11px; color: var(--bege-escuro); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; background: var(--marrom-claro); display: inline-block; padding: 3px 10px; border-radius: 100px;">Meses 1-3</div>
+        <h4 style="color: var(--marrom-escuro); margin: 12px 0 10px;">Casa / Garagem</h4>
+        <p style="font-size: 13px; color: #666; line-height: 1.7;">Custo zero de aluguel. Aproveitar espaço disponível. Entrega com frete terceirizado. Foco em produção e qualidade. Carol atende no WhatsApp em paralelo.</p>
+        <div style="margin-top: 16px; font-size: 13px; color: var(--oliva); font-weight: bold;">💚 Custo: R$ 0/mês</div>
+      </div>
+      <div style="background: var(--creme); border-radius: 12px; padding: 28px; border: 1px solid rgba(160,105,74,0.2);">
+        <div style="font-size: 11px; color: white; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; background: var(--marrom-claro); display: inline-block; padding: 3px 10px; border-radius: 100px;">Meses 3-6</div>
+        <h4 style="color: var(--marrom-escuro); margin: 12px 0 10px;">Galpão Alugado</h4>
+        <p style="font-size: 13px; color: #666; line-height: 1.7;">Espaço de ~120m² para 2 células produtivas. Organização por setores (estrutura / estofamento / acabamento). Endereço comercial para nota fiscal.</p>
+        <div style="margin-top: 16px; font-size: 13px; color: var(--dourado); font-weight: bold;">🟡 Custo: R$ 4.000/mês</div>
+      </div>
+      <div style="background: var(--creme); border-radius: 12px; padding: 28px; border: 1px solid rgba(160,105,74,0.2);">
+        <div style="font-size: 11px; color: white; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; background: var(--marrom-escuro); display: inline-block; padding: 3px 10px; border-radius: 100px;">Meses 6-12</div>
+        <h4 style="color: var(--marrom-escuro); margin: 12px 0 10px;">Ateliê Próprio</h4>
+        <p style="font-size: 13px; color: #666; line-height: 1.7;">Galpão maior ou expansão do atual. Showroom integrado para receber clientes. 4 células produtivas simultâneas. Fluxo de logística estruturado com parceiro de frete fixo.</p>
+        <div style="margin-top: 16px; font-size: 13px; color: var(--marrom-claro); font-weight: bold;">🟤 Custo: R$ 4.000-6.000/mês</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== PROJEÇÃO FINANCEIRA =============================== -->
+<section class="secao">
+  <div class="container">
+    <span class="secao-numero">05 · Projeção Financeira</span>
+    <h2 class="secao-titulo">12 Meses, Mês a Mês</h2>
+    <p class="secao-desc">Projeção detalhada de faturamento, custos e lucro líquido para cada mês do primeiro ano.</p>
+
+    <div class="tabela-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Mês</th>
+            <th>Fase</th>
+            <th>Sofás</th>
+            <th>Faturamento</th>
+            <th>Matéria-Prima</th>
+            <th>Tributos (6%)</th>
+            <th>Mkt/Tráfego</th>
+            <th>Aluguel</th>
+            <th>Funcionários</th>
+            <th>Outros</th>
+            <th>Total Custos</th>
+            <th>Lucro Líquido</th>
+            <th>Margem %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- FASE 1 -->
+          <tr>
+            <td class="fase-1"><strong>Mês 1</strong></td>
+            <td>Solo</td>
+            <td>12</td>
+            <td class="valor-destaque">R$ 33.600</td>
+            <td>R$ 12.000</td>
+            <td>R$ 2.016</td>
+            <td>R$ 2.100</td>
+            <td>R$ 0</td>
+            <td>R$ 0</td>
+            <td>R$ 500</td>
+            <td class="valor-negativo">R$ 16.616</td>
+            <td class="valor-positivo">R$ 16.984</td>
+            <td class="valor-positivo">50,5%</td>
+          </tr>
+          <tr>
+            <td class="fase-1"><strong>Mês 2</strong></td>
+            <td>Solo</td>
+            <td>12</td>
+            <td class="valor-destaque">R$ 33.600</td>
+            <td>R$ 12.000</td>
+            <td>R$ 2.016</td>
+            <td>R$ 2.500</td>
+            <td>R$ 0</td>
+            <td>R$ 0</td>
+            <td>R$ 500</td>
+            <td class="valor-negativo">R$ 17.016</td>
+            <td class="valor-positivo">R$ 16.584</td>
+            <td class="valor-positivo">49,4%</td>
+          </tr>
+          <tr>
+            <td class="fase-1"><strong>Mês 3</strong></td>
+            <td>Solo</td>
+            <td>12</td>
+            <td class="valor-destaque">R$ 33.600</td>
+            <td>R$ 12.000</td>
+            <td>R$ 2.016</td>
+            <td>R$ 2.500</td>
+            <td>R$ 0</td>
+            <td>R$ 0</td>
+            <td>R$ 500</td>
+            <td class="valor-negativo">R$ 17.016</td>
+            <td class="valor-positivo">R$ 16.584</td>
+            <td class="valor-positivo">49,4%</td>
+          </tr>
+          <!-- FASE 2 -->
+          <tr>
+            <td class="fase-2"><strong>Mês 4</strong></td>
+            <td>Expansão</td>
+            <td>16</td>
+            <td class="valor-destaque">R$ 44.800</td>
+            <td>R$ 16.000</td>
+            <td>R$ 2.688</td>
+            <td>R$ 2.500</td>
+            <td>R$ 4.000</td>
+            <td>R$ 2.500</td>
+            <td>R$ 800</td>
+            <td class="valor-negativo">R$ 28.488</td>
+            <td class="valor-positivo">R$ 16.312</td>
+            <td class="valor-positivo">36,4%</td>
+          </tr>
+          <tr>
+            <td class="fase-2"><strong>Mês 5</strong></td>
+            <td>Expansão</td>
+            <td>20</td>
+            <td class="valor-destaque">R$ 56.000</td>
+            <td>R$ 20.000</td>
+            <td>R$ 3.360</td>
+            <td>R$ 2.500</td>
+            <td>R$ 4.000</td>
+            <td>R$ 2.500</td>
+            <td>R$ 800</td>
+            <td class="valor-negativo">R$ 33.160</td>
+            <td class="valor-positivo">R$ 22.840</td>
+            <td class="valor-positivo">40,8%</td>
+          </tr>
+          <tr>
+            <td class="fase-2"><strong>Mês 6</strong></td>
+            <td>Expansão</td>
+            <td>24</td>
+            <td class="valor-destaque">R$ 67.200</td>
+            <td>R$ 24.000</td>
+            <td>R$ 4.032</td>
+            <td>R$ 2.500</td>
+            <td>R$ 4.000</td>
+            <td>R$ 2.500</td>
+            <td>R$ 800</td>
+            <td class="valor-negativo">R$ 37.832</td>
+            <td class="valor-positivo">R$ 29.368</td>
+            <td class="valor-positivo">43,7%</td>
+          </tr>
+          <!-- FASE 3 -->
+          <tr>
+            <td class="fase-3"><strong>Mês 7</strong></td>
+            <td>Escala</td>
+            <td>32</td>
+            <td class="valor-destaque">R$ 89.600</td>
+            <td>R$ 32.000</td>
+            <td>R$ 5.376</td>
+            <td>R$ 2.500</td>
+            <td>R$ 4.000</td>
+            <td>R$ 7.500</td>
+            <td>R$ 1.200</td>
+            <td class="valor-negativo">R$ 52.576</td>
+            <td class="valor-positivo">R$ 37.024</td>
+            <td class="valor-positivo">41,3%</td>
+          </tr>
+          <tr>
+            <td class="fase-3"><strong>Mês 8</strong></td>
+            <td>Escala</td>
+            <td>36</td>
+            <td class="valor-destaque">R$ 100.800</td>
+            <td>R$ 36.000</td>
+            <td>R$ 6.048</td>
+            <td>R$ 2.500</td>
+            <td>R$ 4.000</td>
+            <td>R$ 10.000</td>
+            <td>R$ 1.200</td>
+            <td class="valor-negativo">R$ 59.748</td>
+            <td class="valor-positivo">R$ 41.052</td>
+            <td class="valor-positivo">40,7%</td>
+          </tr>
+          <tr>
+            <td class="fase-3"><strong>Mês 9</strong></td>
+            <td>Escala</td>
+            <td>40</td>
+            <td class="valor-destaque">R$ 112.000</td>
+            <td>R$ 40.000</td>
+            <td>R$ 6.720</td>
+            <td>R$ 2.500</td>
+            <td>R$ 4.000</td>
+            <td>R$ 10.000</td>
+            <td>R$ 1.200</td>
+            <td class="valor-negativo">R$ 64.420</td>
+            <td class="valor-positivo">R$ 47.580</td>
+            <td class="valor-positivo">42,5%</td>
+          </tr>
+          <tr>
+            <td class="fase-3"><strong>Mês 10</strong></td>
+            <td>Escala</td>
+            <td>44</td>
+            <td class="valor-destaque">R$ 123.200</td>
+            <td>R$ 44.000</td>
+            <td>R$ 7.392</td>
+            <td>R$ 2.500</td>
+            <td>R$ 4.000</td>
+            <td>R$ 10.000</td>
+            <td>R$ 1.500</td>
+            <td class="valor-negativo">R$ 69.392</td>
+            <td class="valor-positivo">R$ 53.808</td>
+            <td class="valor-positivo">43,7%</td>
+          </tr>
+          <tr>
+            <td class="fase-3"><strong>Mês 11</strong></td>
+            <td>Escala</td>
+            <td>48</td>
+            <td class="valor-destaque">R$ 134.400</td>
+            <td>R$ 48.000</td>
+            <td>R$ 8.064</td>
+            <td>R$ 2.500</td>
+            <td>R$ 4.000</td>
+            <td>R$ 10.000</td>
+            <td>R$ 1.500</td>
+            <td class="valor-negativo">R$ 74.064</td>
+            <td class="valor-positivo">R$ 60.336</td>
+            <td class="valor-positivo">44,9%</td>
+          </tr>
+          <tr>
+            <td class="fase-3"><strong>Mês 12</strong></td>
+            <td>Escala</td>
+            <td>48</td>
+            <td class="valor-destaque">R$ 134.400</td>
+            <td>R$ 48.000</td>
+            <td>R$ 8.064</td>
+            <td>R$ 2.500</td>
+            <td>R$ 4.000</td>
+            <td>R$ 10.000</td>
+            <td>R$ 1.500</td>
+            <td class="valor-negativo">R$ 74.064</td>
+            <td class="valor-positivo">R$ 60.336</td>
+            <td class="valor-positivo">44,9%</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3"><strong>TOTAL 12 MESES</strong></td>
+            <td><strong>R$ 963.200</strong></td>
+            <td>R$ 344.000</td>
+            <td>R$ 57.792</td>
+            <td>R$ 29.100</td>
+            <td>R$ 36.000</td>
+            <td>R$ 65.500</td>
+            <td>R$ 11.000</td>
+            <td>R$ 543.392</td>
+            <td><strong>R$ 419.808</strong></td>
+            <td><strong>43,6%</strong></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="info-box">
+      <p><strong>Resumo financeiro:</strong> Em 12 meses, o Ateliê Nobile projeta faturar R$963.200 com lucro líquido acumulado de R$419.808 — uma margem média de 43,6%. O investimento inicial de R$30k é recuperado ainda no primeiro mês de operação. O ponto de equilíbrio (break-even) da fase 2 ocorre aproximadamente no mês 4, quando os custos adicionais de aluguel e funcionário são absorvidos pelo aumento de produção.</p>
+    </div>
+
+    <!-- GRÁFICO VISUAL -->
+    <div class="grafico-container">
+      <div class="grafico-titulo">Faturamento vs. Lucro Líquido — Evolução Mensal (R$ mil)</div>
+      <div class="grafico-barras">
+        <!-- Mês 1: Fat 33.6k, Luc 17k -->
+        <div class="grafico-barra-wrap">
+          <div class="grafico-valor">17k</div>
+          <div class="grafico-barra barra-luc" style="height: 23px;"></div>
+          <div class="grafico-barra barra-fat" style="height: 46px;"></div>
+          <div class="grafico-label">M1</div>
+        </div>
+        <!-- Mês 2 -->
+        <div class="grafico-barra-wrap">
+          <div class="grafico-valor">16.6k</div>
+          <div class="grafico-barra barra-luc" style="height: 22px;"></div>
+          <div class="grafico-barra barra-fat" style="height: 46px;"></div>
+          <div class="grafico-label">M2</div>
+        </div>
+        <!-- Mês 3 -->
+        <div class="grafico-barra-wrap">
+          <div class="grafico-valor">16.6k</div>
+          <div class="grafico-barra barra-luc" style="height: 22px;"></div>
+          <div class="grafico-barra barra-fat" style="height: 46px;"></div>
+          <div class="grafico-label">M3</div>
+        </div>
+        <!-- Mês 4 -->
+        <div class="grafico-barra-wrap">
+          <div class="grafico-valor">16.3k</div>
+          <div class="grafico-barra barra-luc" style="height: 22px;"></div>
+          <div class="grafico-barra barra-fat" style="height: 61px;"></div>
+          <div class="grafico-label">M4</div>
+        </div>
+        <!-- Mês 5 -->
+        <div class="grafico-barra-wrap">
+          <div class="grafico-valor">22.8k</div>
+          <div class="grafico-barra barra-luc" style="height: 31px;"></div>
+          <div class="grafico-barra barra-fat" style="height: 76px;"></div>
+          <div class="grafico-label">M5</div>
+        </div>
+        <!-- Mês 6 -->
+        <div class="grafico-barra-wrap">
+          <div class="grafico-valor">29.4k</div>
+          <div class="grafico-barra barra-luc" style="height: 40px;"></div>
+          <div class="grafico-barra barra-fat" style="height: 91px;"></div>
+          <div class="grafico-label">M6</div>
+        </div>
+        <!-- Mês 7 -->
+        <div class="grafico-barra-wrap">
+          <div class="grafico-valor">37k</div>
+          <div class="grafico-barra barra-luc" style="height: 50px;"></div>
+          <div class="grafico-barra barra-fat" style="height: 122px;"></div>
+          <div class="grafico-label">M7</div>
+        </div>
+        <!-- Mês 8 -->
+        <div class="grafico-barra-wrap">
+          <div class="grafico-valor">41k</div>
+          <div class="grafico-barra barra-luc" style="height: 56px;"></div>
+          <div class="grafico-barra barra-fat" style="height: 137px;"></div>
+          <div class="grafico-label">M8</div>
+        </div>
+        <!-- Mês 9 -->
+        <div class="grafico-barra-wrap">
+          <div class="grafico-valor">47.6k</div>
+          <div class="grafico-barra barra-luc" style="height: 65px;"></div>
+          <div class="grafico-barra barra-fat" style="height: 152px;"></div>
+          <div class="grafico-label">M9</div>
+        </div>
+        <!-- Mês 10 -->
+        <div class="grafico-barra-wrap">
+          <div class="grafico-valor">53.8k</div>
+          <div class="grafico-barra barra-luc" style="height: 73px;"></div>
+          <div class="grafico-barra barra-fat" style="height: 168px;"></div>
+          <div class="grafico-label">M10</div>
+        </div>
+        <!-- Mês 11 -->
+        <div class="grafico-barra-wrap">
+          <div class="grafico-valor">60.3k</div>
+          <div class="grafico-barra barra-luc" style="height: 82px;"></div>
+          <div class="grafico-barra barra-fat" style="height: 180px;"></div>
+          <div class="grafico-label">M11</div>
+        </div>
+        <!-- Mês 12 -->
+        <div class="grafico-barra-wrap">
+          <div class="grafico-valor">60.3k</div>
+          <div class="grafico-barra barra-luc" style="height: 82px;"></div>
+          <div class="grafico-barra barra-fat" style="height: 180px;"></div>
+          <div class="grafico-label">M12</div>
+        </div>
+      </div>
+      <div class="grafico-legenda">
+        <div class="legenda-item">
+          <div class="legenda-cor" style="background: var(--marrom-claro);"></div>
+          Faturamento
+        </div>
+        <div class="legenda-item">
+          <div class="legenda-cor" style="background: var(--oliva);"></div>
+          Lucro Líquido
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== CRONOGRAMA DE CONTRATAÇÕES =============================== -->
+<section class="secao" style="background: var(--cinza-leve);">
+  <div class="container">
+    <span class="secao-numero">06 · Cronograma de Contratações</span>
+    <h2 class="secao-titulo">Construindo a Equipe Nobile</h2>
+    <p class="secao-desc">Estratégia de contratação progressiva, garantindo que cada novo membro seja sustentável financeiramente antes de entrar.</p>
+
+    <div class="contratacao-timeline">
+      <div class="contratacao-item">
+        <div class="contratacao-mes">
+          <div class="contratacao-mes-num">1</div>
+          <div class="contratacao-mes-label">Mês</div>
+        </div>
+        <div class="contratacao-card">
+          <div class="contratacao-cargo">👤 Carol — Atendimento & Vendas (Parceira)</div>
+          <div class="contratacao-salario">Sem custo direto · Parceria familiar</div>
+          <div class="contratacao-resp">Responder DMs e WhatsApp, agendar visitas, enviar orçamentos, acompanhar leads. Carol participa do crescimento e libera Andson para produzir. À medida que o negócio cresce, ela pode sair do emprego atual e receber remuneração formal.</div>
+        </div>
+      </div>
+
+      <div class="contratacao-item">
+        <div class="contratacao-mes">
+          <div class="contratacao-mes-num">1</div>
+          <div class="contratacao-mes-label">Mês</div>
+        </div>
+        <div class="contratacao-card">
+          <div class="contratacao-cargo">📱 Gestor de Tráfego — Meta Ads</div>
+          <div class="contratacao-salario">R$ 500–600/mês + R$ 2.000 verba (Meta Ads)</div>
+          <div class="contratacao-resp">Responsável pelas campanhas no Instagram e Facebook. Cria criativos com o conteúdo do Andson, gerencia verba, otimiza o CPL (custo por lead). Relatório semanal. Deve gerar no mínimo 3-4x o retorno sobre o investimento em tráfego.</div>
+        </div>
+      </div>
+
+      <div class="contratacao-item">
+        <div class="contratacao-mes">
+          <div class="contratacao-mes-num">3</div>
+          <div class="contratacao-mes-label">Mês</div>
+        </div>
+        <div class="contratacao-card">
+          <div class="contratacao-cargo">🪚 1° Auxiliar de Produção</div>
+          <div class="contratacao-salario">R$ 2.000–2.500/mês · CLT ou PJ</div>
+          <div class="contratacao-resp">Responsável pelas etapas mais mecânicas: corte de madeira, preparação de espuma, montagem de estrutura. Libera Andson para o estofamento e acabamento (as etapas que exigem mais habilidade e definem a qualidade). Meta: aumentar produção para 18-20 sofás/mês.</div>
+        </div>
+      </div>
+
+      <div class="contratacao-item">
+        <div class="contratacao-mes">
+          <div class="contratacao-mes-num">5</div>
+          <div class="contratacao-mes-label">Mês</div>
+        </div>
+        <div class="contratacao-card">
+          <div class="contratacao-cargo">🪑 2° Auxiliar de Produção</div>
+          <div class="contratacao-salario">R$ 2.000–2.500/mês</div>
+          <div class="contratacao-resp">Segunda célula produtiva completa. Com 2 auxiliares, Andson pode supervisionar 2 sofás em produção simultânea. Capacidade sobe para 24-28 sofás/mês. Foco deste auxiliar: estofamento e acabamento, para ganhar habilidade rapidamente.</div>
+        </div>
+      </div>
+
+      <div class="contratacao-item">
+        <div class="contratacao-mes">
+          <div class="contratacao-mes-num">7</div>
+          <div class="contratacao-mes-label">Mês</div>
+        </div>
+        <div class="contratacao-card">
+          <div class="contratacao-cargo">🛋️ 3° e 4° Auxiliares de Produção</div>
+          <div class="contratacao-salario">R$ 2.500/mês cada · Total R$ 10.000/mês (equipe)</div>
+          <div class="contratacao-resp">Completam as 4 células produtivas. Carol assume o administrativo em tempo integral. Andson passa a ser gestor de produção e guardião da qualidade, não mais o executor principal. Com 4 células e Andson supervisando, produção chega a 48 sofás/mês.</div>
+        </div>
+      </div>
+
+      <div class="contratacao-item">
+        <div class="contratacao-mes">
+          <div class="contratacao-mes-num">6</div>
+          <div class="contratacao-mes-label">Mês</div>
+        </div>
+        <div class="contratacao-card">
+          <div class="contratacao-cargo">💼 Carol — Administrativo & Financeiro (Tempo Integral)</div>
+          <div class="contratacao-salario">Remuneração formal a definir (participação ou salário)</div>
+          <div class="contratacao-resp">Com o crescimento consolidado, Carol assume: financeiro, DRE mensal, pagamento de fornecedores, gestão de agenda de produção, relacionamento com clientes pós-venda. Andson foca em produto e crescimento estratégico.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alerta-box">
+      <p><strong>⚡ Regra de ouro para contratações:</strong> Só contratar quando o faturamento atual sustenta o novo custo com margem. Nunca contratar "na expectativa". O 1° auxiliar entra quando Andson já estiver faturando R$33k/mês consistentemente por 60 dias. Isso garante que o negócio não entrar em aperto de caixa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== KPIs =============================== -->
+<section class="secao">
+  <div class="container">
+    <span class="secao-numero">07 · Indicadores de Performance</span>
+    <h2 class="secao-titulo">O Que Medir Toda Semana</h2>
+    <p class="secao-desc">KPIs que todo empreendedor de produto artesanal deve acompanhar para crescer com controle e previsibilidade.</p>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-icon">📦</div>
+        <div class="kpi-nome">Sofás Produzidos</div>
+        <div class="kpi-meta">12 → 48/mês</div>
+        <div class="kpi-freq">Medição semanal</div>
+        <div class="kpi-desc">Número de sofás finalizados e prontos para entrega. Indicador primário de capacidade operacional.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">💰</div>
+        <div class="kpi-nome">Faturamento Mensal</div>
+        <div class="kpi-meta">R$33k → R$130k</div>
+        <div class="kpi-freq">Medição mensal</div>
+        <div class="kpi-desc">Total de vendas confirmadas no mês. Comparar sempre com meta da fase atual e com o mês anterior.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">📊</div>
+        <div class="kpi-nome">Margem Líquida</div>
+        <div class="kpi-meta">Mín. 40%</div>
+        <div class="kpi-freq">Medição mensal</div>
+        <div class="kpi-desc">Lucro líquido dividido pelo faturamento. Sinal de alerta se cair abaixo de 35% sem justificativa clara.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">📲</div>
+        <div class="kpi-nome">Leads no WhatsApp</div>
+        <div class="kpi-meta">≥ 40/mês</div>
+        <div class="kpi-freq">Medição semanal</div>
+        <div class="kpi-desc">Pessoas que mandaram mensagem após ver o anúncio ou conteúdo orgânico. Meta: 2-3x o número de sofás vendidos.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🎯</div>
+        <div class="kpi-nome">Taxa de Conversão</div>
+        <div class="kpi-meta">≥ 30%</div>
+        <div class="kpi-freq">Medição mensal</div>
+        <div class="kpi-desc">Leads que viraram clientes. Se baixar, problema está no atendimento ou no produto mostrado nos anúncios.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">💵</div>
+        <div class="kpi-nome">CPL (Custo por Lead)</div>
+        <div class="kpi-meta">≤ R$ 50</div>
+        <div class="kpi-freq">Medição semanal</div>
+        <div class="kpi-desc">Quanto está custando cada lead gerado pelo tráfego pago. Meta: manter abaixo de R$50 para o modelo ser sustentável.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🔄</div>
+        <div class="kpi-nome">ROAS (Retorno Ads)</div>
+        <div class="kpi-meta">≥ 6x</div>
+        <div class="kpi-freq">Medição mensal</div>
+        <div class="kpi-desc">Faturamento gerado por tráfego pago dividido pela verba investida. R$2k de verba deve gerar R$12k+ em vendas rastreáveis.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">⏱️</div>
+        <div class="kpi-nome">Prazo de Entrega</div>
+        <div class="kpi-meta">≤ 15 dias</div>
+        <div class="kpi-freq">Por pedido</div>
+        <div class="kpi-desc">Dias entre confirmação do pedido e entrega. É uma vantagem competitiva enorme vs. fábricas do Sul. Nunca comprometer.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">⭐</div>
+        <div class="kpi-nome">NPS / Satisfação</div>
+        <div class="kpi-meta">≥ 9/10</div>
+        <div class="kpi-freq">Por entrega</div>
+        <div class="kpi-desc">Nota dada pelo cliente após a entrega. Solicitar avaliação no Google Maps e print para stories. Indicação vale ouro nesse mercado.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">📸</div>
+        <div class="kpi-nome">Posts no Instagram</div>
+        <div class="kpi-meta">≥ 4/semana</div>
+        <div class="kpi-freq">Medição semanal</div>
+        <div class="kpi-desc">Conteúdo postado (stories + feed + reels). Mostrar o processo é o melhor argumento de venda para produto artesanal.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">📈</div>
+        <div class="kpi-nome">Seguidores Ativos</div>
+        <div class="kpi-meta">+500/mês</div>
+        <div class="kpi-freq">Medição mensal</div>
+        <div class="kpi-desc">Crescimento da audiência no Instagram. Com tráfego pago + conteúdo de processo, manter crescimento constante.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">💼</div>
+        <div class="kpi-nome">Ticket Médio</div>
+        <div class="kpi-meta">≥ R$ 2.800</div>
+        <div class="kpi-freq">Medição mensal</div>
+        <div class="kpi-desc">Faturamento total dividido por número de pedidos. Crescer o ticket é mais eficiente do que apenas aumentar volume.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== TRÁFEGO PAGO =============================== -->
+<section class="secao" style="background: var(--cinza-leve);">
+  <div class="container">
+    <span class="secao-numero">08 · Gestão de Tráfego Pago</span>
+    <h2 class="secao-titulo">A Máquina de Aquisição de Clientes</h2>
+    <p class="secao-desc">Estratégia completa de tráfego pago, desde o funil até o orçamento por fase.</p>
+
+    <div class="trafego-grid">
+      <div class="funil-container">
+        <h4 style="color: var(--marrom-escuro); margin-bottom: 20px; font-size: 16px;">🎯 Funil Meta Ads — Ateliê Nobile</h4>
+        <div class="funil-etapa funil-e1">
+          <span class="funil-etapa-nome">👁️ Alcance / Impressões</span>
+          <span class="funil-etapa-valor">50k+/mês</span>
+        </div>
+        <div class="funil-etapa funil-e2">
+          <span class="funil-etapa-nome">🖱️ Cliques no Anúncio</span>
+          <span class="funil-etapa-valor">~1.500</span>
+        </div>
+        <div class="funil-etapa funil-e3">
+          <span class="funil-etapa-nome">💬 Contatos no WhatsApp</span>
+          <span class="funil-etapa-valor">~50 leads</span>
+        </div>
+        <div class="funil-etapa funil-e4">
+          <span class="funil-etapa-nome">🤝 Negociações Avançadas</span>
+          <span class="funil-etapa-valor">~20 pessoas</span>
+        </div>
+        <div class="funil-etapa funil-e5">
+          <span class="funil-etapa-nome">✅ Vendas Fechadas</span>
+          <span class="funil-etapa-valor">12-15</span>
+        </div>
+        <div style="margin-top: 20px; font-size: 12px; color: #888; text-align: center;">
+          CPL alvo: R$40 · ROAS alvo: 6x · Verba: R$2.000/mês
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="background: var(--creme); border-radius: 12px; padding: 24px; border: 1px solid rgba(160,105,74,0.15);">
+          <h4 style="color: var(--marrom-escuro); margin-bottom: 16px; font-size: 15px;">📋 Responsabilidades do Gestor</h4>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 7px 0; font-size: 13px; border-bottom: 1px solid rgba(160,105,74,0.1); display: flex; gap: 10px;"><span style="color: var(--marrom-claro);">→</span>Criar e testar criativos (vídeos do processo de produção)</li>
+            <li style="padding: 7px 0; font-size: 13px; border-bottom: 1px solid rgba(160,105,74,0.1); display: flex; gap: 10px;"><span style="color: var(--marrom-claro);">→</span>Segmentação por interesse (decoração, casa, reforma)</li>
+            <li style="padding: 7px 0; font-size: 13px; border-bottom: 1px solid rgba(160,105,74,0.1); display: flex; gap: 10px;"><span style="color: var(--marrom-claro);">→</span>Lookalike de compradores anteriores (mês 3+)</li>
+            <li style="padding: 7px 0; font-size: 13px; border-bottom: 1px solid rgba(160,105,74,0.1); display: flex; gap: 10px;"><span style="color: var(--marrom-claro);">→</span>Remarketing para visitantes do site e seguidores do IG</li>
+            <li style="padding: 7px 0; font-size: 13px; border-bottom: 1px solid rgba(160,105,74,0.1); display: flex; gap: 10px;"><span style="color: var(--marrom-claro);">→</span>Otimizar campanha para mensagens no WhatsApp</li>
+            <li style="padding: 7px 0; font-size: 13px; display: flex; gap: 10px;"><span style="color: var(--marrom-claro);">→</span>Relatório de resultados toda segunda-feira</li>
+          </ul>
+        </div>
+
+        <div style="background: var(--creme); border-radius: 12px; padding: 24px; border: 1px solid rgba(160,105,74,0.15);">
+          <h4 style="color: var(--marrom-escuro); margin-bottom: 16px; font-size: 15px;">📱 Tipos de Criativos que Funcionam</h4>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 7px 0; font-size: 13px; border-bottom: 1px solid rgba(160,105,74,0.1); display: flex; gap: 10px;"><span style="color: var(--oliva);">✓</span><strong>Processo artesanal:</strong> vídeo do tecido sendo colocado</li>
+            <li style="padding: 7px 0; font-size: 13px; border-bottom: 1px solid rgba(160,105,74,0.1); display: flex; gap: 10px;"><span style="color: var(--oliva);">✓</span><strong>Antes e depois:</strong> sala antes → sala com o sofá Nobile</li>
+            <li style="padding: 7px 0; font-size: 13px; border-bottom: 1px solid rgba(160,105,74,0.1); display: flex; gap: 10px;"><span style="color: var(--oliva);">✓</span><strong>Depoimento:</strong> cliente filmando o sofá na sala de casa</li>
+            <li style="padding: 7px 0; font-size: 13px; border-bottom: 1px solid rgba(160,105,74,0.1); display: flex; gap: 10px;"><span style="color: var(--oliva);">✓</span><strong>Comparativo:</strong> "sofá de loja vs. Ateliê Nobile"</li>
+            <li style="padding: 7px 0; font-size: 13px; display: flex; gap: 10px;"><span style="color: var(--oliva);">✓</span><strong>CTA direto:</strong> "Personalize o seu, entrega em 15 dias"</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="color: var(--marrom-escuro); margin: 40px 0 20px; font-size: 18px;">💸 Orçamento de Tráfego por Fase</h3>
+    <div class="orcamento-fases">
+      <div class="orcamento-card f1">
+        <div class="orcamento-titulo">Fase 1 · Meses 1-3</div>
+        <div class="orcamento-total">R$ 2.600/mês</div>
+        <div class="orcamento-itens">
+          <div class="orcamento-item"><span>Gestor de Tráfego</span><span>R$ 600</span></div>
+          <div class="orcamento-item"><span>Verba Meta Ads</span><span>R$ 2.000</span></div>
+          <div class="orcamento-item"><span>Site (único)</span><span>R$ 1.000*</span></div>
+        </div>
+      </div>
+      <div class="orcamento-card f2">
+        <div class="orcamento-titulo">Fase 2 · Meses 4-6</div>
+        <div class="orcamento-total">R$ 2.600/mês</div>
+        <div class="orcamento-itens">
+          <div class="orcamento-item"><span>Gestor de Tráfego</span><span>R$ 600</span></div>
+          <div class="orcamento-item"><span>Verba Meta Ads</span><span>R$ 2.000</span></div>
+          <div class="orcamento-item"><span>Google Meu Negócio</span><span>R$ 0</span></div>
+        </div>
+      </div>
+      <div class="orcamento-card f3">
+        <div class="orcamento-titulo">Fase 3 · Meses 7-12</div>
+        <div class="orcamento-total">R$ 2.600/mês</div>
+        <div class="orcamento-itens">
+          <div class="orcamento-item"><span>Gestor de Tráfego</span><span>R$ 600</span></div>
+          <div class="orcamento-item"><span>Verba Meta Ads</span><span>R$ 2.000</span></div>
+          <div class="orcamento-item"><span>Influencer Local</span><span>ocasional</span></div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size: 12px; color: #999; margin-top: 8px;">* Site: investimento único de R$1.000 no mês 1</p>
+
+    <div class="info-box">
+      <p><strong>🎯 Estratégia de conteúdo orgânico (gratuito):</strong> Andson deve filmar o processo de produção todo dia — é a melhor prova de valor do produto artesanal. Reels de "sofá do zero ao acabamento" geram alcance orgânico enorme. O conteúdo alimenta os anúncios e constrói autoridade. Meta: 4 stories/dia + 3 reels/semana + 2 posts de feed/semana.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== RISCOS =============================== -->
+<section class="secao">
+  <div class="container">
+    <span class="secao-numero">09 · Riscos e Mitigação</span>
+    <h2 class="secao-titulo">O Que Pode Dar Errado (e Como Evitar)</h2>
+    <p class="secao-desc">Análise honesta dos principais riscos do negócio e as estratégias de mitigação para cada um.</p>
+
+    <div class="risco-item">
+      <div>
+        <div class="risco-titulo">🐌 Capacidade de Produção Insuficiente</div>
+        <div class="risco-desc">Andson sozinho tem limite físico de ~3 sofás/semana. Demanda acima da capacidade gera promessas quebradas, clientes insatisfeitos e esgotamento do fundador — que é também o único artesão.</div>
+      </div>
+      <div class="risco-nivel">
+        <div class="risco-badge nivel-alto">ALTO</div>
+        <div style="font-size: 11px; color: #999; margin-top: 4px;">Probabilidade<br>Alta</div>
+      </div>
+      <div>
+        <div class="mitigacao-titulo">Mitigação</div>
+        <div class="mitigacao-desc">Nunca aceitar pedido que não cabe no prazo atual. Ter lista de espera em vez de atrasar. Contratar 1° auxiliar assim que a demanda sustentar. Monitorar produção semanal como KPI primário.</div>
+      </div>
+    </div>
+
+    <div class="risco-item">
+      <div>
+        <div class="risco-titulo">💸 Estouro de Caixa na Transição para Fase 2</div>
+        <div class="risco-desc">A adição simultânea de aluguel (R$4k) + funcionário (R$2.5k) + aumento de matéria-prima pode criar um gap de caixa se a produção não crescer na mesma velocidade dos custos.</div>
+      </div>
+      <div class="risco-nivel">
+        <div class="risco-badge nivel-medio">MÉDIO</div>
+        <div style="font-size: 11px; color: #999; margin-top: 4px;">Probabilidade<br>Média</div>
+      </div>
+      <div>
+        <div class="mitigacao-titulo">Mitigação</div>
+        <div class="mitigacao-desc">Manter reserva de 3 meses de custos fixos antes de expandir. Transição gradual: primeiro o auxiliar, depois o galpão. Nunca aluguel sem funcionário (não faz sentido econômico). Ter pedidos em mãos antes de expandir.</div>
+      </div>
+    </div>
+
+    <div class="risco-item">
+      <div>
+        <div class="risco-titulo">📱 Dependência de Canal Único (Instagram)</div>
+        <div class="risco-desc">Suspensão de conta, mudança de algoritmo ou queda de alcance pode derrubar o fluxo de leads do dia para a noite. Negócio 100% dependente de um canal externo é frágil.</div>
+      </div>
+      <div class="risco-nivel">
+        <div class="risco-badge nivel-medio">MÉDIO</div>
+        <div style="font-size: 11px; color: #999; margin-top: 4px;">Probabilidade<br>Baixa</div>
+      </div>
+      <div>
+        <div class="mitigacao-titulo">Mitigação</div>
+        <div class="mitigacao-desc">Ter lista de clientes no WhatsApp para comunicação direta. Criar lista de e-mails desde o início (mesmo que pequena). Site próprio como hub central. Google Meu Negócio ativo para buscas locais. TikTok como canal secundário.</div>
+      </div>
+    </div>
+
+    <div class="risco-item">
+      <div>
+        <div class="risco-titulo">🏷️ Precificação Inadequada</div>
+        <div class="risco-desc">Andson pode ceder a pressão de clientes e dar descontos não planejados, comprometendo a margem. Ou pode subir preços de forma inconsistente sem justificativa.</div>
+      </div>
+      <div class="risco-nivel">
+        <div class="risco-badge nivel-baixo">BAIXO</div>
+        <div style="font-size: 11px; color: #999; margin-top: 4px;">Probabilidade<br>Média</div>
+      </div>
+      <div>
+        <div class="mitigacao-titulo">Mitigação</div>
+        <div class="mitigacao-desc">Ter tabela de preços formalizada. Desconto somente em kits (já previsto). Treinar Carol para atendimento com ancoragem de preço. Nunca negociar preço sem calcular o impacto na margem. Reajuste semestral planejado.</div>
+      </div>
+    </div>
+
+    <div class="risco-item">
+      <div>
+        <div class="risco-titulo">👷 Qualidade inconsistente com funcionários</div>
+        <div class="risco-desc">A qualidade artesanal é o principal diferencial. Ao contratar auxiliares sem experiência, há risco de queda no padrão, reclamações e devolução — que em móvel grande é logisticamente e financeiramente pesado.</div>
+      </div>
+      <div class="risco-nivel">
+        <div class="risco-badge nivel-medio">MÉDIO</div>
+        <div style="font-size: 11px; color: #999; margin-top: 4px;">Probabilidade<br>Média</div>
+      </div>
+      <div>
+        <div class="mitigacao-titulo">Mitigação</div>
+        <div class="mitigacao-desc">Criar checklist de qualidade por etapa. Andson faz QA antes de cada entrega. Primeiro auxiliar faz apenas trabalho estrutural (baixo risco de qualidade). Período de acompanhamento de 30 dias antes de autonomia total.</div>
+      </div>
+    </div>
+
+    <div class="risco-item">
+      <div>
+        <div class="risco-titulo">📦 Fornecedor único de matéria-prima</div>
+        <div class="risco-desc">Se o fornecedor principal atrasar ou descontinuar um material, a produção para. Em Recife, a cadeia de suprimentos de espuma e tecidos pode ser limitada.</div>
+      </div>
+      <div class="risco-nivel">
+        <div class="risco-badge nivel-baixo">BAIXO</div>
+        <div style="font-size: 11px; color: #999; margin-top: 4px;">Probabilidade<br>Baixa</div>
+      </div>
+      <div>
+        <div class="mitigacao-titulo">Mitigação</div>
+        <div class="mitigacao-desc">Manter estoque de segurança para 2 semanas. Cadastrar pelo menos 2 fornecedores alternativos para cada insumo crítico. Negociar prazo e condição de pagamento para ganhar flexibilidade.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== PLANO DE AÇÃO =============================== -->
+<section class="secao" style="background: var(--cinza-leve);">
+  <div class="container">
+    <span class="secao-numero">10 · Plano de Ação</span>
+    <h2 class="secao-titulo">Checklist das 3 Fases</h2>
+    <p class="secao-desc">Ações concretas e priorizadas para executar em cada fase do crescimento. Marcar cada item conforme concluído.</p>
+
+    <!-- FASE 1 -->
+    <div class="checklist-fase">
+      <div class="checklist-fase-titulo">
+        <div class="checklist-fase-numero">1</div>
+        <div>
+          <div class="checklist-fase-nome">Fase 1 — Operação Solo (Meses 1-3)</div>
+          <div style="font-size: 13px; color: var(--marrom-claro);">Fundação · Produção · Digital</div>
+        </div>
+      </div>
+
+      <div class="checklist-grid">
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Abrir CNPJ no Simples Nacional</strong>Atividade: fabricação de móveis. MEI não comporta o faturamento projetado.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Conta bancária PJ</strong>Separar finanças pessoais das do negócio desde o dia 1. Bancos digitais sem tarifa.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Comprar estoque inicial</strong>R$15.000 em matéria-prima: espuma, tecidos, madeira, pés metálicos/madeira.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Contratar gestor de tráfego</strong>Briefing completo: produto, público, diferencial, tons de comunicação da marca.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Criar site com catálogo</strong>Fotos profissionais dos 9 produtos. Formulário ou botão WhatsApp. Google Analytics.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Configurar Meta Pixel + WhatsApp Business</strong>Pixel no site + catálogo no WhatsApp Business. Respostas automáticas configuradas.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Começar a filmar o processo</strong>Stories diários da produção. Reels semanais do processo completo. Feed: fotos dos sofás prontos.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Criar tabela de preços oficial</strong>Documento interno com custo, preço de venda e margem de cada produto. Sem improvisação.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Emitir notas fiscais</strong>Configurar sistema de NF desde o início. Clientes B2B exigem. Dá credibilidade.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Definir script de atendimento (Carol)</strong>Como responder leads: saudação, perguntas-chave, envio de catálogo, proposta.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Definir parceiro de frete</strong>Cotação com 2-3 transportadoras para Recife e região metropolitana. Preço fixo por bairro.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Abrir Google Meu Negócio</strong>Endereço, fotos, horários, link WhatsApp. Fundamental para buscas locais "sofá artesanal Recife".</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 2 -->
+    <div class="checklist-fase">
+      <div class="checklist-fase-titulo">
+        <div class="checklist-fase-numero" style="background: var(--marrom-claro);">2</div>
+        <div>
+          <div class="checklist-fase-nome">Fase 2 — Primeira Expansão (Meses 3-6)</div>
+          <div style="font-size: 13px; color: var(--marrom-claro);">Espaço · Equipe · Processos</div>
+        </div>
+      </div>
+
+      <div class="checklist-grid">
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Contratar 1° auxiliar de produção</strong>Prioridade: alguém com base em marcenaria ou estofamento. Período de 30 dias de treinamento.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Alugar espaço de produção</strong>Mínimo 80m². Checar pé-direito, energia elétrica adequada, acesso para entrega de material.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Criar manual de produção</strong>Passo a passo documentado de cada etapa. Fotos de referência de qualidade. Base para treinar futuros funcionários.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Estruturar controle de estoque</strong>Planilha ou app simples de entrada/saída de matéria-prima. Ponto de reposição definido.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>DRE mensal (Carol)</strong>Demonstrativo de resultado mensal. Comparar real vs. projetado. Tomar decisões com dados.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Aumentar verba de tráfego</strong>Com maior capacidade produtiva, aumentar volume de leads. Testar novas segmentações.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Criar programa de indicação</strong>"Indique um amigo e ganhe desconto no próximo pedido". Clientes satisfeitos são os melhores vendedores.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Parceria com arquitetos e designers</strong>Visitar 3-5 profissionais por mês. Oferecer showroom + comissão por indicação.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 3 -->
+    <div class="checklist-fase">
+      <div class="checklist-fase-titulo">
+        <div class="checklist-fase-numero" style="background: var(--marrom-escuro);">3</div>
+        <div>
+          <div class="checklist-fase-nome">Fase 3 — Escala Industrial (Meses 6-12)</div>
+          <div style="font-size: 13px; color: var(--marrom-claro);">Volume · Marca · Sistemas</div>
+        </div>
+      </div>
+
+      <div class="checklist-grid">
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Contratar 3° e 4° auxiliares</strong>Completar as 4 células produtivas. Andson assume papel de gestor e guardião da qualidade.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Carol em tempo integral no admin.</strong>Sair do emprego atual. Cuidar de financeiro, logística e pós-venda do Ateliê Nobile.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Implementar sistema ERP simples</strong>Tiny ERP, Bling ou similar. Integração de pedidos, estoque e faturamento em um lugar.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Criar showroom no ateliê</strong>Área dedicada a receber clientes. 3-4 sofás expostos para toque e experiência. Diferencial enorme.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Lançar linha premium (Nobile Exclusive)</strong>Sofás com materiais superiores (couro, veludo importado). Ticket 40% maior. Posicionamento de marca.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Explorar canal B2B</strong>Construtoras, hotéis boutique, escritórios. Pedidos maiores, relação de longo prazo.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Plano de crescimento para ano 2</strong>Com o modelo validado, planejar expansão para outras cidades ou lançamento de franquia.</div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-box"></div>
+          <div class="checklist-item-texto"><strong>Revisar este plano de negócio</strong>Comparar real vs. projetado. Atualizar premissas. Construir plano para os próximos 24 meses.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== MENSAGEM FINAL =============================== -->
+<section class="secao">
+  <div class="container">
+    <span class="secao-numero">11 · Palavra do Mentor</span>
+    <h2 class="secao-titulo">O Que Mais Importa</h2>
+
+    <div class="destaque-box">
+      <h3>💬 Patrick Suyti — Mentor</h3>
+      <p>Andson, o produto é bom, a margem é real, o mercado existe. O que vai separar o sucesso do fracasso não é o talento — você já tem isso. É a <strong style="color: var(--bege-claro);">disciplina operacional</strong>: produzir 3 sofás toda semana sem exceção, postar conteúdo todo dia sem preguiça, acompanhar os números toda semana sem dar desculpa.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 40px;">
+      <div style="background: var(--creme); border-radius: 12px; padding: 32px; border: 1px solid rgba(160,105,74,0.15); border-left: 4px solid var(--marrom-claro);">
+        <div style="font-size: 28px; margin-bottom: 16px;">🎯</div>
+        <h4 style="color: var(--marrom-escuro); margin-bottom: 12px;">Mantenha o foco</h4>
+        <p style="font-size: 14px; color: #666; line-height: 1.7;">Nos primeiros 3 meses, não tente fazer tudo ao mesmo tempo. Produz, posta, atende, vende. Repete. A complexidade vem com o crescimento — não antes.</p>
+      </div>
+      <div style="background: var(--creme); border-radius: 12px; padding: 32px; border: 1px solid rgba(160,105,74,0.15); border-left: 4px solid var(--oliva);">
+        <div style="font-size: 28px; margin-bottom: 16px;">📊</div>
+        <h4 style="color: var(--marrom-escuro); margin-bottom: 12px;">Gerencie pelo número</h4>
+        <p style="font-size: 14px; color: #666; line-height: 1.7;">Toda decisão importante — contratar, expandir, investir — deve ser baseada em dados. Quanto está entrando, quanto está saindo, qual é a margem. Sem isso, você está voando às cegas.</p>
+      </div>
+      <div style="background: var(--creme); border-radius: 12px; padding: 32px; border: 1px solid rgba(160,105,74,0.15); border-left: 4px solid var(--dourado);">
+        <div style="font-size: 28px; margin-bottom: 16px;">❤️</div>
+        <h4 style="color: var(--marrom-escuro); margin-bottom: 12px;">Carol é sócia</h4>
+        <p style="font-size: 14px; color: #666; line-height: 1.7;">O suporte da Carol no início é estratégico. Trate isso como parceria, não como favor. Reconheça, envolva nas decisões, defina quando ela entra formalmente. Negócio de casal funciona com clareza.</p>
+      </div>
+    </div>
+
+    <div style="background: var(--marrom-escuro); border-radius: 16px; padding: 40px; margin-top: 40px; text-align: center;">
+      <div style="font-size: 36px; margin-bottom: 16px;">🛋️</div>
+      <h3 style="color: var(--bege-escuro); margin-bottom: 12px; font-size: 22px;">A meta de 12 meses em números</h3>
+      <div style="display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; margin: 28px 0;">
+        <div>
+          <div style="font-size: 42px; font-weight: bold; color: white;">R$ 963k</div>
+          <div style="font-size: 13px; color: var(--bege-escuro); letter-spacing: 1px;">Faturamento acumulado</div>
+        </div>
+        <div>
+          <div style="font-size: 42px; font-weight: bold; color: white;">R$ 419k</div>
+          <div style="font-size: 13px; color: var(--bege-escuro); letter-spacing: 1px;">Lucro líquido acumulado</div>
+        </div>
+        <div>
+          <div style="font-size: 42px; font-weight: bold; color: white;">48</div>
+          <div style="font-size: 13px; color: var(--bege-escuro); letter-spacing: 1px;">Sofás por mês no pico</div>
+        </div>
+        <div>
+          <div style="font-size: 42px; font-weight: bold; color: white;">4</div>
+          <div style="font-size: 13px; color: var(--bege-escuro); letter-spacing: 1px;">Funcionários na equipe</div>
+        </div>
+      </div>
+      <p style="color: rgba(255,255,255,0.6); font-size: 14px; max-width: 500px; margin: 0 auto; line-height: 1.7;">Este não é um sonho. É um plano. E plano se executa um sofá de cada vez, uma semana de cada vez.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== RODAPÉ =============================== -->
+<footer class="rodape">
+  <div class="container">
+    <h3>Ateliê Nobile</h3>
+    <p>Documento de Consultoria Estratégica<br>Elaborado por Patrick Suyti · Mentor<br>Abril de 2026 · Recife, Pernambuco</p>
+    <div class="rodape-linha"></div>
+    <div style="display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-bottom: 24px;">
+      <span style="font-size: 13px; color: rgba(255,255,255,0.5);">📱 @atelie.nobile</span>
+      <span style="font-size: 13px; color: rgba(255,255,255,0.5);">📍 Recife, PE</span>
+      <span style="font-size: 13px; color: rgba(255,255,255,0.5);">🛋️ Sofás Artesanais</span>
+    </div>
+    <div class="rodape-info">DOCUMENTO CONFIDENCIAL · USO INTERNO · REVISÃO SEMESTRAL RECOMENDADA</div>
+  </div>
+</footer>
+
+</body>
+</html>
