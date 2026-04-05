@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ateliê Nobile — Sofás Artesanais · Recife</title>
-  <meta name="description" content="Sofás feitos à mão com design exclusivo em Recife, PE. Cada peça é única, produzida com materiais premium e acabamento artesanal." />
+  <title>Ateliê Nobile — Sofás Artesanais · Igarassu</title>
+  <meta name="description" content="Sofás feitos à mão com design exclusivo em Igarassu, PE. Cada peça é única, produzida com materiais premium e acabamento artesanal." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -990,7 +990,7 @@
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      z-index: 50;
+      z-index: 9999;
       width: 56px;
       height: 56px;
       border-radius: 50%;
@@ -1147,6 +1147,113 @@
         text-align: left;
       }
     }
+
+    /* ===========================
+       MOBILE TOUCH FIXES
+    =========================== */
+    @media (max-width: 768px) {
+      /* All buttons/links: minimum 48px touch target */
+      .btn-hero,
+      .btn-outline,
+      .btn-nav,
+      .btn-whatsapp,
+      .btn-instagram {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+        touch-action: manipulation;
+        cursor: pointer;
+        position: relative;
+        z-index: 5;
+      }
+
+      /* Hero button bigger on mobile */
+      .btn-hero {
+        padding: 1.1rem 2.8rem;
+        font-size: 0.85rem;
+        width: auto;
+        min-width: 260px;
+      }
+
+      /* Product card buttons full width and bigger */
+      .btn-outline {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        font-size: 0.8rem;
+        min-height: 52px;
+      }
+
+      /* Product cards: no max-width restriction */
+      .products-grid {
+        max-width: 100%;
+      }
+
+      .product-card-image {
+        aspect-ratio: 16/10;
+      }
+
+      /* CTA buttons full width */
+      .btn-whatsapp,
+      .btn-instagram {
+        min-height: 52px;
+        padding: 1rem 2rem;
+        font-size: 0.85rem;
+        width: 100%;
+        max-width: 320px;
+      }
+
+      /* Mobile nav links bigger touch targets */
+      .mobile-nav a {
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+        touch-action: manipulation;
+      }
+
+      /* FAQ questions bigger touch */
+      .faq-question {
+        min-height: 56px;
+        padding: 1.2rem 0;
+        -webkit-tap-highlight-color: rgba(0,0,0,0.05);
+        touch-action: manipulation;
+      }
+
+      /* Floating WhatsApp bigger on mobile */
+      .float-whatsapp {
+        width: 62px;
+        height: 62px;
+        bottom: 1.2rem;
+        right: 1.2rem;
+        z-index: 999;
+      }
+
+      /* Nav button bigger */
+      .hamburger {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+        touch-action: manipulation;
+      }
+
+      /* Ensure hero content doesn't block taps */
+      .hero-content {
+        pointer-events: none;
+      }
+      .hero-content > * {
+        pointer-events: auto;
+      }
+
+      /* Prevent zoom on double tap */
+      * {
+        touch-action: manipulation;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1196,7 +1303,7 @@
     <div class="hero-bg" id="heroBg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <p class="hero-label">Sofás Artesanais · Recife</p>
+      <p class="hero-label">Sofás Artesanais · Igarassu</p>
       <h1>Design que<br>você sente</h1>
       <p class="hero-sub">Cada peça, uma obra feita à mão com alma e precisão</p>
       <a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." class="btn-hero" target="_blank" rel="noopener">
@@ -1226,7 +1333,7 @@
             No Ateliê Nobile, cada sofá nasce de um processo artesanal criterioso. Escolhemos os materiais com cuidado, desenhamos cada curva com intenção e entregamos uma peça que transforma o ambiente — e a experiência de quem vive nele.
           </p>
           <p class="reveal reveal-delay-3">
-            Localizado em Recife, trabalhamos com madeiras selecionadas, espumas de alta densidade e tecidos premium. O resultado é um móvel que une estética refinada e durabilidade real.
+            Localizado em Igarassu, trabalhamos com madeiras selecionadas, espumas de alta densidade e tecidos premium. O resultado é um móvel que une estética refinada e durabilidade real.
           </p>
           <div class="about-features reveal reveal-delay-4">
             <div class="about-feature">
@@ -1395,19 +1502,19 @@
         <div class="testimonial-card reveal">
           <span class="quote-mark">"</span>
           <p class="testimonial-text">O sofá ficou exatamente como imaginei. A qualidade do tecido e o acabamento são impecáveis — parece peça de loja de design europeu.</p>
-          <span class="testimonial-author">Mariana C. · Boa Viagem, Recife</span>
+          <span class="testimonial-author">Mariana C. · Boa Viagem</span>
         </div>
 
         <div class="testimonial-card reveal reveal-delay-1">
           <span class="quote-mark">"</span>
           <p class="testimonial-text">Atendimento atencioso do começo ao fim. Personalizamos tudo e o resultado superou nossas expectativas. Vale cada centavo.</p>
-          <span class="testimonial-author">Rafael e Ana · Aflitos, Recife</span>
+          <span class="testimonial-author">Rafael e Ana · Aflitos</span>
         </div>
 
         <div class="testimonial-card reveal reveal-delay-2">
           <span class="quote-mark">"</span>
           <p class="testimonial-text">Nunca pensei que um sofá pudesse transformar tanto um ambiente. O Ateliê Nobile entrega design de verdade, feito com cuidado real.</p>
-          <span class="testimonial-author">Cláudia M. · Derby, Recife</span>
+          <span class="testimonial-author">Cláudia M. · Derby</span>
         </div>
 
       </div>
@@ -1451,12 +1558,12 @@
 
         <div class="faq-item">
           <button class="faq-question">
-            Vocês entregam fora de Recife?
+            Vocês entregam fora de Igarassu?
             <span class="faq-icon" aria-hidden="true"></span>
           </button>
           <div class="faq-answer">
             <div class="faq-answer-inner">
-              <p>Sim, entregamos para todo o Brasil. O frete é calculado conforme o destino e será informado no orçamento. Para entregas em Recife e Região Metropolitana, temos serviço próprio.</p>
+              <p>Sim, entregamos para todo o Brasil. O frete é calculado conforme o destino e será informado no orçamento. Para entregas em Igarassu e Região Metropolitana, temos serviço próprio.</p>
             </div>
           </div>
         </div>
@@ -1519,7 +1626,7 @@
           Instagram
         </a>
       </div>
-      <p class="cta-address reveal reveal-delay-3">Recife, PE · (81) 98672-5748</p>
+      <p class="cta-address reveal reveal-delay-3">Igarassu, PE · (81) 98672-5748</p>
     </div>
   </section>
 
@@ -1527,7 +1634,7 @@
        FOOTER
   =========================== -->
   <footer class="footer">
-    <span class="footer-copy">© 2026 Ateliê Nobile · Recife, PE</span>
+    <span class="footer-copy">© 2026 Ateliê Nobile · Igarassu, PE</span>
     <ul class="footer-links">
       <li><a href="https://www.instagram.com/atelie.nobile" target="_blank" rel="noopener">Instagram</a></li>
       <li><a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." target="_blank" rel="noopener">WhatsApp</a></li>
