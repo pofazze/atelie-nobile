@@ -106,21 +106,32 @@
       50%       { transform: translateY(6px); }
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    /* Desktop only: reveal animations */
+    @media (min-width: 769px) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 { transition-delay: 0.1s; }
+      .reveal-delay-2 { transition-delay: 0.2s; }
+      .reveal-delay-3 { transition-delay: 0.3s; }
+      .reveal-delay-4 { transition-delay: 0.4s; }
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    /* Mobile: everything visible immediately, no animations */
+    @media (max-width: 768px) {
+      .reveal,
+      .reveal.visible {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
     }
-
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
 
     /* ===========================
        DIVIDER
@@ -383,6 +394,7 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
+      pointer-events: none;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1260,6 +1272,54 @@
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+
+      /* Hero: no animation, everything visible and clickable */
+      .hero-content {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      /* Kill all hover transforms on mobile (they create stacking issues) */
+      .product-card:hover {
+        transform: none;
+      }
+
+      .product-card:hover .product-card-image img {
+        transform: none;
+      }
+
+      .gallery-item:hover img {
+        transform: none;
+      }
+
+      /* Make sure all <a> tags inside cards are block and full-size */
+      .product-card .btn-outline {
+        display: block;
+        text-align: center;
+        padding: 1rem;
+        min-height: 52px;
+        line-height: 32px;
+      }
+
+      /* CTA section buttons - ensure block display */
+      .cta-buttons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+      }
+
+      /* Hero button explicit block */
+      .btn-hero {
+        display: block;
+        text-align: center;
+        padding: 1.2rem 2rem;
+        min-height: 52px;
+        line-height: 1.4;
+        margin: 0 auto;
+        max-width: 300px;
       }
     }
   </style>
