@@ -1,988 +1,633 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Ateliê Nobile — Sofás Artesanais · Igarassu</title>
-  <meta name="description" content="Sofás feitos à mão com design exclusivo em Igarassu, PE. Cada peça é única, produzida com materiais premium e acabamento artesanal." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-
+  <meta name="description" content="Sofás feitos à mão com design exclusivo em Igarassu, PE.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    /* ===========================
-       RESET & BASE
-    =========================== */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --bg: #FDFBF7;
       --white: #FFFFFF;
       --text: #1A1A1A;
-      --text-muted: #777777;
+      --muted: #777;
       --accent: #8B7D6B;
-      --accent-dark: #5C4F3D;
       --border: #E8E2D9;
       --dark: #1A1A1A;
-      --dark-alt: #2C2418;
-
-      --font-serif: 'Cormorant Garamond', Georgia, serif;
-      --font-sans: 'Inter', system-ui, sans-serif;
-
-      --ease: cubic-bezier(0.4, 0, 0.2, 1);
-      --transition: 0.4s var(--ease);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
     }
 
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: var(--font-sans);
+      font-family: var(--sans);
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
-      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
+    img { display: block; max-width: 100%; height: auto; }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
-    /* ===========================
-       TYPOGRAPHY
-    =========================== */
-    .label {
-      font-family: var(--font-sans);
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    h1, h2, h3 {
-      font-family: var(--font-serif);
-      line-height: 1.1;
-      font-weight: 300;
-    }
-
-    h1 { font-size: clamp(3rem, 7vw, 7rem); letter-spacing: -0.01em; }
-    h2 { font-size: clamp(2.2rem, 4vw, 3.8rem); letter-spacing: -0.01em; }
-    h3 { font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 400; }
-
-    p {
-      font-size: clamp(0.9rem, 1.5vw, 1rem);
-      color: var(--text-muted);
-      line-height: 1.8;
-    }
-
-    /* ===========================
-       ANIMATIONS
-    =========================== */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pulse-ring {
-      0%   { transform: scale(1); opacity: 0.6; }
-      100% { transform: scale(1.8); opacity: 0; }
-    }
-
-    @keyframes scroll-bounce {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(6px); }
-    }
-
-    /* Desktop only: reveal animations */
-    @media (min-width: 769px) {
-      .reveal {
-        opacity: 0;
-        transform: translateY(28px);
-        transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
-      }
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .reveal-delay-1 { transition-delay: 0.1s; }
-      .reveal-delay-2 { transition-delay: 0.2s; }
-      .reveal-delay-3 { transition-delay: 0.3s; }
-      .reveal-delay-4 { transition-delay: 0.4s; }
-    }
-
-    /* Mobile: everything visible immediately, no animations */
-    @media (max-width: 768px) {
-      .reveal,
-      .reveal.visible {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
-    }
-
-    /* ===========================
-       DIVIDER
-    =========================== */
-    .divider {
-      width: 40px;
-      height: 1px;
-      background: var(--accent);
-      display: block;
-    }
-
-    /* ===========================
+    /* =====================
        NAVBAR
-    =========================== */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 0 clamp(1.5rem, 5vw, 4rem);
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: background var(--transition), box-shadow var(--transition);
+    ===================== */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(253,251,247,0.97);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
     }
 
-    .navbar.scrolled {
-      background: var(--white);
-      box-shadow: 0 1px 0 var(--border);
-    }
-
-    .navbar-logo {
-      font-family: var(--font-serif);
-      font-size: 1.35rem;
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.3rem;
       font-weight: 500;
-      color: var(--white);
-      letter-spacing: 0.02em;
-      transition: color var(--transition);
-    }
-
-    .navbar.scrolled .navbar-logo {
       color: var(--text);
     }
 
-    .navbar-links {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      list-style: none;
-    }
+    .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
 
-    .navbar-links a {
+    .nav-links a {
       font-size: 0.82rem;
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      color: rgba(255,255,255,0.85);
-      transition: color var(--transition);
+      color: var(--muted);
+      letter-spacing: 0.04em;
     }
 
-    .navbar.scrolled .navbar-links a {
-      color: var(--text-muted);
-    }
-
-    .navbar-links a:hover {
-      color: var(--white);
-    }
-
-    .navbar.scrolled .navbar-links a:hover {
-      color: var(--text);
-    }
-
-    .btn-nav {
-      background: var(--white);
-      color: var(--text) !important;
-      padding: 0.5rem 1.2rem;
-      border-radius: 2px;
-      font-size: 0.78rem !important;
-      font-weight: 500 !important;
-      letter-spacing: 0.06em;
-      transition: background var(--transition), color var(--transition) !important;
-    }
-
-    .navbar.scrolled .btn-nav {
-      background: var(--text);
-      color: var(--white) !important;
-    }
-
-    .btn-nav:hover {
-      opacity: 0.85;
+    .nav-wa {
+      background: #25D366;
+      color: #fff !important;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.8rem;
     }
 
     /* Hamburger */
     .hamburger {
       display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-      background: none;
-      border: none;
+      background: none; border: none; cursor: pointer;
+      width: 44px; height: 44px;
+      flex-direction: column; align-items: center; justify-content: center; gap: 5px;
     }
-
     .hamburger span {
-      display: block;
-      width: 24px;
-      height: 1.5px;
-      background: var(--white);
-      transition: background var(--transition), transform 0.3s, opacity 0.3s;
+      display: block; width: 22px; height: 2px; background: var(--text);
+      transition: transform 0.3s, opacity 0.3s;
     }
 
-    .navbar.scrolled .hamburger span {
-      background: var(--text);
-    }
-
-    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-    /* Mobile nav overlay */
-    .mobile-nav {
+    /* Mobile menu */
+    .mobile-menu {
       display: none;
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: min(320px, 100vw);
+      position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
       background: var(--white);
       z-index: 99;
-      padding: 5rem 2.5rem 2.5rem;
       flex-direction: column;
-      gap: 2rem;
-      transform: translateX(100%);
-      transition: transform 0.4s var(--ease);
-      box-shadow: -8px 0 40px rgba(0,0,0,0.12);
+      padding: 32px 24px;
+      gap: 0;
     }
 
-    .mobile-nav.open {
-      transform: translateX(0);
-    }
+    .mobile-menu.open { display: flex; }
 
-    .mobile-nav a {
-      font-family: var(--font-serif);
-      font-size: 1.8rem;
-      font-weight: 300;
+    .mobile-menu a {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 400;
       color: var(--text);
+      padding: 20px 0;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 1rem;
+      display: block;
     }
 
-    .mobile-nav-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.3);
-      z-index: 98;
-      opacity: 0;
-      transition: opacity 0.4s;
+    .mobile-menu .mobile-wa {
+      margin-top: 32px;
+      background: #25D366;
+      color: #fff;
+      text-align: center;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 500;
+      border-bottom: none;
     }
 
-    .mobile-nav-overlay.open {
-      opacity: 1;
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
     }
 
-    /* ===========================
+    /* =====================
        HERO
-    =========================== */
+    ===================== */
     .hero {
       position: relative;
       width: 100%;
-      height: 100svh;
-      min-height: 600px;
+      min-height: 100vh;
+      min-height: 100svh;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
     }
 
-    .hero-bg {
+    .hero-img {
       position: absolute;
-      inset: 0;
-      background-image: url('foto-kit-organico.jpeg');
-      background-size: cover;
-      background-position: center 40%;
-      transition: transform 0.1s linear;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover;
       pointer-events: none;
     }
 
     .hero-overlay {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.25) 0%,
-        rgba(0,0,0,0.30) 50%,
-        rgba(0,0,0,0.50) 100%
-      );
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.45);
       pointer-events: none;
     }
 
-    .hero-content {
+    .hero-body {
       position: relative;
-      z-index: 10;
+      z-index: 2;
       text-align: center;
-      padding: 0 clamp(1.5rem, 6vw, 4rem);
-      max-width: 800px;
-      animation: fadeUp 1.2s var(--ease) both;
+      padding: 100px 24px 60px;
+      max-width: 700px;
     }
 
     .hero-label {
-      font-family: var(--font-sans);
       font-size: 0.7rem;
       font-weight: 500;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 1.5rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 20px;
     }
 
-    .hero h1 {
-      color: var(--white);
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 8vw, 5rem);
       font-weight: 300;
-      margin-bottom: 1.2rem;
-      text-shadow: 0 2px 30px rgba(0,0,0,0.2);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 16px;
     }
 
     .hero-sub {
-      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-      color: rgba(255,255,255,0.75);
-      font-weight: 300;
-      letter-spacing: 0.02em;
-      margin-bottom: 2.5rem;
-      font-family: var(--font-serif);
+      font-family: var(--serif);
       font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 40px;
     }
 
-    .btn-hero {
+    .hero-btn {
       display: inline-block;
-      background: var(--white);
+      background: #fff;
       color: var(--text);
-      padding: 0.9rem 2.5rem;
-      font-size: 0.8rem;
+      padding: 16px 40px;
+      font-size: 0.85rem;
       font-weight: 500;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      border-radius: 1px;
-      transition: background var(--transition), color var(--transition), transform 0.2s;
+      text-align: center;
+      border-radius: 2px;
+      min-height: 52px;
     }
 
-    .btn-hero:hover {
-      background: var(--accent);
-      color: var(--white);
-      transform: translateY(-1px);
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      pointer-events: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: rgba(255,255,255,0.55);
-    }
-
-    .hero-scroll span {
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-weight: 400;
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: rgba(255,255,255,0.4);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .scroll-line::after {
-      content: '';
-      position: absolute;
-      top: -100%;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255,255,255,0.9);
-      animation: scroll-bounce 1.6s ease-in-out infinite;
-    }
-
-    /* ===========================
-       SECTION BASE
-    =========================== */
-    section {
-      padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 4rem);
+    /* =====================
+       SECTIONS
+    ===================== */
+    .section {
+      padding: 80px 24px;
     }
 
     .section-inner {
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
     }
 
-    /* ===========================
-       ABOUT
-    =========================== */
-    .about {
-      background: var(--bg);
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
     }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .section-divider {
+      width: 40px; height: 1px; background: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    /* =====================
+       ABOUT
+    ===================== */
+    .about { background: var(--bg); }
 
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(3rem, 6vw, 6rem);
+      gap: 60px;
       align-items: center;
     }
 
-    .about-image {
-      position: relative;
-    }
-
-    .about-image img {
+    .about-img {
       width: 100%;
       aspect-ratio: 4/5;
       object-fit: cover;
       border-radius: 4px;
     }
 
-    .about-text {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .about-text .label {
-      display: block;
-    }
-
-    .about-text h2 {
-      color: var(--text);
+    .about-text p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
     }
 
     .about-features {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 0.5rem;
-      padding-top: 1.5rem;
+      margin-top: 24px;
+      padding-top: 20px;
       border-top: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 12px;
     }
 
-    .about-feature {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+    .about-feat {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.85rem; color: var(--text);
     }
 
-    .about-feature-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
+    .about-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
     }
 
-    .about-feature span {
-      font-size: 0.85rem;
-      font-weight: 400;
-      color: var(--text);
-      letter-spacing: 0.03em;
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .about-img { aspect-ratio: 16/10; }
     }
 
-    /* ===========================
+    /* =====================
        PRODUCTS
-    =========================== */
-    .products {
-      background: var(--white);
-    }
-
-    .products-header {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-bottom: clamp(3rem, 6vw, 5rem);
-    }
+    ===================== */
+    .products { background: var(--white); }
 
     .products-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: clamp(1.5rem, 3vw, 2.5rem);
+      gap: 24px;
     }
 
-    .product-card {
-      display: flex;
-      flex-direction: column;
-      background: var(--white);
+    .card {
       border: 1px solid var(--border);
-      border-radius: 2px;
+      border-radius: 4px;
       overflow: hidden;
-      transition: box-shadow var(--transition), transform var(--transition);
+      background: var(--white);
     }
 
-    .product-card:hover {
-      box-shadow: 0 16px 48px rgba(0,0,0,0.08);
-      transform: translateY(-3px);
-    }
-
-    .product-card-image {
-      overflow: hidden;
-      aspect-ratio: 3/4;
-      flex-shrink: 0;
-    }
-
-    .product-card-image img {
+    .card-img {
       width: 100%;
-      height: 100%;
+      aspect-ratio: 3/4;
       object-fit: cover;
-      transition: transform 0.7s var(--ease);
     }
 
-    .product-card:hover .product-card-image img {
-      transform: scale(1.04);
+    .card-body {
+      padding: 24px;
     }
 
-    .product-card-body {
-      padding: 1.8rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      flex: 1;
-    }
-
-    .product-card-body h3 {
+    .card-body h3 {
+      font-family: var(--serif);
       font-size: 1.5rem;
       font-weight: 400;
       color: var(--text);
+      margin-bottom: 8px;
     }
 
-    .product-card-body p {
+    .card-body p {
       font-size: 0.85rem;
+      color: var(--muted);
       line-height: 1.65;
+      margin-bottom: 12px;
     }
 
-    .product-items {
+    .card-items {
       font-size: 0.75rem;
-      font-weight: 400;
       letter-spacing: 0.08em;
       color: var(--accent);
       text-transform: uppercase;
+      margin-bottom: 20px;
     }
 
-    .btn-outline {
-      display: inline-block;
+    .card-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
       border: 1px solid var(--text);
       color: var(--text);
-      padding: 0.75rem 1.5rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: 1px;
-      margin-top: auto;
-      transition: background var(--transition), color var(--transition);
-      text-align: center;
-    }
-
-    .btn-outline:hover {
-      background: var(--text);
-      color: var(--white);
-    }
-
-    /* ===========================
-       GALLERY
-    =========================== */
-    .gallery {
-      background: var(--bg);
-    }
-
-    .gallery-header {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-bottom: clamp(2.5rem, 5vw, 4rem);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: auto;
-      gap: clamp(0.8rem, 1.5vw, 1.2rem);
-    }
-
-    .gallery-item {
-      overflow: hidden;
-      border-radius: 2px;
-      position: relative;
-    }
-
-    .gallery-item:nth-child(1) {
-      grid-row: span 2;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s var(--ease);
-      display: block;
-    }
-
-    .gallery-item:nth-child(1) img { min-height: 500px; }
-    .gallery-item:nth-child(2) img { min-height: 240px; }
-    .gallery-item:nth-child(3) img { min-height: 240px; }
-    .gallery-item:nth-child(4) img { min-height: 240px; }
-
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-
-    /* ===========================
-       PROCESS
-    =========================== */
-    .process {
-      background: var(--white);
-    }
-
-    .process-header {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-bottom: clamp(3rem, 6vw, 5rem);
-    }
-
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      position: relative;
-      gap: 0;
-    }
-
-    .process-line {
-      position: absolute;
-      top: 18px;
-      left: calc(12.5% + 1px);
-      right: calc(12.5% + 1px);
-      height: 1px;
-      background: var(--border);
-      z-index: 0;
-    }
-
-    .process-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 0 1.5rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .process-number {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--white);
-      border: 1px solid var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      margin-bottom: 1.2rem;
-      flex-shrink: 0;
-    }
-
-    .process-step h4 {
-      font-family: var(--font-serif);
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-
-    .process-step p {
-      font-size: 0.82rem;
-    }
-
-    /* ===========================
-       TESTIMONIALS
-    =========================== */
-    .testimonials {
-      background: var(--bg);
-    }
-
-    .testimonials-header {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-bottom: clamp(3rem, 6vw, 4rem);
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(1.5rem, 3vw, 2.5rem);
-    }
-
-    .testimonial-card {
-      padding: 2rem;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-    }
-
-    .quote-mark {
-      font-family: var(--font-serif);
-      font-size: 4rem;
-      line-height: 1;
-      color: var(--border);
-      margin-bottom: 0.8rem;
-      display: block;
-    }
-
-    .testimonial-text {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: 1.05rem;
-      color: var(--text);
-      line-height: 1.75;
-      margin-bottom: 1.5rem;
-    }
-
-    .testimonial-author {
+      padding: 14px 16px;
       font-size: 0.78rem;
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--accent);
+      border-radius: 2px;
+      min-height: 48px;
+      line-height: 1.4;
     }
 
-    /* ===========================
-       FAQ
-    =========================== */
-    .faq {
-      background: var(--white);
+    @media (max-width: 768px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .card-img { aspect-ratio: 16/10; }
     }
 
-    .faq-header {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-bottom: clamp(3rem, 5vw, 4rem);
+    /* =====================
+       GALLERY
+    ===================== */
+    .gallery { background: var(--bg); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
 
-    .faq-list {
-      max-width: 760px;
-      display: flex;
-      flex-direction: column;
-      border-top: 1px solid var(--border);
-    }
-
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
-
-    .faq-question {
+    .gallery-grid img {
       width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.4rem 0;
-      background: none;
-      border: none;
-      cursor: pointer;
-      text-align: left;
-      font-family: var(--font-serif);
-      font-size: 1.05rem;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+
+    .gallery-grid img:first-child {
+      grid-row: span 2;
+      height: 100%;
+      min-height: 572px;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-grid img { height: 240px; }
+      .gallery-grid img:first-child { grid-row: auto; height: 240px; min-height: auto; }
+    }
+
+    /* =====================
+       PROCESS
+    ===================== */
+    .process { background: var(--white); }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .step { text-align: center; }
+
+    .step-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; color: var(--accent);
+      margin: 0 auto 16px;
+    }
+
+    .step h4 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
       font-weight: 400;
       color: var(--text);
-      transition: color var(--transition);
+      margin-bottom: 8px;
     }
 
-    .faq-question:hover {
+    .step p {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 768px) {
+      .process-steps { grid-template-columns: 1fr; gap: 32px; }
+      .step { text-align: left; display: flex; gap: 16px; align-items: flex-start; }
+      .step-num { margin: 0; flex-shrink: 0; }
+    }
+
+    /* =====================
+       TESTIMONIALS
+    ===================== */
+    .testimonials { background: var(--bg); }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .test-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 32px 24px;
+    }
+
+    .test-quote {
+      font-family: var(--serif);
+      font-size: 4rem;
+      line-height: 0.5;
+      color: var(--border);
+      margin-bottom: 16px;
+    }
+
+    .test-text {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .test-author {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .test-grid { grid-template-columns: 1fr; }
+    }
+
+    /* =====================
+       FAQ
+    ===================== */
+    .faq { background: var(--white); }
+
+    .faq-list {
+      max-width: 700px;
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+
+    .faq-item { border-bottom: 1px solid var(--border); }
+
+    .faq-q {
+      width: 100%;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 16px;
+      padding: 20px 0;
+      background: none; border: none; cursor: pointer;
+      text-align: left;
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      color: var(--text);
+      min-height: 56px;
     }
 
     .faq-icon {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
+      width: 20px; height: 20px; flex-shrink: 0;
       position: relative;
-      transition: transform 0.3s var(--ease);
     }
 
-    .faq-icon::before,
-    .faq-icon::after {
-      content: '';
-      position: absolute;
-      background: currentColor;
-      border-radius: 1px;
+    .faq-icon::before, .faq-icon::after {
+      content: ''; position: absolute; background: var(--text); border-radius: 1px;
     }
 
     .faq-icon::before {
-      width: 12px; height: 1px;
-      top: 50%; left: 50%;
+      width: 14px; height: 1px; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
     }
 
     .faq-icon::after {
-      width: 1px; height: 12px;
-      top: 50%; left: 50%;
+      width: 1px; height: 14px; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      transition: transform 0.3s, opacity 0.3s;
+      transition: opacity 0.3s;
     }
 
-    .faq-item.open .faq-icon::after {
-      transform: translate(-50%, -50%) rotate(90deg);
-      opacity: 0;
+    .faq-item.open .faq-icon::after { opacity: 0; }
+
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease;
     }
 
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s var(--ease), padding 0.4s;
-    }
+    .faq-item.open .faq-a { max-height: 300px; }
 
-    .faq-item.open .faq-answer {
-      max-height: 400px;
-    }
-
-    .faq-answer-inner {
-      padding-bottom: 1.4rem;
-    }
-
-    .faq-answer-inner p {
+    .faq-a-inner {
+      padding-bottom: 20px;
       font-size: 0.9rem;
+      color: var(--muted);
       line-height: 1.8;
     }
 
-    /* ===========================
-       CTA SECTION
-    =========================== */
-    .cta-section {
+    /* =====================
+       CTA
+    ===================== */
+    .cta {
       background: var(--dark);
       text-align: center;
-      padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 6vw, 4rem);
+      padding: 80px 24px;
     }
 
-    .cta-section .label {
-      color: rgba(255,255,255,0.4);
-      display: block;
-      margin-bottom: 1.2rem;
-    }
+    .cta .section-label { color: rgba(255,255,255,0.4); }
 
-    .cta-section h2 {
-      color: var(--white);
-      margin-bottom: 1rem;
-    }
+    .cta .section-title { color: #fff; }
 
-    .cta-section > .section-inner > p {
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 2.5rem;
+    .cta-sub {
       font-size: 1rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 40px;
     }
 
-    .cta-buttons {
+    .cta-btns {
       display: flex;
-      gap: 1rem;
+      gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 3rem;
+      margin-bottom: 40px;
     }
 
-    .btn-whatsapp {
+    .cta-wa {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
+      justify-content: center;
+      gap: 10px;
       background: #25D366;
-      color: var(--white);
-      padding: 0.9rem 2rem;
-      font-size: 0.8rem;
+      color: #fff;
+      padding: 16px 32px;
+      font-size: 0.85rem;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      border-radius: 1px;
-      transition: background var(--transition), transform 0.2s;
+      border-radius: 2px;
+      min-height: 52px;
     }
 
-    .btn-whatsapp:hover {
-      background: #1eb558;
-      transform: translateY(-1px);
-    }
-
-    .btn-instagram {
+    .cta-ig {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
+      justify-content: center;
+      gap: 10px;
       background: transparent;
       color: rgba(255,255,255,0.8);
       border: 1px solid rgba(255,255,255,0.25);
-      padding: 0.9rem 2rem;
-      font-size: 0.8rem;
+      padding: 16px 32px;
+      font-size: 0.85rem;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      border-radius: 1px;
-      transition: border-color var(--transition), color var(--transition);
-    }
-
-    .btn-instagram:hover {
-      border-color: rgba(255,255,255,0.6);
-      color: var(--white);
+      border-radius: 2px;
+      min-height: 52px;
     }
 
     .cta-address {
       font-size: 0.8rem;
       color: rgba(255,255,255,0.35);
-      letter-spacing: 0.04em;
     }
 
-    /* ===========================
+    @media (max-width: 480px) {
+      .cta-btns { flex-direction: column; align-items: center; }
+      .cta-wa, .cta-ig { width: 100%; max-width: 320px; }
+    }
+
+    /* =====================
        FOOTER
-    =========================== */
+    ===================== */
     .footer {
-      background: var(--dark-alt);
-      padding: 1.8rem clamp(1.5rem, 6vw, 4rem);
+      background: #141210;
+      padding: 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 16px;
     }
 
     .footer-copy {
       font-size: 0.75rem;
       color: rgba(255,255,255,0.3);
-      letter-spacing: 0.04em;
     }
 
     .footer-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
+      display: flex; gap: 20px; list-style: none;
     }
 
     .footer-links a {
@@ -990,491 +635,136 @@
       color: rgba(255,255,255,0.35);
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      transition: color var(--transition);
     }
 
-    .footer-links a:hover {
-      color: rgba(255,255,255,0.75);
+    @media (max-width: 480px) {
+      .footer { flex-direction: column; align-items: flex-start; }
     }
 
-    /* ===========================
+    /* =====================
        FLOATING WHATSAPP
-    =========================== */
-    .float-whatsapp {
+    ===================== */
+    .float-wa {
       position: fixed;
-      bottom: 2rem;
-      right: 2rem;
+      bottom: 20px;
+      right: 20px;
       z-index: 9999;
-      width: 56px;
-      height: 56px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       background: #25D366;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
-      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
     }
 
-    .float-whatsapp::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: #25D366;
-      animation: pulse-ring 2s ease-out infinite;
-      pointer-events: none;
-    }
-
-    .float-whatsapp:hover {
-      transform: scale(1.08);
-      box-shadow: 0 6px 28px rgba(37,211,102,0.5);
-    }
-
-    .float-whatsapp svg {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ===========================
-       RESPONSIVE
-    =========================== */
-    @media (max-width: 1024px) {
-      .testimonials-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .testimonials-grid .testimonial-card:nth-child(3) {
-        grid-column: span 2;
-        max-width: 480px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .navbar-links {
-        display: none;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      .mobile-nav {
-        display: flex;
-      }
-
-      .mobile-nav-overlay {
-        display: block;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .about-image img {
-        aspect-ratio: 4/3;
-      }
-
-      .products-grid {
-        grid-template-columns: 1fr;
-        max-width: 420px;
-        margin: 0 auto;
-      }
-
-      .process-steps {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
-      .process-line {
-        display: none;
-      }
-
-      .process-step {
-        align-items: flex-start;
-        text-align: left;
-        flex-direction: row;
-        gap: 1.5rem;
-        padding: 0;
-      }
-
-      .process-number {
-        margin-bottom: 0;
-      }
-
-      .process-step-text h4 {
-        font-family: var(--font-serif);
-        font-size: 1.1rem;
-        font-weight: 400;
-        color: var(--text);
-        margin-bottom: 0.4rem;
-      }
-
-      .process-step-text p {
-        font-size: 0.82rem;
-      }
-
-      .testimonials-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .testimonials-grid .testimonial-card:nth-child(3) {
-        grid-column: auto;
-        max-width: 100%;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-item:nth-child(1) {
-        grid-row: auto;
-      }
-
-      .gallery-item:nth-child(1) img,
-      .gallery-item:nth-child(2) img,
-      .gallery-item:nth-child(3) img,
-      .gallery-item:nth-child(4) img {
-        min-height: 260px;
-      }
-
-      .hero h1 {
-        font-size: clamp(2.5rem, 11vw, 4rem);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .btn-whatsapp,
-      .btn-instagram {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-      }
-
-      .footer {
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-      }
-    }
-
-    /* ===========================
-       GLOBAL TOUCH & CLICK FIXES
-    =========================== */
-    /* All clickable elements: always tappable */
-    a, button {
-      -webkit-tap-highlight-color: rgba(0,0,0,0.1);
-      touch-action: manipulation;
-      cursor: pointer;
-    }
-
-    /* Ensure reveal elements are ALWAYS clickable even before animation */
-    .reveal,
-    .reveal * {
-      pointer-events: auto !important;
-    }
-
-    /* Fallback: if JS doesn't load, show everything */
-    @media (prefers-reduced-motion: reduce) {
-      .reveal {
-        opacity: 1 !important;
-        transform: none !important;
-      }
-    }
-
-    /* ===========================
-       MOBILE TOUCH FIXES
-    =========================== */
-    @media (max-width: 768px) {
-      /* All buttons/links: minimum 48px touch target */
-      .btn-hero,
-      .btn-outline,
-      .btn-nav,
-      .btn-whatsapp,
-      .btn-instagram,
-      .float-whatsapp {
-        min-height: 48px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        z-index: 5;
-      }
-
-      /* Hero button bigger on mobile */
-      .btn-hero {
-        padding: 1.1rem 2.8rem;
-        font-size: 0.85rem;
-        width: auto;
-        min-width: 260px;
-        z-index: 10;
-      }
-
-      /* Product card buttons full width and bigger */
-      .btn-outline {
-        width: 100%;
-        padding: 1rem 1.5rem;
-        font-size: 0.8rem;
-        min-height: 52px;
-        z-index: 10;
-      }
-
-      /* Product cards: no max-width restriction */
-      .products-grid {
-        max-width: 100%;
-      }
-
-      .product-card-image {
-        aspect-ratio: 16/10;
-      }
-
-      /* CTA buttons full width */
-      .btn-whatsapp,
-      .btn-instagram {
-        min-height: 52px;
-        padding: 1rem 2rem;
-        font-size: 0.85rem;
-        width: 100%;
-        max-width: 320px;
-        z-index: 10;
-      }
-
-      /* Mobile nav links bigger touch targets */
-      .mobile-nav a {
-        min-height: 56px;
-        display: flex;
-        align-items: center;
-      }
-
-      /* FAQ questions bigger touch */
-      .faq-question {
-        min-height: 56px;
-        padding: 1.2rem 0;
-      }
-
-      /* Floating WhatsApp bigger on mobile */
-      .float-whatsapp {
-        width: 62px;
-        height: 62px;
-        bottom: 1.2rem;
-        right: 1.2rem;
-      }
-
-      /* Nav hamburger bigger */
-      .hamburger {
-        min-width: 44px;
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      /* Hero: no animation, everything visible and clickable */
-      .hero-content {
-        animation: none !important;
-        opacity: 1 !important;
-        transform: none !important;
-      }
-
-      /* Kill all hover transforms on mobile (they create stacking issues) */
-      .product-card:hover {
-        transform: none;
-      }
-
-      .product-card:hover .product-card-image img {
-        transform: none;
-      }
-
-      .gallery-item:hover img {
-        transform: none;
-      }
-
-      /* Make sure all <a> tags inside cards are block and full-size */
-      .product-card .btn-outline {
-        display: block;
-        text-align: center;
-        padding: 1rem;
-        min-height: 52px;
-        line-height: 32px;
-      }
-
-      /* CTA section buttons - ensure block display */
-      .cta-buttons a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 52px;
-      }
-
-      /* Hero button explicit block */
-      .btn-hero {
-        display: block;
-        text-align: center;
-        padding: 1.2rem 2rem;
-        min-height: 52px;
-        line-height: 1.4;
-        margin: 0 auto;
-        max-width: 300px;
-      }
+    .float-wa svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
     }
   </style>
 </head>
 <body>
 
-  <!-- ===========================
-       MOBILE OVERLAY
-  =========================== -->
-  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
-
-  <!-- ===========================
-       NAVBAR
-  =========================== -->
-  <nav class="navbar" id="navbar">
-    <a href="#" class="navbar-logo">Ateliê Nobile</a>
-
-    <ul class="navbar-links">
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">Ateliê Nobile</a>
+    <ul class="nav-links">
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#produtos">Produtos</a></li>
       <li><a href="#contato">Contato</a></li>
-      <li>
-        <a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." class="btn-nav" target="_blank" rel="noopener">WhatsApp</a>
-      </li>
+      <li><a href="https://wa.me/5581986725748?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Ateli%C3%AA%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sof%C3%A1s." class="nav-wa" target="_blank" rel="noopener">WhatsApp</a></li>
     </ul>
-
     <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <!-- Mobile Nav -->
-  <nav class="mobile-nav" id="mobileNav">
-    <a href="#sobre" class="mobile-nav-link">Sobre</a>
-    <a href="#produtos" class="mobile-nav-link">Produtos</a>
-    <a href="#galeria" class="mobile-nav-link">Galeria</a>
-    <a href="#contato" class="mobile-nav-link">Contato</a>
-    <a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." target="_blank" rel="noopener" style="color: #25D366; border-bottom: none; font-size: 1.1rem; margin-top: auto;">
-      WhatsApp →
-    </a>
-  </nav>
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#sobre" class="mm-link">Sobre</a>
+    <a href="#produtos" class="mm-link">Produtos</a>
+    <a href="#galeria" class="mm-link">Galeria</a>
+    <a href="#contato" class="mm-link">Contato</a>
+    <a href="https://wa.me/5581986725748?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Ateli%C3%AA%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sof%C3%A1s." target="_blank" rel="noopener" class="mobile-wa">WhatsApp</a>
+  </div>
 
-  <!-- ===========================
-       HERO
-  =========================== -->
-  <section class="hero" id="inicio">
-    <div class="hero-bg" id="heroBg"></div>
+  <!-- HERO -->
+  <section class="hero">
+    <img src="foto-kit-organico.jpeg" alt="Sofá artesanal Ateliê Nobile" class="hero-img" loading="eager">
     <div class="hero-overlay"></div>
-    <div class="hero-content">
+    <div class="hero-body">
       <p class="hero-label">Sofás Artesanais · Igarassu</p>
-      <h1>Design que<br>você sente</h1>
+      <h1 class="hero-title">Design que<br>você sente</h1>
       <p class="hero-sub">Cada peça, uma obra feita à mão com alma e precisão</p>
-      <a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." class="btn-hero" target="_blank" rel="noopener">
-        Solicite seu Orçamento
-      </a>
-    </div>
-    <div class="hero-scroll" aria-hidden="true">
-      <span>Role</span>
-      <div class="scroll-line"></div>
+      <a href="https://wa.me/5581986725748?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Ateli%C3%AA%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sof%C3%A1s." target="_blank" rel="noopener" class="hero-btn">Solicite seu Orçamento</a>
     </div>
   </section>
 
-  <!-- ===========================
-       ABOUT
-  =========================== -->
-  <section class="about" id="sobre">
+  <!-- ABOUT -->
+  <section class="section about" id="sobre">
     <div class="section-inner">
       <div class="about-grid">
-        <div class="about-image reveal">
-          <img src="foto-kit-classico.jpeg" alt="Conjunto sofá e poltrona Ateliê Nobile" loading="lazy" />
+        <div>
+          <img src="foto-kit-classico.jpeg" alt="Conjunto sofá e poltrona" class="about-img" loading="lazy">
         </div>
         <div class="about-text">
-          <span class="label reveal reveal-delay-1">O Ateliê</span>
-          <h2 class="reveal reveal-delay-1">Feito à mão,<br>entregue com alma</h2>
-          <span class="divider reveal reveal-delay-2"></span>
-          <p class="reveal reveal-delay-2">
-            No Ateliê Nobile, cada sofá nasce de um processo artesanal criterioso. Escolhemos os materiais com cuidado, desenhamos cada curva com intenção e entregamos uma peça que transforma o ambiente — e a experiência de quem vive nele.
-          </p>
-          <p class="reveal reveal-delay-3">
-            Localizado em Igarassu, trabalhamos com madeiras selecionadas, espumas de alta densidade e tecidos premium. O resultado é um móvel que une estética refinada e durabilidade real.
-          </p>
-          <div class="about-features reveal reveal-delay-4">
-            <div class="about-feature">
-              <div class="about-feature-dot"></div>
-              <span>Produção 100% artesanal</span>
-            </div>
-            <div class="about-feature">
-              <div class="about-feature-dot"></div>
-              <span>Personalização completa de tecido e dimensões</span>
-            </div>
-            <div class="about-feature">
-              <div class="about-feature-dot"></div>
-              <span>Materiais premium com garantia de qualidade</span>
-            </div>
+          <p class="section-label">O Ateliê</p>
+          <h2 class="section-title">Feito à mão,<br>entregue com alma</h2>
+          <div class="section-divider"></div>
+          <p>No Ateliê Nobile, cada sofá nasce de um processo artesanal criterioso. Escolhemos os materiais com cuidado, desenhamos cada curva com intenção e entregamos uma peça que transforma o ambiente.</p>
+          <p>Localizado em Igarassu, trabalhamos com madeiras selecionadas, espumas de alta densidade e tecidos premium. O resultado é um móvel que une estética refinada e durabilidade real.</p>
+          <div class="about-features">
+            <div class="about-feat"><div class="about-dot"></div><span>Produção 100% artesanal</span></div>
+            <div class="about-feat"><div class="about-dot"></div><span>Personalização completa de tecido e dimensões</span></div>
+            <div class="about-feat"><div class="about-dot"></div><span>Materiais premium com garantia de qualidade</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===========================
-       PRODUCTS
-  =========================== -->
-  <section class="products" id="produtos">
+  <!-- PRODUCTS -->
+  <section class="section products" id="produtos">
     <div class="section-inner">
-      <div class="products-header">
-        <span class="label reveal">Coleções</span>
-        <h2 class="reveal reveal-delay-1">Nossas Linhas</h2>
-      </div>
+      <p class="section-label">Coleções</p>
+      <h2 class="section-title">Nossas Linhas</h2>
+      <div class="section-divider"></div>
+
       <div class="products-grid">
 
-        <!-- Linha Orgânica -->
-        <div class="product-card reveal">
-          <div class="product-card-image">
-            <img src="foto-kit-organico.jpeg" alt="Linha Orgânica — Sofá curvo com poltrona" loading="lazy" />
-          </div>
-          <div class="product-card-body">
+        <!-- Orgânica -->
+        <div class="card">
+          <img src="foto-kit-organico.jpeg" alt="Linha Orgânica" class="card-img" loading="lazy">
+          <div class="card-body">
             <h3>Linha Orgânica</h3>
             <p>Formas suaves e curvas naturais que trazem fluidez e sofisticação para qualquer ambiente.</p>
-            <span class="product-items">Sofá · Poltrona · Puff</span>
-            <a href="https://wa.me/5581986725748?text=Olá!%20Tenho%20interesse%20na%20Linha%20Orgânica%20do%20Ateliê%20Nobile." class="btn-outline" target="_blank" rel="noopener">
-              Consultar via WhatsApp
-            </a>
+            <div class="card-items">Sofá · Poltrona · Puff</div>
+            <a href="https://wa.me/5581986725748?text=Ol%C3%A1!%20Tenho%20interesse%20na%20Linha%20Org%C3%A2nica%20do%20Ateli%C3%AA%20Nobile." target="_blank" rel="noopener" class="card-btn">Consultar via WhatsApp</a>
           </div>
         </div>
 
-        <!-- Linha Clássica -->
-        <div class="product-card reveal reveal-delay-1">
-          <div class="product-card-image">
-            <img src="foto-sofa-classico.jpeg" alt="Linha Clássica — Sofá reto em ambiente moderno" loading="lazy" />
-          </div>
-          <div class="product-card-body">
+        <!-- Clássica -->
+        <div class="card">
+          <img src="foto-sofa-classico.jpeg" alt="Linha Clássica" class="card-img" loading="lazy">
+          <div class="card-body">
             <h3>Linha Clássica</h3>
             <p>Linhas retas e proporções equilibradas para quem valoriza elegância atemporal e conforto duradouro.</p>
-            <span class="product-items">Sofá · Poltrona · Puff</span>
-            <a href="https://wa.me/5581986725748?text=Olá!%20Tenho%20interesse%20na%20Linha%20Clássica%20do%20Ateliê%20Nobile." class="btn-outline" target="_blank" rel="noopener">
-              Consultar via WhatsApp
-            </a>
+            <div class="card-items">Sofá · Poltrona · Puff</div>
+            <a href="https://wa.me/5581986725748?text=Ol%C3%A1!%20Tenho%20interesse%20na%20Linha%20Cl%C3%A1ssica%20do%20Ateli%C3%AA%20Nobile." target="_blank" rel="noopener" class="card-btn">Consultar via WhatsApp</a>
           </div>
         </div>
 
-        <!-- Linha Confort -->
-        <div class="product-card reveal reveal-delay-2">
-          <div class="product-card-image">
-            <img src="foto-poltrona-azul.jpeg" alt="Linha Confort — Poltrona azul estruturada" loading="lazy" />
-          </div>
-          <div class="product-card-body">
+        <!-- Confort -->
+        <div class="card">
+          <img src="foto-poltrona-azul.jpeg" alt="Linha Confort" class="card-img" loading="lazy">
+          <div class="card-body">
             <h3>Linha Confort</h3>
             <p>Estrutura robusta e acolchoamento generoso que convida ao descanso sem abrir mão do estilo.</p>
-            <span class="product-items">Sofá · Poltrona · Puff</span>
-            <a href="https://wa.me/5581986725748?text=Olá!%20Tenho%20interesse%20na%20Linha%20Confort%20do%20Ateliê%20Nobile." class="btn-outline" target="_blank" rel="noopener">
-              Consultar via WhatsApp
-            </a>
+            <div class="card-items">Sofá · Poltrona · Puff</div>
+            <a href="https://wa.me/5581986725748?text=Ol%C3%A1!%20Tenho%20interesse%20na%20Linha%20Confort%20do%20Ateli%C3%AA%20Nobile." target="_blank" rel="noopener" class="card-btn">Consultar via WhatsApp</a>
           </div>
         </div>
 
@@ -1482,319 +772,182 @@
     </div>
   </section>
 
-  <!-- ===========================
-       GALLERY
-  =========================== -->
-  <section class="gallery" id="galeria">
+  <!-- GALLERY -->
+  <section class="section gallery" id="galeria">
     <div class="section-inner">
-      <div class="gallery-header">
-        <span class="label reveal">Galeria</span>
-        <h2 class="reveal reveal-delay-1">As Peças</h2>
-      </div>
-      <div class="gallery-grid reveal">
-        <div class="gallery-item">
-          <img src="foto-kit-organico.jpeg" alt="Kit Orgânico — Sofá curvo verde com poltrona e puff" loading="lazy" />
-        </div>
-        <div class="gallery-item">
-          <img src="foto-sofa-classico.jpeg" alt="Sofá Clássico em ambiente contemporâneo" loading="lazy" />
-        </div>
-        <div class="gallery-item">
-          <img src="foto-puff.jpeg" alt="Puff redondo cinza com base em madeira" loading="lazy" />
-        </div>
-        <div class="gallery-item">
-          <img src="foto-poltrona-azul.jpeg" alt="Poltrona azul estruturada Linha Confort" loading="lazy" />
-        </div>
+      <p class="section-label">Galeria</p>
+      <h2 class="section-title">As Peças</h2>
+      <div class="section-divider"></div>
+      <div class="gallery-grid">
+        <img src="foto-kit-organico.jpeg" alt="Kit Orgânico" loading="lazy">
+        <img src="foto-sofa-classico.jpeg" alt="Sofá Clássico" loading="lazy">
+        <img src="foto-puff.jpeg" alt="Puff artesanal" loading="lazy">
+        <img src="foto-poltrona-azul.jpeg" alt="Poltrona Confort" loading="lazy">
       </div>
     </div>
   </section>
 
-  <!-- ===========================
-       PROCESS
-  =========================== -->
-  <section class="process" id="processo">
+  <!-- PROCESS -->
+  <section class="section process">
     <div class="section-inner">
-      <div class="process-header">
-        <span class="label reveal">Do início ao fim</span>
-        <h2 class="reveal reveal-delay-1">Como Funciona</h2>
-      </div>
-      <div class="process-steps reveal reveal-delay-2">
-        <div class="process-line" aria-hidden="true"></div>
-
-        <div class="process-step">
-          <div class="process-number">01</div>
-          <div class="process-step-text">
+      <p class="section-label">Do início ao fim</p>
+      <h2 class="section-title">Como Funciona</h2>
+      <div class="section-divider"></div>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
             <h4>Escolha</h4>
             <p>Selecione a linha que combina com seu ambiente e estilo de vida.</p>
           </div>
         </div>
-
-        <div class="process-step">
-          <div class="process-number">02</div>
-          <div class="process-step-text">
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
             <h4>Personalize</h4>
             <p>Defina tecido, cor, dimensão e acabamentos conforme sua visão.</p>
           </div>
         </div>
-
-        <div class="process-step">
-          <div class="process-number">03</div>
-          <div class="process-step-text">
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
             <h4>Fabricação</h4>
             <p>Sua peça é feita à mão por nossos artesãos com total dedicação.</p>
           </div>
         </div>
-
-        <div class="process-step">
-          <div class="process-number">04</div>
-          <div class="process-step-text">
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
             <h4>Entrega</h4>
             <p>Receba em casa com cuidado, pontualidade e acompanhamento.</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ===========================
-       TESTIMONIALS
-  =========================== -->
-  <section class="testimonials" id="depoimentos">
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials">
     <div class="section-inner">
-      <div class="testimonials-header">
-        <span class="label reveal">Depoimentos</span>
-        <h2 class="reveal reveal-delay-1">O que dizem</h2>
-      </div>
-      <div class="testimonials-grid">
-
-        <div class="testimonial-card reveal">
-          <span class="quote-mark">"</span>
-          <p class="testimonial-text">O sofá ficou exatamente como imaginei. A qualidade do tecido e o acabamento são impecáveis — parece peça de loja de design europeu.</p>
-          <span class="testimonial-author">Mariana C. · Boa Viagem</span>
+      <p class="section-label">Depoimentos</p>
+      <h2 class="section-title">O que dizem</h2>
+      <div class="test-grid">
+        <div class="test-card">
+          <div class="test-quote">"</div>
+          <p class="test-text">O sofá ficou exatamente como imaginei. A qualidade do tecido e o acabamento são impecáveis.</p>
+          <span class="test-author">Mariana C. · Boa Viagem</span>
         </div>
-
-        <div class="testimonial-card reveal reveal-delay-1">
-          <span class="quote-mark">"</span>
-          <p class="testimonial-text">Atendimento atencioso do começo ao fim. Personalizamos tudo e o resultado superou nossas expectativas. Vale cada centavo.</p>
-          <span class="testimonial-author">Rafael e Ana · Aflitos</span>
+        <div class="test-card">
+          <div class="test-quote">"</div>
+          <p class="test-text">Atendimento atencioso do começo ao fim. Personalizamos tudo e o resultado superou nossas expectativas.</p>
+          <span class="test-author">Rafael e Ana · Aflitos</span>
         </div>
-
-        <div class="testimonial-card reveal reveal-delay-2">
-          <span class="quote-mark">"</span>
-          <p class="testimonial-text">Nunca pensei que um sofá pudesse transformar tanto um ambiente. O Ateliê Nobile entrega design de verdade, feito com cuidado real.</p>
-          <span class="testimonial-author">Cláudia M. · Derby</span>
+        <div class="test-card">
+          <div class="test-quote">"</div>
+          <p class="test-text">Nunca pensei que um sofá pudesse transformar tanto um ambiente. Design de verdade, feito com cuidado real.</p>
+          <span class="test-author">Cláudia M. · Derby</span>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ===========================
-       FAQ
-  =========================== -->
-  <section class="faq" id="faq">
+  <!-- FAQ -->
+  <section class="section faq">
     <div class="section-inner">
-      <div class="faq-header">
-        <span class="label reveal">Dúvidas</span>
-        <h2 class="reveal reveal-delay-1">Perguntas frequentes</h2>
-      </div>
-      <div class="faq-list reveal reveal-delay-2">
-
+      <p class="section-label">Dúvidas</p>
+      <h2 class="section-title">Perguntas frequentes</h2>
+      <div class="faq-list">
         <div class="faq-item">
-          <button class="faq-question">
-            Vocês trabalham com personalização completa?
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              <p>Sim. Cada peça é feita sob medida. Você escolhe o tecido, a cor, as dimensões, os acabamentos e detalhes como pés e costuras. Nosso time te guia em cada decisão.</p>
-            </div>
-          </div>
+          <button class="faq-q">Vocês trabalham com personalização completa?<span class="faq-icon"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">Sim. Cada peça é feita sob medida. Você escolhe o tecido, a cor, as dimensões e os acabamentos. Nosso time te guia em cada decisão.</div></div>
         </div>
-
         <div class="faq-item">
-          <button class="faq-question">
-            Qual é o prazo de fabricação e entrega?
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              <p>O prazo médio é de 20 a 35 dias após confirmação do pedido, dependendo da linha e da complexidade da personalização. Você recebe atualizações durante o processo.</p>
-            </div>
-          </div>
+          <button class="faq-q">Qual é o prazo de fabricação e entrega?<span class="faq-icon"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">O prazo médio é de 20 a 35 dias após confirmação do pedido, dependendo da personalização. Você recebe atualizações durante o processo.</div></div>
         </div>
-
         <div class="faq-item">
-          <button class="faq-question">
-            Vocês entregam fora de Igarassu?
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              <p>Sim, entregamos para todo o Brasil. O frete é calculado conforme o destino e será informado no orçamento. Para entregas em Igarassu e Região Metropolitana, temos serviço próprio.</p>
-            </div>
-          </div>
+          <button class="faq-q">Vocês entregam fora de Igarassu?<span class="faq-icon"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">Sim, entregamos para toda a Região Metropolitana e para todo o Brasil. O frete é calculado conforme o destino.</div></div>
         </div>
-
         <div class="faq-item">
-          <button class="faq-question">
-            Como funciona o orçamento?
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              <p>Entre em contato pelo WhatsApp. Vamos entender sua necessidade, apresentar as opções e enviar um orçamento detalhado sem compromisso.</p>
-            </div>
-          </div>
+          <button class="faq-q">Como funciona o orçamento?<span class="faq-icon"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">Entre em contato pelo WhatsApp. Vamos entender sua necessidade, apresentar as opções e enviar um orçamento detalhado sem compromisso.</div></div>
         </div>
-
         <div class="faq-item">
-          <button class="faq-question">
-            Quais materiais são utilizados?
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              <p>Utilizamos madeira de reflorestamento certificada, espuma D33 de alta densidade, molas ensacadas e tecidos de linha premium. Todos os materiais são selecionados para garantir conforto e durabilidade.</p>
-            </div>
-          </div>
+          <button class="faq-q">Quais materiais são utilizados?<span class="faq-icon"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">Madeira de reflorestamento certificada, espuma D33 de alta densidade, molas ensacadas e tecidos de linha premium selecionados.</div></div>
         </div>
-
         <div class="faq-item">
-          <button class="faq-question">
-            Há garantia nas peças?
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              <p>Sim. Todas as peças possuem garantia de 12 meses contra defeitos de fabricação. Nosso compromisso vai além da entrega — estamos à disposição para qualquer ajuste necessário.</p>
-            </div>
-          </div>
+          <button class="faq-q">Há garantia nas peças?<span class="faq-icon"></span></button>
+          <div class="faq-a"><div class="faq-a-inner">Sim. Todas as peças possuem garantia de 12 meses contra defeitos de fabricação.</div></div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ===========================
-       CTA
-  =========================== -->
-  <section class="cta-section" id="contato">
+  <!-- CTA -->
+  <section class="cta" id="contato">
     <div class="section-inner">
-      <span class="label">Vamos conversar</span>
-      <h2 class="reveal">Vamos criar<br>o seu sofá?</h2>
-      <p class="reveal reveal-delay-1">Entre em contato pelo WhatsApp ou Instagram.<br>Atendemos de segunda a sábado.</p>
-      <div class="cta-buttons reveal reveal-delay-2">
-        <a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." class="btn-whatsapp" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <p class="section-label">Vamos conversar</p>
+      <h2 class="section-title">Vamos criar<br>o seu sofá?</h2>
+      <p class="cta-sub">Entre em contato pelo WhatsApp ou Instagram.<br>Atendemos de segunda a sábado.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/5581986725748?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Ateli%C3%AA%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sof%C3%A1s." target="_blank" rel="noopener" class="cta-wa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WhatsApp
         </a>
-        <a href="https://www.instagram.com/atelie.nobile" class="btn-instagram" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <a href="https://www.instagram.com/atelie.nobile" target="_blank" rel="noopener" class="cta-ig">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           Instagram
         </a>
       </div>
-      <p class="cta-address reveal reveal-delay-3">Igarassu, PE · (81) 98672-5748</p>
+      <p class="cta-address">Igarassu, PE · (81) 98672-5748</p>
     </div>
   </section>
 
-  <!-- ===========================
-       FOOTER
-  =========================== -->
+  <!-- FOOTER -->
   <footer class="footer">
-    <span class="footer-copy">© 2026 Ateliê Nobile · Igarassu, PE</span>
+    <span class="footer-copy">&copy; 2026 Ateliê Nobile · Igarassu, PE</span>
     <ul class="footer-links">
       <li><a href="https://www.instagram.com/atelie.nobile" target="_blank" rel="noopener">Instagram</a></li>
-      <li><a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." target="_blank" rel="noopener">WhatsApp</a></li>
+      <li><a href="https://wa.me/5581986725748?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Ateli%C3%AA%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sof%C3%A1s." target="_blank" rel="noopener">WhatsApp</a></li>
     </ul>
   </footer>
 
-  <!-- ===========================
-       FLOATING WHATSAPP
-  =========================== -->
-  <a href="https://wa.me/5581986725748?text=Olá!%20Vi%20o%20site%20do%20Ateliê%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sofás." class="float-whatsapp" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/5581986725748?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Ateli%C3%AA%20Nobile%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20sof%C3%A1s." target="_blank" rel="noopener" class="float-wa" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
-  <!-- ===========================
-       JAVASCRIPT
-  =========================== -->
+  <!-- JS -->
   <script>
-    // --- Navbar scroll ---
-    const navbar = document.getElementById('navbar');
-    const onScroll = () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 60);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    // --- Hamburger / Mobile nav ---
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobileNav');
-    const mobileOverlay = document.getElementById('mobileOverlay');
-
-    const openMobileNav = () => {
-      hamburger.classList.add('open');
-      mobileNav.classList.add('open');
-      mobileOverlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    };
-
-    const closeMobileNav = () => {
-      hamburger.classList.remove('open');
-      mobileNav.classList.remove('open');
-      mobileOverlay.classList.remove('open');
-      document.body.style.overflow = '';
-    };
-
-    hamburger.addEventListener('click', () => {
-      if (mobileNav.classList.contains('open')) closeMobileNav();
-      else openMobileNav();
+    // Hamburger
+    var ham = document.getElementById('hamburger');
+    var menu = document.getElementById('mobileMenu');
+    ham.addEventListener('click', function() {
+      menu.classList.toggle('open');
     });
-
-    mobileOverlay.addEventListener('click', closeMobileNav);
-
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.addEventListener('click', closeMobileNav);
-    });
-
-    // --- Reveal on scroll ---
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
+    // Close menu on link click
+    var mmLinks = document.querySelectorAll('.mm-link');
+    for (var i = 0; i < mmLinks.length; i++) {
+      mmLinks[i].addEventListener('click', function() {
+        menu.classList.remove('open');
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    // --- FAQ accordion ---
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.faq-item');
-        const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-        if (!isOpen) item.classList.add('open');
+    }
+    // FAQ
+    var faqBtns = document.querySelectorAll('.faq-q');
+    for (var j = 0; j < faqBtns.length; j++) {
+      faqBtns[j].addEventListener('click', function() {
+        var item = this.parentElement;
+        var wasOpen = item.classList.contains('open');
+        var allItems = document.querySelectorAll('.faq-item');
+        for (var k = 0; k < allItems.length; k++) { allItems[k].classList.remove('open'); }
+        if (!wasOpen) item.classList.add('open');
       });
-    });
-
-    // --- Fallback: show all elements after 2s (mobile safety) ---
-    setTimeout(() => {
-      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-    }, 2000);
-
-    // --- Subtle parallax on hero ---
-    const heroBg = document.getElementById('heroBg');
-    const parallax = () => {
-      const y = window.scrollY;
-      if (y < window.innerHeight * 1.5) {
-        heroBg.style.transform = `translateY(${y * 0.25}px)`;
-      }
-    };
-    window.addEventListener('scroll', parallax, { passive: true });
+    }
   </script>
 
 </body>
 </html>
+</content>
+</invoke>
