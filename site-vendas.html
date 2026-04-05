@@ -307,6 +307,7 @@
       background-size: cover;
       background-position: center 40%;
       transition: transform 0.1s linear;
+      pointer-events: none;
     }
 
     .hero-overlay {
@@ -318,11 +319,12 @@
         rgba(0,0,0,0.30) 50%,
         rgba(0,0,0,0.50) 100%
       );
+      pointer-events: none;
     }
 
     .hero-content {
       position: relative;
-      z-index: 2;
+      z-index: 10;
       text-align: center;
       padding: 0 clamp(1.5rem, 6vw, 4rem);
       max-width: 800px;
@@ -1009,6 +1011,7 @@
       border-radius: 50%;
       background: #25D366;
       animation: pulse-ring 2s ease-out infinite;
+      pointer-events: none;
     }
 
     .float-whatsapp:hover {
@@ -1149,6 +1152,30 @@
     }
 
     /* ===========================
+       GLOBAL TOUCH & CLICK FIXES
+    =========================== */
+    /* All clickable elements: always tappable */
+    a, button {
+      -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+      touch-action: manipulation;
+      cursor: pointer;
+    }
+
+    /* Ensure reveal elements are ALWAYS clickable even before animation */
+    .reveal,
+    .reveal * {
+      pointer-events: auto !important;
+    }
+
+    /* Fallback: if JS doesn't load, show everything */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    /* ===========================
        MOBILE TOUCH FIXES
     =========================== */
     @media (max-width: 768px) {
@@ -1157,14 +1184,12 @@
       .btn-outline,
       .btn-nav,
       .btn-whatsapp,
-      .btn-instagram {
+      .btn-instagram,
+      .float-whatsapp {
         min-height: 48px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
-        touch-action: manipulation;
-        cursor: pointer;
         position: relative;
         z-index: 5;
       }
@@ -1175,6 +1200,7 @@
         font-size: 0.85rem;
         width: auto;
         min-width: 260px;
+        z-index: 10;
       }
 
       /* Product card buttons full width and bigger */
@@ -1183,6 +1209,7 @@
         padding: 1rem 1.5rem;
         font-size: 0.8rem;
         min-height: 52px;
+        z-index: 10;
       }
 
       /* Product cards: no max-width restriction */
@@ -1202,6 +1229,7 @@
         font-size: 0.85rem;
         width: 100%;
         max-width: 320px;
+        z-index: 10;
       }
 
       /* Mobile nav links bigger touch targets */
@@ -1209,16 +1237,12 @@
         min-height: 56px;
         display: flex;
         align-items: center;
-        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
-        touch-action: manipulation;
       }
 
       /* FAQ questions bigger touch */
       .faq-question {
         min-height: 56px;
         padding: 1.2rem 0;
-        -webkit-tap-highlight-color: rgba(0,0,0,0.05);
-        touch-action: manipulation;
       }
 
       /* Floating WhatsApp bigger on mobile */
@@ -1227,31 +1251,15 @@
         height: 62px;
         bottom: 1.2rem;
         right: 1.2rem;
-        z-index: 999;
       }
 
-      /* Nav button bigger */
+      /* Nav hamburger bigger */
       .hamburger {
         min-width: 44px;
         min-height: 44px;
         display: flex;
         align-items: center;
         justify-content: center;
-        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
-        touch-action: manipulation;
-      }
-
-      /* Ensure hero content doesn't block taps */
-      .hero-content {
-        pointer-events: none;
-      }
-      .hero-content > * {
-        pointer-events: auto;
-      }
-
-      /* Prevent zoom on double tap */
-      * {
-        touch-action: manipulation;
       }
     }
   </style>
@@ -1711,6 +1719,11 @@
         if (!isOpen) item.classList.add('open');
       });
     });
+
+    // --- Fallback: show all elements after 2s (mobile safety) ---
+    setTimeout(() => {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }, 2000);
 
     // --- Subtle parallax on hero ---
     const heroBg = document.getElementById('heroBg');
